@@ -12,7 +12,7 @@ contract makes every call self-describing and every outcome branchable.
 
 | Principle | How verdict answers it |
 |---|---|
-| One perception act | `verdict status --json`: backend, availability with reason and remedy, OS build, model use case, limits, supported-language count, and one line per `evidence/replay-*.json` gate record. Grows only with the number of gate runs. Exit 0 or 3 says whether a `decide` can succeed before one is attempted. |
+| One perception act | `verdict status --json` (CLI) and `GET /health` (server): backend, availability with reason and remedy, OS build, model use case, limits, supported-language count, and one line per `evidence/replay-*.json` gate record. Grows only with the number of gate runs. Exit 0 or 3 says whether a `decide` can succeed before one is attempted. |
 | Machine-decidable | `decide` prints exactly one JSON document, always. `code`, `confidence_kind`, `type`, and exit codes are closed vocabularies (§3, §6, §7). Every failure carries `retryable: true|false`. Nothing is inferred from prose. |
 | One verdict per next action | Exit `0` consume `answers` · `1` read `failures[id].remedy` (or the replay summary) · `2` fix the invocation, the message names the flag · `3` fix the environment, the remedy names the setting. No exit code covers two actions. |
 | Bounded output | A `decide` response grows with `questions × options` only (the `probabilities` maps). `replay` prints one line per fixture item plus one summary. Nothing grows with model size, OS, history, or vault size. |
@@ -20,7 +20,7 @@ contract makes every call self-describing and every outcome branchable.
 | Crash-safe and idempotent | The process holds no state between calls. The only write is `replay --out`, done to a temp file then renamed. Greedy runs are deterministic for a given OS model; sampled runs are seeded and the seed is echoed in `usage.seed`, so any run can be replayed exactly. |
 | The tool holds the memory | Each gate run writes a full record to `evidence/replay-<date>-<backend>-v<votes>.json` (per-item answers, shares, latency, OS build). `replay --baseline <record>` prints the items that flipped, so "did this change help" is read from the tool, not remembered. |
 | Accretive by mechanism | The gate threshold never decreases (§10). Every gate run adds a record. A refusal or out-of-schema answer seen in the wild becomes a fixture item before it is fixed. Seeds make voting reproducible, so an improvement is a diff, not an anecdote. |
-| A tower, not a toolbox | FoundationModels framework → `FoundationModelsBackend` (schema + prompt compiler + one sample) → `Engine` (validate, vote, retry, time, schema-check) → `Wire` (Jev JSON) → `verdict` CLI → M2 `verdictd`. Each layer consumes only the one below; an agent enters at the JSON layer and never needs the ones under it. |
+| A tower, not a toolbox | FoundationModels framework → `FoundationModelsBackend` (schema + prompt compiler + one sample) → `Engine` (validate, vote, retry, time, schema-check) → `Wire` (Jev JSON) → `verdict` CLI and `VerdictServer` router → `verdictd`. Each layer consumes only the one below; an agent enters at the JSON layer and never needs the ones under it. |
 | Evaluator outside the loop | Correctness is judged by `swift test` (offline contract tests over a fake backend) and `verdict replay` over a fixture that lives outside the repo and is never written by verdict. The out-of-schema check runs in the engine, not the backend. Model unavailable or zero completed items is exit 3, indeterminate, never a pass. |
 
 Driver's-seat consequences folded into this spec: `--request -` reads a Jev request from stdin;
@@ -28,16 +28,17 @@ Driver's-seat consequences folded into this spec: `--request -` reads a Jev requ
 choose `votes` from measured cost; `usage.seed` and `usage.retries` say what already happened so the
 driver never retries blindly.
 
-## §1 Scope (M0 + M1)
+## §1 Scope (M0 + M1 + M2)
 
 - Library `VerdictCore`: `Verdict(backend:).decide(_ request) -> Response`.
 - Executable `verdict`: `status`, `decide`, `replay`, `bench`.
+- Library `VerdictServer` + executable `verdictd`: the loopback HTTP face (§10).
 - Backends: `FoundationModelsBackend` (Apple Foundation Models, macOS 26+, M0) and
   `LayaCoreMLBackend` (Laya typed-decisions via the laya-coreml export, in-process Core ML, M1).
 - Verifier: `verdict replay` over `~/Code/knowledge/plan/fm-bench/fixture.json` per backend (§8), plus
   Laya fidelity tests against the Python port (§4.2).
 
-Out of scope: `verdictd` (HTTP face, M2), the MLX sidecar (M3), images, chat-transcript states, tools.
+Out of scope: the MLX sidecar (M3), images, chat-transcript states, tools, any non-loopback bind.
 
 ## §2 Types (`VerdictCore`)
 
@@ -296,7 +297,11 @@ sampling settings, same metrics; the model call goes through `VerdictCore` inste
 `@Generable` struct.
 
 - Fixture: `{topics: [{slug, title, blurb}], items: [{slug, title, tldr, truth: [slug]}]}`; 26 topics,
-  40 items.
+  40 items. `replay` also accepts the generic `{cases: [{id, state, questions: {qid: <Jev question>},
+  truth: {qid: label}}]}` format; `scripts/make-narrow-fixture.py` derives a narrow-decision fixture
+  from fm-bench (80 noul with a positive and a negative topic per note, 40 three-way and 40 five-way
+  choices with the true topic among random distractors; truth = MOC membership). The summary then adds a
+  per-kind breakdown and a reliability table (accuracy within confidence bands).
 - Each item → `Request(state: "Title: <title>\nSummary: <tldr>", questions: [("topic",
   .choice(instructions: "Which topic does this note belong under?", options: slug → title))])`.
 - Metrics: `top1 = #items whose answer ∈ truth`, `completed`, `refused`, `out_of_schema`, latency
@@ -338,8 +343,42 @@ option`; score `The index of the level that fits best`; noul `true or false`.
 
 No truncation in M0. The caller shortens the state; `context_exceeded` names the limit.
 
-## §10 Non-goals and honesty rules
+## §10 `verdictd` — the loopback face (M2)
+
+One process, `127.0.0.1` only (no flag exists to change the bind), bearer-token gated, Jev-compatible.
+Laya loads once at start (~2–3 s) and serves every caller; Foundation Models sessions are per sample.
+
+- **Token.** `~/Library/Application Support/verdict/token`: 32 random bytes as 64 hex chars, mode 0600,
+  created on first start. Callers read the file (`verdictd token` prints it). Compared in constant time.
+  Missing or wrong → `401` with `WWW-Authenticate: Bearer` and a remedy naming the file. `/health` is
+  exempt: it is the perception act and carries nothing a local process could not learn from `lsof`.
+- **Routes.** `GET /health` → `{status: ok|unavailable, bind, models, backends{model: {backend,
+  available, reason?, confidence}}, uptime_s, limits, version}`, `200` or `503`. `GET /v1/models` →
+  OpenAI-style list. `GET /v1/limits`. `POST /v1/systemone` → §3 body; headers `x-verdict-backend`,
+  `x-verdict-latency-ms`, `x-verdict-failures` (count of per-question failures in the body).
+- **`model` on the wire.** `verdict-fm`, `verdict-laya`, or the aliases `fm`, `laya`, and `jev-latest`
+  (→ `verdict-fm`, so a stock Jev client works). Unknown → `422`.
+- **Status per failure class** (one status per distinct next action, §0): `422` fix the request
+  (`validation`, `out_of_schema`, `decoding_failure`) · `413` shrink it (`context_exceeded`, body >
+  1 MiB) · `503` fix the environment (`model_unavailable`) · `429` slow down (`rate_limited`,
+  `concurrent_requests`) · `502` the model declined (`refused`, `guardrail_violation`,
+  `unsupported_language`, `backend_error`). Per-question failures never change the status: a `200` body
+  carries them in `failures` and the header count says how many.
+- **Concurrency.** Requests run concurrently; Laya predictions serialise on one queue off the
+  cooperative pool, so a 2 s Laya call never stalls a Foundation Models call beside it.
+- **Lifecycle.** `verdictd [serve] [--port 7311] [--token-file …] [--no-warm] [--pidfile …]`; SIGTERM
+  drains. `verdictd token [--path]`. No daemon manager in M2; a `launchd` plist is a follow-up.
+- **CORS.** None, deliberately. Inlay's MV3 worker has `host_permissions: <all_urls>` and is exempt from
+  CORS; a web page must not be able to drive a local model with the user's token via a drive-by fetch.
+- **Verifier.** `Tests/VerdictServerTests` (11 in-process router tests over a scripted backend) and
+  `scripts/smoke-summon.sh` / `scripts/smoke-inlay.mjs` against a live server: Summon's smart-paste field
+  routing (choice + noul + score, curl with the token file, the shape Summon's `LocalModelRung` sends to a
+  loopback model server) and Inlay's passage ranking (one score per passage plus a best-passage choice,
+  Node `fetch` standing in for the extension worker).
+
+## §11 Non-goals and honesty rules
 
 - Never label Foundation Models output `decoded`. Never emit `confidence` without a kind.
 - Never answer a refused question with a default option.
 - Never lower the gate. Raising it is a decision recorded in `plan/history.md`.
+- `verdictd` never binds anything but `127.0.0.1` and never serves without a token.

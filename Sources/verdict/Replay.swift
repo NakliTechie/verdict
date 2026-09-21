@@ -13,7 +13,7 @@ struct Replay: AsyncParsableCommand {
     @Option(help: "Only the first N items.") var limit: Int?
     @Option(help: "1 = greedy; N >= 2 = agreement voting.") var votes = 1
     @Option(help: "Base seed for sampled runs.") var seed: UInt64 = 1
-    @Option(help: "Minimum top-1 hits to pass. Never lower this; raise it in plan/history.md.") var gate = 26
+    @Option(help: "Minimum top-1 hits to pass (fm-bench default 26). Never lower a recorded gate; raise it in plan/history.md.") var gate = 26
     @Option(help: "Write the full run record here (atomic).") var out: String?
     @Option(help: "Prior record; prints the items whose correctness flipped.") var baseline: String?
     @Option(help: "The question's instructions (caller-side text; default is the fm-bench question).") var instructions = Replay.question
@@ -23,9 +23,52 @@ struct Replay: AsyncParsableCommand {
     struct Item: Codable { let slug: String; let title: String; let tldr: String; let truth: [String] }
     struct Fixture: Codable { let topics: [Topic]; let items: [Item] }
 
+    /// Generic fixture: one Jev request per case with the expected label per question id
+    /// (choice → key · noul → "true"/"false" · score → level index string). `scripts/make-narrow-fixture.py` emits it.
+    struct CaseFixture: Decodable { let cases: [Case] }
+    struct Case: Decodable {
+        let id: String
+        let state: String
+        let questions: [String: Wire.RequestQuestion]
+        let truth: [String: String]
+    }
+
+    /// A replay unit: one request, the labels that count as right, and a display slug.
+    struct Unit {
+        let slug: String
+        let kind: String            // fm-bench: "choice26"; cases: "noul" | "choice3" | "score4" …
+        let request: Request
+        let truth: [String]         // for the single question replayed
+    }
+
+    static func units(from data: Data, topicQuestion: String, policy: Policy, limit: Int?) throws -> (units: [Unit], format: String) {
+        if let fx = try? JSONDecoder().decode(Fixture.self, from: data) {
+            let options = fx.topics.map { ChoiceOption(key: $0.slug, description: $0.title) }
+            let q = Question.choice(ChoiceQuestion(instructions: topicQuestion, options: options))
+            let items = fx.items.prefix(limit ?? fx.items.count)
+            return (items.map { Unit(slug: $0.slug, kind: "choice\(options.count)",
+                                     request: Request(state: "Title: \($0.title)\nSummary: \($0.tldr)",
+                                                      questions: [QuestionEntry(id: "topic", question: q)], policy: policy),
+                                     truth: $0.truth) }, "fm-bench")
+        }
+        let cf = try JSONDecoder().decode(CaseFixture.self, from: data)
+        var units: [Unit] = []
+        for c in cf.cases.prefix(limit ?? cf.cases.count) {
+            for (qid, wq) in c.questions.sorted(by: { $0.key < $1.key }) {
+                let q = try wq.toCore()
+                guard let t = c.truth[qid] else { continue }
+                let kind = q.typeName + (q.labels.count > 2 || q.typeName != "noul" ? String(q.labels.count) : "")
+                units.append(Unit(slug: c.questions.count > 1 ? "\(c.id)#\(qid)" : c.id, kind: kind,
+                                  request: Request(state: c.state, questions: [QuestionEntry(id: qid, question: q)], policy: policy), truth: [t]))
+            }
+        }
+        return (units, "cases")
+    }
+
     struct ItemRecord: Codable {
         let index: Int
         let slug: String
+        let kind: String
         let truth: [String]
         var answer: String?
         var ok: Bool?
@@ -54,7 +97,13 @@ struct Replay: AsyncParsableCommand {
         let gate: Int
         let gate_passed: Bool
         let indeterminate: Bool
+        /// Per question kind: "noul": {top1, completed, mean confidence right / wrong}.
+        let by_kind: [String: KindSummary]
+        /// Accuracy inside confidence bands, for confidence-bearing runs. Empty when confidence is absent.
+        let reliability: [Band]
     }
+    struct KindSummary: Codable { let top1: Int; let completed: Int; let conf_right_mean: Double?; let conf_wrong_mean: Double? }
+    struct Band: Codable { let min: Double; let max: Double; let n: Int; let accuracy: Double? }
 
     struct Record: Codable {
         let run: String
@@ -71,7 +120,9 @@ struct Replay: AsyncParsableCommand {
     static let question = "Which topic does this note belong under?"
 
     func run() async throws {
-        let fx = try JSONDecoder().decode(Fixture.self, from: Data(contentsOf: URL(fileURLWithPath: fixture)))
+        let data = try Data(contentsOf: URL(fileURLWithPath: fixture))
+        let policy = Policy(votes: votes, seed: seed)
+        let (units, format) = try Self.units(from: data, topicQuestion: instructions, policy: policy, limit: limit)
         let backend: any DecisionBackend
         do {
             backend = try Backends.make(model: model)
@@ -88,32 +139,31 @@ struct Replay: AsyncParsableCommand {
             print("laya: model loaded in \(t.wholeMilliseconds) ms (excluded from per-item latency)")
         }
         let engine = Verdict(backend: backend)
-        let options = fx.topics.map { ChoiceOption(key: $0.slug, description: $0.title) }
-        let policy = Policy(votes: votes, seed: seed)
-        let items = Array(fx.items.prefix(limit ?? fx.items.count))
+        print("fixture: \(fixture)  format=\(format)  units=\(units.count)")
 
         var records: [ItemRecord] = []
-        for (i, it) in items.enumerated() {
-            let request = Request(
-                state: "Title: \(it.title)\nSummary: \(it.tldr)",
-                questions: [QuestionEntry(id: "topic", question: .choice(ChoiceQuestion(instructions: instructions, options: options)))],
-                policy: policy)
-            guard let response = await Self.decideOrNil(engine, request, item: i + 1) else { throw Exit.unavailable }
+        for (i, u) in units.enumerated() {
+            guard let response = await Self.decideOrNil(engine, u.request, item: i + 1) else { throw Exit.unavailable }
             let outcome = response.outcomes[0].outcome
-            var rec = ItemRecord(index: i + 1, slug: it.slug, truth: it.truth, retries: response.retries,
+            var rec = ItemRecord(index: i + 1, slug: u.slug, kind: u.kind, truth: u.truth, retries: response.retries,
                                  latency_ms: response.latency.wholeMilliseconds)
             switch outcome {
             case .decision(let d):
-                guard case .choice(let key) = d.answer else { break }
-                rec.answer = key
-                rec.ok = it.truth.contains(key)
+                let label: String
+                switch d.answer {
+                case .choice(let key): label = key
+                case .score(let level, _): label = String(level)
+                case .noul(let b): label = b ? "true" : "false"
+                }
+                rec.answer = label
+                rec.ok = u.truth.contains(label)
                 rec.share = d.confidence
                 rec.probabilities = d.distribution
-                let shareText = d.confidence.map { String(format: "  share %.2f", $0) } ?? ""
-                print("[\(i + 1)] \(it.slug)  \(key) \(rec.ok! ? "OK  " : "MISS")\(shareText)  \(rec.latency_ms) ms  truth=\(it.truth)")
+                let shareText = d.confidence.map { String(format: "  conf %.2f", $0) } ?? ""
+                print("[\(i + 1)] \(u.slug)  \(label) \(rec.ok! ? "OK  " : "MISS")\(shareText)  \(rec.latency_ms) ms  truth=\(u.truth)")
             case .failure(let f):
                 rec.failure = f.code.rawValue
-                print("[\(i + 1)] \(it.slug)  FAIL \(f.code.rawValue) after \(f.retries) retries  \(rec.latency_ms) ms  — \(f.message)")
+                print("[\(i + 1)] \(u.slug)  FAIL \(f.code.rawValue) after \(f.retries) retries  \(rec.latency_ms) ms  — \(f.message)")
             }
             records.append(rec)
         }
@@ -127,9 +177,19 @@ struct Replay: AsyncParsableCommand {
         failures:         \(summary.failures.isEmpty ? "none" : summary.failures.description)  (refused \(summary.refused); engine retries \(summary.retries))
         latency per item: P50 \(summary.latency_p50_ms) ms · P90 \(summary.latency_p90_ms) ms · mean \(summary.latency_mean_ms) ms
         """)
+        func f(_ d: Double?) -> String { d.map { String(format: "%.2f", $0) } ?? "n/a" }
         if votes >= 2 {
-            func f(_ d: Double?) -> String { d.map { String(format: "%.2f", $0) } ?? "n/a" }
             print("winner share:     right mean \(f(summary.share_right_mean)) (unanimous \(summary.unanimous_right ?? 0)/\(summary.top1)) · wrong mean \(f(summary.share_wrong_mean)) (unanimous \(summary.unanimous_wrong ?? 0)/\(summary.completed - summary.top1))")
+        } else if summary.share_right_mean != nil || summary.share_wrong_mean != nil {
+            print("confidence:       right mean \(f(summary.share_right_mean)) · wrong mean \(f(summary.share_wrong_mean))")
+        }
+        if summary.by_kind.count > 1 {
+            for (k, v) in summary.by_kind.sorted(by: { $0.key < $1.key }) {
+                print("  \(k.padding(toLength: 10, withPad: " ", startingAt: 0)) \(v.top1)/\(v.completed)" + (v.conf_right_mean != nil ? "  conf right \(f(v.conf_right_mean)) · wrong \(f(v.conf_wrong_mean))" : ""))
+            }
+        }
+        if !summary.reliability.isEmpty {
+            print("reliability:      " + summary.reliability.map { "[\(f($0.min)),\(f($0.max))) n=\($0.n) acc \(f($0.accuracy))" }.joined(separator: "  "))
         }
 
         let record = Record(run: ISO8601DateFormatter().string(from: Date()), os: IO.osVersion, backend: backend.name,
@@ -170,6 +230,21 @@ struct Replay: AsyncParsableCommand {
         let voting = completed.contains { $0.share != nil }
         let outOfSchema = failures["out_of_schema"] ?? 0
         let indeterminate = completed.isEmpty
+        var byKind: [String: KindSummary] = [:]
+        for kind in Set(records.map(\.kind)) {
+            let c = completed.filter { $0.kind == kind }
+            let r = c.filter { $0.ok == true }.compactMap(\.share), w = c.filter { $0.ok == false }.compactMap(\.share)
+            byKind[kind] = KindSummary(top1: c.filter { $0.ok == true }.count, completed: c.count,
+                                       conf_right_mean: voting ? mean(r) : nil, conf_wrong_mean: voting ? mean(w) : nil)
+        }
+        var bands: [Band] = []
+        if voting {
+            for (lo, hi) in [(0.0, 0.5), (0.5, 0.7), (0.7, 0.9), (0.9, 1.01)] {
+                let inBand = completed.filter { ($0.share ?? -1) >= lo && ($0.share ?? -1) < hi }
+                bands.append(Band(min: lo, max: min(hi, 1.0), n: inBand.count,
+                                  accuracy: inBand.isEmpty ? nil : Double(inBand.filter { $0.ok == true }.count) / Double(inBand.count)))
+            }
+        }
         return Summary(
             attempted: records.count, completed: completed.count, top1: top1,
             out_of_schema: outOfSchema, refused: failures["refused"] ?? 0, failures: failures,
@@ -180,7 +255,7 @@ struct Replay: AsyncParsableCommand {
             unanimous_right: voting ? right.filter { $0 >= 1.0 }.count : nil,
             unanimous_wrong: voting ? wrong.filter { $0 >= 1.0 }.count : nil,
             gate: gate, gate_passed: !indeterminate && top1 >= gate && outOfSchema == 0,
-            indeterminate: indeterminate)
+            indeterminate: indeterminate, by_kind: byKind, reliability: bands)
     }
 
     static func diff(_ record: Record, against path: String) throws {

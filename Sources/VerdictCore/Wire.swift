@@ -205,8 +205,11 @@ extension Wire.Request: Codable {
 }
 
 extension Wire {
+    /// A Jev question as it appears on the wire (`type`, `instructions`, `criteria`), decodable on its own.
+    public typealias RequestQuestion = QuestionBody
+
     /// The polymorphic `criteria` field: object for choice / noul, array for score.
-    struct QuestionBody: Codable {
+    public struct QuestionBody: Codable {
         let type: String
         let instructions: String
         var choiceCriteria: [String: String?]? = nil
@@ -229,7 +232,7 @@ extension Wire {
             }
         }
 
-        init(from decoder: Decoder) throws {
+        public init(from decoder: Decoder) throws {
             let c = try decoder.container(keyedBy: CodingKeys.self)
             type = try c.decode(String.self, forKey: .type)
             instructions = try c.decode(String.self, forKey: .instructions)
@@ -243,7 +246,7 @@ extension Wire {
             }
         }
 
-        func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: Encoder) throws {
             var c = encoder.container(keyedBy: CodingKeys.self)
             try c.encode(type, forKey: .type)
             try c.encode(instructions, forKey: .instructions)
@@ -252,7 +255,7 @@ extension Wire {
             if let noulCriteria { try c.encode(noulCriteria, forKey: .criteria) }
         }
 
-        func toCore() throws(Failure) -> Question {
+        public func toCore() throws(Failure) -> Question {
             switch type {
             case "choice":
                 let crit = choiceCriteria ?? [:]
