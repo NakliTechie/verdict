@@ -30,9 +30,10 @@ M0 shipped. `swift build` + `swift test` (25 offline tests over a fake backend) 
 | run | top-1 | out-of-schema | refusals | P50 / item | record |
 |---|---|---|---|---|---|
 | greedy (`--votes 1`) | 28/40 | 0 | 0 | 1184 ms | `evidence/replay-2026-09-21-foundation-models-v1.json` |
+| agreement (`--votes 3`) | 25/40 | 0 | 0 | 2887 ms | `evidence/replay-2026-09-21-foundation-models-v3.json` |
 | agreement (`--votes 5`) | 25/40 | 0 | 0 | 4782 ms | `evidence/replay-2026-09-21-foundation-models-v5.json` |
 
-Agreement at N=5: winner share 0.86 mean on right answers vs 0.63 on wrong; 9/25 right answers unanimous, 0/15 wrong ones. "Unanimous → accept, split → ask" holds on this fixture at 4× the greedy latency.
+Agreement: winner share on right vs wrong answers is 0.77 vs 0.58 at N=3 and 0.86 vs 0.63 at N=5; at both N, 9/25 right answers are unanimous and 0/15 wrong ones are. "Unanimous → accept, split → ask" holds on this fixture at either N; N=3 buys it at 2.4× greedy latency instead of 4×.
 
 ```bash
 swift build -c release
@@ -58,4 +59,4 @@ Contract and agent face: [SPEC.md](SPEC.md) (§0 agent contract, §3 Jev-compati
 ## Open questions
 - Does laya-coreml's Apache-2.0 port carry usable weights for the `laya-typed-decisions` checkpoint, or only the English/multilingual QA ones?
 - Native-messaging host vs plain `127.0.0.1` fetch for Inlay: which survives Chrome's extension permission model with less friction?
-- Should agreement confidence default to N=3 or N=5? fm-bench measured N=5 at 5× latency; N=3 is unmeasured.
+- Agreement N: measured 2026-09-21, N=3 and N=5 give the same unanimous-right / unanimous-wrong split (9/25 vs 0/15) on this fixture; N=3 at 2.4× greedy latency is the working default for callers that want a confidence. Re-measure on the passage-ranking fixture before fixing it in policy.
