@@ -18,45 +18,52 @@ the other half; if ECE drops by more than the noise floor, the shipped probabili
 Run 2026-09-22, M4 Pro, macOS 26.5.2. `verdict-fm` on the Neural Engine, `verdict-laya` on the CPU,
 `llamacpp-jev` on Metal (Qwen3.5-2B-Q8_0, text-only).
 
-## Results — clipboard routing join (71 items)
+## Results — clipboard routing join (204 items, 2026-09-22)
 
-| engine | join precision | recall | secret leaks | P50 / decision | per-question acc (url / contact / code / secret) | probabilities | raw ECE | ECE after temperature | recalibration gain |
-|---|---|---|---|---|---|---|---|---|---|
-| **verdict-fm** (Apple Foundation Models) | **1.00** | 0.84 | 0 | 966 ms | **0.90 / 0.97 / 0.90 / 0.97** | none | — | — | — |
-| verdict-laya (Laya Core ML, CPU) | 0.95 | 0.63 | 0 | 797 ms | 0.79 / 0.87 / 0.68 / 0.89 | decoded (logits) | 0.081 | 0.084 | 0.04 |
-| llamacpp-jev (Qwen3.5-2B, Metal) | **1.00** | 0.78 | 0 | **302 ms** | 0.89 / 0.89 / 0.63 / 0.96 | decoded (logprobs) | 0.188 | 0.049 | **0.157** |
+Larger pool (`scripts/clipboard-fixture-200.json`, 204 items, 100 should-surface). Latency is
+approximate — some runs overlapped on the machine. The decision-quality columns are the headline.
 
-Records: `evidence/compare-2026-09-22-clipboard-*.json`.
+| engine | join precision | recall | secret leaks | P50 / decision | per-question acc (url / contact / code / secret) | probabilities | recalibration gain |
+|---|---|---|---|---|---|---|---|
+| **verdict-fm** (Apple FM, on-device) | **0.988** | 0.83 | **1** | 906 ms | 0.90 / 0.97 / 0.91 / 0.94 | none | — |
+| verdict-laya (Laya Core ML, CPU) | 0.94 | 0.63 | **0** | 728 ms | 0.84 / 0.85 / 0.78 / 0.89 | decoded | 0.05 |
+| llamacpp-jev Qwen3.5-2B (Metal) | 0.94 | 0.78 | 2 | **296 ms** | 0.90 / 0.90 / 0.71 / 0.95 | logprobs | 0.17 |
+| llamacpp-jev Qwen3.5-4B (Metal) | 0.978 | **0.87** | 2 | 677 ms | 0.94 / 0.98 / 0.90 / 0.89 | logprobs | **0.00** |
+
+Records: `evidence/compare-2026-09-22-clip204-*.json`. (A first pass on 71 items had verdict-fm and
+llamacpp-jev-2B both at 1.00 precision with 0 leaks; the larger pool is the trustworthy read and shows
+neither is perfect.)
 
 ## What it says
 
-1. **The routing join is robust across engines.** All three reach ~1.0 join precision with zero secret
-   leaks, because the join reads *answers*, and every engine gets the routing-critical answers
-   (is_url / is_contact / is_secret) mostly right. Decision quality, not engine, is what carries it.
-2. **verdict-fm has the best per-question answers** (0.90–0.97), edging the 2B Jev-mechanism model and
-   Laya. Apple's guided generation answers a typed question at least as accurately as a purpose-built
-   2B typed-decision model here.
-3. **llamacpp-jev is the fastest** at 302 ms, ~3× quicker than verdict-fm, from its one-token-branch
-   design on a small model. That speed is a real Jev-mechanism advantage.
-4. **Real probabilities carry the field's calibration tax, and we reproduced it locally.**
-   llamacpp-jev's raw logprob probabilities are badly overconfident (ECE 0.19); a single temperature
-   T=0.25 removes 76% of the error (0.206 → 0.049 on held-out) — almost exactly the "recalibration
-   removes three-quarters of the error" that `predict_addict` found on hosted Jev over 16,500 tabular
-   predictions. Laya's decoded confidence is better-calibrated raw (ECE 0.08) but gains little from
-   recalibration. verdict-fm has no probability to miscalibrate.
+1. **verdict-fm leads on precision and leaks, but does not dominate.** It has the highest join precision
+   (0.988) and the fewest secret leaks (1), and the best is_contact/is_code answers. But a 4B local
+   Jev-mechanism model is right behind (0.978) with **higher recall** (0.87 vs 0.83) and better is_url.
+2. **The calibration problem is a small-model effect, not inherent to the Jev mechanism.** Qwen3.5-2B's
+   logprob probabilities are badly overconfident (a temperature removes 17 points of ECE); Qwen3.5-4B's
+   are **already calibrated** (recalibration gain 0.00). So "Jev-style probabilities are miscalibrated"
+   holds for small models and dissolves by 4B — an honest correction to the 71-item first pass and to a
+   blanket reading of the field's calibration critique.
+3. **Speed still favours the small Jev model** (296 ms, 3× verdict-fm), with the 4B in between (677 ms).
+4. **No engine gates secrets perfectly.** verdict-fm leaked 1 (a reset URL with a `?sig=` token it read
+   as a plain URL), the Jev models 2 each; only Laya leaked 0, bought with the worst recall (0.63). A
+   consumer that must never surface a secret needs defense in depth (e.g. a regex for token-shaped query
+   params), not the model alone.
 
-## Can we say verdict-fm is better than Jev?
+## Can we say verdict-fm is better than Jev — or "better than the rest"?
 
-Not against **hosted Jev** — we have never run it (it needs a TypeSafe API key), and "better" needs one
-metric on one shared testbed. Against a **faithful local Jev-mechanism engine** (Qwen3.5-2B, genuine
-logprobs, the same wire), on this routing task, verdict-fm **matches join precision, beats per-question
-accuracy, and avoids the overconfidence that recalibration exposes** — at the cost of being ~3× slower
-and offering no probability at all. If a consumer needs a probability to threshold on, none of the three
-gives a calibrated one raw; a temperature-scaled llamacpp-jev gets closest. For a routing or filing
-*decision*, verdict-fm is the pick.
+No to both, and the larger pool is why we can say that with confidence rather than by caution:
 
-Sovereignty is the one axis where verdict beats hosted Jev outright and by construction: on-device, no
-key, no egress.
+- Against **hosted Jev** — never run (needs a TypeSafe key); no shared testbed yet.
+- Against **"the rest"** — refuted here: a 4B local Jev-mechanism model matches verdict-fm on decision
+  quality (0.978 vs 0.988 precision), **beats it on recall**, and adds **calibrated probabilities**
+  verdict-fm does not have. And on the separate 26-way topic-routing task, plain BM25 beats verdict-fm
+  (33/40 vs 28/40). "Better than the rest" is a leaderboard claim the evidence does not support.
+- What the evidence **does** support: verdict-fm is **among the best local engines on decision quality**,
+  edging precision and secret-leaks; it is **uniquely sovereign** — it is the OS model, so there is no
+  separate multi-GB download, no model server, no second process to run or update; and it is **honest
+  about confidence** (it reports `none` rather than a miscalibrated number). Those three — accurate
+  enough, zero-install sovereign, honest — are the claim, not a leaderboard win.
 
 ## Limits of this comparison
 

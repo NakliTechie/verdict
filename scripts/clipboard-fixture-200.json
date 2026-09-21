@@ -1,0 +1,2460 @@
+{
+ "seed": 7,
+ "questions": [
+  "is_url",
+  "is_contact",
+  "is_code",
+  "is_secret"
+ ],
+ "join": "surface = (is_url OR is_contact) AND NOT is_secret",
+ "cases": [
+  {
+   "id": "prose-9",
+   "class": "prose",
+   "state": "The client call hinges on the conclusion; the spare key is with the neighbour.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "url_secret-8",
+   "class": "url_secret",
+   "state": "https://example.com/reset?token=92d0933888d03c9a38c82600cce25e2d",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "phone-7",
+   "class": "phone",
+   "state": "+61 2200 26199 8225",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "private_key-4",
+   "class": "private_key",
+   "state": "-----BEGIN OPENSSH PRIVATE KEY-----\n6/EH0Pe2DcG96+B/IBPFOLKGdaBBGMaB7/P6G0GLCbH79+bHHH3IOOJ73KB24/C3D1f3Pf5e3De/J0P5A1G/LEe5M+BOI437CCCb\n-----END OPENSSH PRIVATE KEY-----",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "contact_card-10",
+   "class": "contact_card",
+   "state": "Omar Haddad\nAnalyst, Northwind Labs\nomar@northwind.example\n+61 2 5550 1234",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "password-14",
+   "class": "password",
+   "state": "db_pass=4l3Ch!n%7i75%k$%nggg",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "phone-15",
+   "class": "phone",
+   "state": "+49 594 2487 949",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "prose-5",
+   "class": "prose",
+   "state": "The meeting was blocked by the caching section; notes in the doc.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "phone-1",
+   "class": "phone",
+   "state": "+91 3750 3103",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "password-3",
+   "class": "password",
+   "state": "PGPASSWORD=n18!#CA0!on90E$3",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "pure_url-5",
+   "class": "pure_url",
+   "state": "https://www.bbc.co.uk/news/technology-24127884",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "prose-19",
+   "class": "prose",
+   "state": "The release is moved to next sprint; loop in design.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "private_key-2",
+   "class": "private_key",
+   "state": "-----BEGIN OPENSSH PRIVATE KEY-----\nOLCa0DBDa+8DGJeAMd6G8e1a2H182K6PJA7MCKOE1I6G2BE6feO8H1JfODL6\n-----END OPENSSH PRIVATE KEY-----",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "password-11",
+   "class": "password",
+   "state": "db_pass=1Akii@Fn85374Bj5",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "api_key-11",
+   "class": "api_key",
+   "state": "ghp_QiNKty88MhWG2kdiNtegBoy1XhVav8dN",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-1",
+   "class": "email",
+   "state": "arjun.mehta@atlas.example",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "password-13",
+   "class": "password",
+   "state": "password: oB0!#1g8in3A4!#m",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "code-22",
+   "class": "code",
+   "state": "npm install --save-dev vitest @vitest/coverage-v8",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "pure_url-25",
+   "class": "pure_url",
+   "state": "www.nytimes.com/wiki/Actor_model",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "contact_card-16",
+   "class": "contact_card",
+   "state": "Priya Raman\nHead of Design, Umbra Studios\npriya@umbra.example\n+91 98765 43210",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "api_key-18",
+   "class": "api_key",
+   "state": "ghp_nCrv7VzGgefw5JCNtaoIVG3qXVexhjx6",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "phone-6",
+   "class": "phone",
+   "state": "+44 6053 6306 611",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "phone-2",
+   "class": "phone",
+   "state": "+49 582 9401",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-4",
+   "class": "pure_url",
+   "state": "www.bbc.co.uk/mizorewww/laya-coreml",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "api_key-5",
+   "class": "api_key",
+   "state": "sk-0SKbAhMSwwDAWfGfsy0L9flW91gQk8KS0N8sOfKH",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-17",
+   "class": "email",
+   "state": "hello@proton.me",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "prose-23",
+   "class": "prose",
+   "state": "Her argument went long over the conclusion; details to follow.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "prose-6",
+   "class": "prose",
+   "state": "The onboarding surprised everyone on the security sign-off; loop in design.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "password-4",
+   "class": "password",
+   "state": "password: DCp$g7EpA@AA00D96Cg6",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "prose-2",
+   "class": "prose",
+   "state": "Her argument is moved to the conclusion; the spare key is with the neighbour.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "api_key-8",
+   "class": "api_key",
+   "state": "xoxb-UmhWKPU9MQ9uGK9qGMYJJyTuTbRMGo6GRN4YdCAZ",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "password-1",
+   "class": "password",
+   "state": "login: admin  /  @3D88pAl65E4",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "phone-4",
+   "class": "phone",
+   "state": "5294 307 71616",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "phone-10",
+   "class": "phone",
+   "state": "+91 26512 308 05169",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "email-6",
+   "class": "email",
+   "state": "support@fastmail.com",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-9",
+   "class": "pure_url",
+   "state": "news.ycombinator.com/item?id=990091",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "contact_card-1",
+   "class": "contact_card",
+   "state": "Tom Ford\nResearcher, Meridian Health\ntom@meridian.example\n+91 98765 43210",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "email-19",
+   "class": "email",
+   "state": "arjun.mehta@company.co",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "code-8",
+   "class": "code",
+   "state": "print(f\"{name}: {value:.2f}\")",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "phone-5",
+   "class": "phone",
+   "state": "+81 81264 4460",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "prose-22",
+   "class": "prose",
+   "state": "Her argument slipped to the conclusion; we can discuss Monday.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "password-9",
+   "class": "password",
+   "state": "login: admin  /  4@$!34#9i43nkjiBop14",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "code-4",
+   "class": "code",
+   "state": "export PATH=\"$HOME/.local/bin:$PATH\" && source ~/.zshrc",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-18",
+   "class": "email",
+   "state": "yuki@outlook.com",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "url_secret-9",
+   "class": "url_secret",
+   "state": "https://cdn.site.io/asset?access_token=996afa9863e7564d4a446d0a325c66c5",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "api_key-7",
+   "class": "api_key",
+   "state": "ghp_CWlUhJ31cqjvUKdcsxQlOIVdp4sPgMRTwt01nJuJ",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "address-4",
+   "class": "address",
+   "state": "Plot 7, Banjara Hills\nTokyo 100-0001, Japan",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "url_secret-2",
+   "class": "url_secret",
+   "state": "https://hooks.slack.com/services/T00/B00?access_token=1d69f1f7647054c5a488a643cd1dc22b",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "password-5",
+   "class": "password",
+   "state": "login: admin  /  $Ai2nh#22F8B",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "address-6",
+   "class": "address",
+   "state": "30 Rockefeller Plaza\n01304-001 Sao Paulo",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-7",
+   "class": "pure_url",
+   "state": "https://www.reddit.com/questions/9730027/how-to",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-17",
+   "class": "pure_url",
+   "state": "http://www.reddit.com/models/cilflh",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "url_secret-11",
+   "class": "url_secret",
+   "state": "https://cdn.site.io/asset?access_token=1396dffc0918487e01cf4c41520a7670",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "address-5",
+   "class": "address",
+   "state": "5 Marina Boulevard\nMountain View, CA 94043",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "address-1",
+   "class": "address",
+   "state": "77 King William St\nNew Delhi 110003, India",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "password-7",
+   "class": "password",
+   "state": "db_pass=BA7p05oC!jj2",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "contact_card-8",
+   "class": "contact_card",
+   "state": "Lena Vogel\nHead of Design, Meridian Health\nlena@meridian.example\n+91 98765 43210",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "password-10",
+   "class": "password",
+   "state": "PGPASSWORD=2A5Eo5jn@7h!!0!o37h4",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "url_secret-6",
+   "class": "url_secret",
+   "state": "https://cdn.site.io/asset?sig=1ac2ce6b6a331ce649e3eb7ea1cabe5d",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "prose-3",
+   "class": "prose",
+   "state": "The design was softer than expected on the enterprise side; the spare key is with the neighbour.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "url_secret-4",
+   "class": "url_secret",
+   "state": "https://hooks.slack.com/services/T00/B00?api_key=f033038f25a2baa0918d79630140e65b",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "prose-14",
+   "class": "prose",
+   "state": "The release was softer than expected on next sprint; please review before then.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "pure_url-3",
+   "class": "pure_url",
+   "state": "https://en.wikipedia.org/documentation/foundationmodels",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "api_key-4",
+   "class": "api_key",
+   "state": "sk-twX6Ux9mge2SnvByaBbhxGWetDikNt30",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-16",
+   "class": "email",
+   "state": "dev@outlook.com",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "email-7",
+   "class": "email",
+   "state": "contact@company.co",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "prose-15",
+   "class": "prose",
+   "state": "The design was blocked by Thursday afternoon; details to follow.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "api_key-19",
+   "class": "api_key",
+   "state": "xoxb-bVbQjD0SSW0fZVgR3gWNpfyHVMUtTIloFyCZuj",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "private_key-5",
+   "class": "private_key",
+   "state": "-----BEGIN OPENSSH PRIVATE KEY-----\nbCGaH/A5PCcHd0KHD+bF7J6H+Ic4cbPFc7O2M17d88dBPfOM+23A0KPee9bcNcDBKE06D/260G/OJ4f0IMb/G8bI4GA4H93J4bH2\n-----END OPENSSH PRIVATE KEY-----",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "code-23",
+   "class": "code",
+   "state": "SELECT count(*) FROM users GROUP BY country HAVING count(*) > 100;",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "pure_url-21",
+   "class": "pure_url",
+   "state": "https://docs.python.org/wiki/Actor_model",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "address-11",
+   "class": "address",
+   "state": "30 Rockefeller Plaza\nTokyo 100-0001, Japan",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "contact_card-18",
+   "class": "contact_card",
+   "state": "Wei Chen\nProduct Manager, Pallas Data\nwei@pallas.example\n+44 7700 900123",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "code-11",
+   "class": "code",
+   "state": "@Test func decodes() throws { #expect(try parse(x) == y) }",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "api_key-16",
+   "class": "api_key",
+   "state": "xoxb-q55jyo1TMfsNhFv1cq4HjHQaO0IefjDe",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "code-13",
+   "class": "code",
+   "state": "df -h | awk 'NR>1 {print $5, $6}' | sort -rn",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "api_key-9",
+   "class": "api_key",
+   "state": "xoxb-OgoSdBJQmvZAvP62bsklvpa2Oqup44xpsl2OrLpH",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "url_secret-10",
+   "class": "url_secret",
+   "state": "https://example.com/reset?sig=b2db3e1274057a60cb78e39bef974332",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "pure_url-8",
+   "class": "pure_url",
+   "state": "http://www.reddit.com/a/ojmlao/deep-dive",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-6",
+   "class": "pure_url",
+   "state": "http://github.com/models/epnbck",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "email-15",
+   "class": "email",
+   "state": "s.khan@atlas.example",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "code-6",
+   "class": "code",
+   "state": "brew install --cask docker && open -a Docker",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "contact_card-7",
+   "class": "contact_card",
+   "state": "Yuki Sato\nVP Sales, Kestrel Bank\nyuki@kestrel.example\n+44 7700 900123",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-2",
+   "class": "pure_url",
+   "state": "https://stackoverflow.com/3/library/asyncio.html",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "url_secret-12",
+   "class": "url_secret",
+   "state": "https://cdn.site.io/asset?api_key=4b925e0c2166873aeb799ac6881d1eed",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "pure_url-15",
+   "class": "pure_url",
+   "state": "news.ycombinator.com/blog/pddpop/post",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "url_secret-1",
+   "class": "url_secret",
+   "state": "https://hooks.slack.com/services/T00/B00?sig=bd8ac8402891208e7d684c17c03de5e2",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "contact_card-12",
+   "class": "contact_card",
+   "state": "Priya Raman\nAnalyst, Umbra Studios\npriya@umbra.example\n+44 7700 900123",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "contact_card-20",
+   "class": "contact_card",
+   "state": "Ana Costa\nSenior Engineer, Vireo AI\nana@vireo.example\n+49 30 555 0199",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "address-13",
+   "class": "address",
+   "state": "1600 Amphitheatre Parkway\nMountain View, CA 94043",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-20",
+   "class": "pure_url",
+   "state": "https://docs.python.org/abs/44267",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "code-5",
+   "class": "code",
+   "state": "SELECT id, name FROM users WHERE active = 1 ORDER BY created_at DESC LIMIT 50;",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-9",
+   "class": "email",
+   "state": "yuki@company.co",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-22",
+   "class": "pure_url",
+   "state": "https://news.ycombinator.com/documentation/foundationmodels",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "contact_card-15",
+   "class": "contact_card",
+   "state": "Devlin Fox\nSenior Engineer, Kestrel Bank\ndevlin@kestrel.example\n+61 2 5550 1234",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "address-7",
+   "class": "address",
+   "state": "88 Queen Street\nNew Delhi 110003, India",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "code-19",
+   "class": "code",
+   "state": "def fib(n): return n if n < 2 else fib(n-1) + fib(n-2)",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-3",
+   "class": "email",
+   "state": "t.ford@company.co",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "contact_card-3",
+   "class": "contact_card",
+   "state": "Priya Raman\nFounder, Atlas Robotics\npriya@atlas.example\n+61 2 5550 1234",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "code-1",
+   "class": "code",
+   "state": "git rebase -i HEAD~3 && git push --force-with-lease",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "address-9",
+   "class": "address",
+   "state": "1600 Amphitheatre Parkway\nLondon NW1 6XE, UK",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "address-12",
+   "class": "address",
+   "state": "Flat 4, Sunder Nagar\nAuckland 1010, NZ",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-19",
+   "class": "pure_url",
+   "state": "https://arxiv.org/r/LocalLLaMA/comments/ollchd",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "prose-11",
+   "class": "prose",
+   "state": "The migration needs another pass before the primitives, not the framework; details to follow.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "password-6",
+   "class": "password",
+   "state": "password: 116E23Cjpm1$#087i89B",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "url_secret-13",
+   "class": "url_secret",
+   "state": "https://hooks.slack.com/services/T00/B00?sig=bae1b3e27ddc30621aa38241911a73ba",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "prose-16",
+   "class": "prose",
+   "state": "The client call surprised everyone on the enterprise side; no action needed yet.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "code-24",
+   "class": "code",
+   "state": "docker run --rm -p 8080:8080 -e LOG_LEVEL=debug myimage:latest",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-5",
+   "class": "email",
+   "state": "hello@atlas.example",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "code-9",
+   "class": "code",
+   "state": "for f in *.txt; do mv \"$f\" \"${f%.txt}.md\"; done",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "prose-21",
+   "class": "prose",
+   "state": "The draft was softer than expected on the vendor review; please review before then.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "code-16",
+   "class": "code",
+   "state": "const sum = (a, b) => a + b;\nexport default sum;",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "api_key-20",
+   "class": "api_key",
+   "state": "ghp_kDZTGACM06emxqDyg6inYnJorssm4rFNCqodowLG",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "api_key-17",
+   "class": "api_key",
+   "state": "sk-sfPfKim3vAK1UdskfqS1dXba9rELoXop",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "code-3",
+   "class": "code",
+   "state": "for i in range(10):\n    print(i * i)",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "code-7",
+   "class": "code",
+   "state": "let total = items.filter { $0.active }.reduce(0) { $0 + $1.count }",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "url_secret-5",
+   "class": "url_secret",
+   "state": "https://example.com/reset?token=c27fbc6313b8ff28a25441b305fa46c9",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "contact_card-22",
+   "class": "contact_card",
+   "state": "Arjun Mehta\nCTO, Umbra Studios\narjun@umbra.example\n+61 2 5550 1234",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "email-8",
+   "class": "email",
+   "state": "hello@company.co",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "api_key-12",
+   "class": "api_key",
+   "state": "ghp_gw7HunWoDQRYZDAEa6aosrWlQGOTvZ89hOz9Zd",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-13",
+   "class": "email",
+   "state": "nina.rao@proton.me",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "prose-13",
+   "class": "prose",
+   "state": "The client call got pushed past the primitives, not the framework; loop in design.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "code-10",
+   "class": "code",
+   "state": "type Point = { x: number; y: number };",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "pure_url-18",
+   "class": "pure_url",
+   "state": "https://medium.com/abs/80377",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "private_key-1",
+   "class": "private_key",
+   "state": "-----BEGIN OPENSSH PRIVATE KEY-----\nLc103/JPC91G17FJeB0b/BGCN9Nab5G6IaCfML2FBDC179E3HFaeOF+3L6K1\n-----END OPENSSH PRIVATE KEY-----",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "api_key-3",
+   "class": "api_key",
+   "state": "AKIAHCC826zwoF0wooSe",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "pure_url-26",
+   "class": "pure_url",
+   "state": "http://huggingface.co/a/kpdbhg/deep-dive",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "prose-17",
+   "class": "prose",
+   "state": "Her argument needs another pass before the enterprise side; nothing urgent.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "phone-8",
+   "class": "phone",
+   "state": "+44 21167 420",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "api_key-1",
+   "class": "api_key",
+   "state": "sk-6sq1iee1hsA2Bb9uOk4TyNZnlEk6KJCBHGn7KWJs",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-14",
+   "class": "email",
+   "state": "dev@atlas.example",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "contact_card-4",
+   "class": "contact_card",
+   "state": "Lena Vogel\nHead of Design, Pallas Data\nlena@pallas.example\n+91 98765 43210",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-16",
+   "class": "pure_url",
+   "state": "https://arxiv.org/mizorewww/laya-coreml",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "contact_card-24",
+   "class": "contact_card",
+   "state": "Lena Vogel\nSenior Engineer, Meridian Health\nlena@meridian.example\n+44 7700 900123",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "prose-1",
+   "class": "prose",
+   "state": "The retro got pushed past the mobile layout; the spare key is with the neighbour.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "contact_card-21",
+   "class": "contact_card",
+   "state": "Yuki Sato\nSenior Engineer, Northwind Labs\nyuki@northwind.example\n+1 415 555 0182",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "private_key-6",
+   "class": "private_key",
+   "state": "-----BEGIN OPENSSH PRIVATE KEY-----\n7c0c03/2eA926dLdJ52OFfePeN5ABDa9dd5//5270C06AE/OG41+3JM4936f/FK1e1Ed+LHcf+4K/c+N\n-----END OPENSSH PRIVATE KEY-----",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "contact_card-5",
+   "class": "contact_card",
+   "state": "Sara Khan\nAnalyst, Pallas Data\nsara@pallas.example\n+1 415 555 0182",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "address-3",
+   "class": "address",
+   "state": "4-1 Chiyoda\nTokyo 100-0001, Japan",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-12",
+   "class": "pure_url",
+   "state": "developer.apple.com/wiki/Actor_model",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "contact_card-9",
+   "class": "contact_card",
+   "state": "Arjun Mehta\nHead of Design, Vireo AI\narjun@vireo.example\n+44 7700 900123",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "code-12",
+   "class": "code",
+   "state": "kubectl rollout restart deployment/api -n production",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "url_secret-7",
+   "class": "url_secret",
+   "state": "https://cdn.site.io/asset?api_key=ba192a8ccc92c2101896c93b0ce423ea",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "code-18",
+   "class": "code",
+   "state": "assert response.status_code == 200, response.text",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "phone-12",
+   "class": "phone",
+   "state": "+61 797 761 256",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "contact_card-13",
+   "class": "contact_card",
+   "state": "Nina Rao\nAnalyst, Umbra Studios\nnina@umbra.example\n+44 7700 900123",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-14",
+   "class": "pure_url",
+   "state": "www.bbc.co.uk/item?id=4913",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "code-17",
+   "class": "code",
+   "state": "import numpy as np\narr = np.zeros((3, 3))\nprint(arr.sum())",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "code-2",
+   "class": "code",
+   "state": "curl -s https://api.example.com/v1/items | jq '.data[].id'",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "code-15",
+   "class": "code",
+   "state": "CREATE INDEX idx_events_status ON events(status, id);",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-10",
+   "class": "email",
+   "state": "arjun.mehta@proton.me",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "phone-16",
+   "class": "phone",
+   "state": "+49 5032 2456",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "phone-11",
+   "class": "phone",
+   "state": "+61 64936 5787 009",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "api_key-15",
+   "class": "api_key",
+   "state": "AIzay8Ih1WolAqAN8EpSQmGlJ2OLxcWyJN5ZyiK",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "pure_url-24",
+   "class": "pure_url",
+   "state": "https://www.nytimes.com/abs/76865",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "code-21",
+   "class": "code",
+   "state": "func total(_ xs: [Int]) -> Int { xs.reduce(0, +) }",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "address-8",
+   "class": "address",
+   "state": "Rua Augusta 1200\nAuckland 1010, NZ",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "contact_card-17",
+   "class": "contact_card",
+   "state": "Ana Costa\nHead of Design, Cobalt Systems\nana@cobalt.example\n+49 30 555 0199",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "prose-20",
+   "class": "prose",
+   "state": "The client call was blocked by next sprint; nothing urgent.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "phone-3",
+   "class": "phone",
+   "state": "+81 055 034 930",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "phone-9",
+   "class": "phone",
+   "state": "+61 961 92396 37293",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-23",
+   "class": "pure_url",
+   "state": "http://www.reddit.com/blog/nggaig/post",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "email-11",
+   "class": "email",
+   "state": "dev@proton.me",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "contact_card-14",
+   "class": "contact_card",
+   "state": "Wei Chen\nSenior Engineer, Umbra Studios\nwei@umbra.example\n+61 2 5550 1234",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "email-4",
+   "class": "email",
+   "state": "t.ford@atlas.example",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-10",
+   "class": "pure_url",
+   "state": "github.com/wiki/Actor_model",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "api_key-13",
+   "class": "api_key",
+   "state": "xoxb-I7xEzzoMepjuO09JWqo10y0adSwjpIx1",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "contact_card-23",
+   "class": "contact_card",
+   "state": "Ana Costa\nCTO, Kestrel Bank\nana@kestrel.example\n+1 415 555 0182",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-13",
+   "class": "pure_url",
+   "state": "https://stackoverflow.com/mizorewww/laya-coreml",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "private_key-7",
+   "class": "private_key",
+   "state": "-----BEGIN OPENSSH PRIVATE KEY-----\nM4LDG0C4AAdAd3GABML9b+JM4HJK/+GBGEK/975DAeJP0bKCbGE0M62BDO3C6DPPOCKLeA7d4a9EP2O4d39BPFLK02LAc31Hf2f3\n-----END OPENSSH PRIVATE KEY-----",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "prose-12",
+   "class": "prose",
+   "state": "The draft was blocked by the security sign-off; loop in design.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "private_key-3",
+   "class": "private_key",
+   "state": "-----BEGIN OPENSSH PRIVATE KEY-----\nJ6Jb44PJBbcfKa9Ge78HJ+DN8cHaM15aPPG2c4KDcJB6+f+I6A/cL15C4NbLIL/OLMFF9bLNIMdMAE/4D/0fc9FA48IbPL1CK1A0\n-----END OPENSSH PRIVATE KEY-----",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "address-10",
+   "class": "address",
+   "state": "Plot 7, Banjara Hills\nNew York, NY 10112",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "api_key-6",
+   "class": "api_key",
+   "state": "AIzaysjyGoUWGZ7Z54vFb4pBXNTQb5igKY4oO8d",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "url_secret-3",
+   "class": "url_secret",
+   "state": "https://example.com/reset?api_key=e726e94c2bf7c2ac2c1c2d8a472eb1df",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "pure_url-1",
+   "class": "pure_url",
+   "state": "https://www.bbc.co.uk/wiki/Actor_model",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "email-12",
+   "class": "email",
+   "state": "contact@proton.me",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "prose-10",
+   "class": "prose",
+   "state": "The meeting was softer than expected on Thursday afternoon; notes in the doc.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "api_key-14",
+   "class": "api_key",
+   "state": "AIzay2ORtYrQbrLeAzuzRWPpTUefbnoFq5XJ7T2",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "api_key-10",
+   "class": "api_key",
+   "state": "sk-UQosG5aPyZttoKQ2bedBn2ahrq73L5pUxAY1f6",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "phone-14",
+   "class": "phone",
+   "state": "+91 20191 274 315",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "address-2",
+   "class": "address",
+   "state": "5 Marina Boulevard\n01304-001 Sao Paulo",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "code-20",
+   "class": "code",
+   "state": "rsync -av --delete ./build/ server:/var/www/",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "password-2",
+   "class": "password",
+   "state": "password: 1i6jF@BkA@npn88B$n%B",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "code-14",
+   "class": "code",
+   "state": "{\"model\": \"verdict-fm\", \"policy\": {\"votes\": 3}, \"timeout_ms\": 5000}",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "prose-8",
+   "class": "prose",
+   "state": "The meeting is moved to the vendor review; please review before then.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "contact_card-19",
+   "class": "contact_card",
+   "state": "Tom Ford\nProduct Manager, Atlas Robotics\ntom@atlas.example\n+44 7700 900123",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "prose-7",
+   "class": "prose",
+   "state": "The design needs another pass before the primitives, not the framework; please review before then.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "contact_card-6",
+   "class": "contact_card",
+   "state": "Yuki Sato\nSenior Engineer, Umbra Studios\nyuki@umbra.example\n+44 7700 900123",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "api_key-2",
+   "class": "api_key",
+   "state": "ghp_CIspoCsEvCE2lwXM090i5qE43w6t8YGP",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "prose-24",
+   "class": "prose",
+   "state": "The retro got pushed past the conclusion; details to follow.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-2",
+   "class": "email",
+   "state": "arjun.mehta@fastmail.com",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "prose-4",
+   "class": "prose",
+   "state": "The release landed well with next sprint; please review before then.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "private_key-8",
+   "class": "private_key",
+   "state": "-----BEGIN OPENSSH PRIVATE KEY-----\nEH50P2M7c0P5CbBfJPIFMbI67PK10N32Nd8+NO6Ia61P3+NIH+Fb2BJdA2FLOeMGE1+dMEdFOcI3c037IbLB104B7P30GLcHbOC3\n-----END OPENSSH PRIVATE KEY-----",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "password-8",
+   "class": "password",
+   "state": "db_pass=oBkl9n2#$0FE94Dl",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-20",
+   "class": "email",
+   "state": "t.ford@gmail.com",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "url_secret-14",
+   "class": "url_secret",
+   "state": "https://cdn.site.io/asset?api_key=7c217519b47560a3c0903018123d9f19",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "address-14",
+   "class": "address",
+   "state": "12 Rue de Rivoli\nSingapore 018989",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "password-12",
+   "class": "password",
+   "state": "db_pass=Ei644m038$lmCmm$4!g4",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "contact_card-11",
+   "class": "contact_card",
+   "state": "Wei Chen\nResearcher, Vireo AI\nwei@vireo.example\n+91 98765 43210",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "phone-13",
+   "class": "phone",
+   "state": "+44 8800 21581",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "contact_card-2",
+   "class": "contact_card",
+   "state": "Devlin Fox\nFounder, Atlas Robotics\ndevlin@atlas.example\n+61 2 5550 1234",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "prose-18",
+   "class": "prose",
+   "state": "The draft is moved to the enterprise side; flag anything odd.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "pure_url-11",
+   "class": "pure_url",
+   "state": "http://en.wikipedia.org/wiki/Actor_model",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  }
+ ]
+}
