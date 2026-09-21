@@ -96,7 +96,7 @@ public enum VerdictServer {
 
     static let limits: [String: Int] = [
         "max_questions": Limits.maxQuestions, "max_options": Limits.maxOptions, "min_options": Limits.minOptions,
-        "max_body_bytes": maxBodyBytes, "max_votes": 25,
+        "max_body_bytes": maxBodyBytes, "max_votes": Limits.maxVotes,
     ]
     public static let version = "0.2.0"
 

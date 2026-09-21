@@ -13,7 +13,16 @@ public enum Token {
     /// Reads the token file, creating a fresh 32-byte random token (64 hex chars) if it is absent.
     public static func loadOrCreate(at url: URL = defaultFile) throws -> String {
         let fm = FileManager.default
-        if let data = try? Data(contentsOf: url) {
+        if let attrs = try? fm.attributesOfItem(atPath: url.path) {
+            let mode = (attrs[.posixPermissions] as? NSNumber)?.intValue ?? 0
+            let owner = (attrs[.ownerAccountID] as? NSNumber)?.uint32Value
+            guard mode & 0o077 == 0 else {
+                throw Error(description: "\(url.path) has mode \(String(mode, radix: 8)); other users can read the token. Fix: `chmod 600 \"\(url.path)\"` or delete it to regenerate.")
+            }
+            guard owner == getuid() else {
+                throw Error(description: "\(url.path) is owned by uid \(owner.map(String.init) ?? "?"), not you. Delete it to regenerate.")
+            }
+            let data = try Data(contentsOf: url)
             let t = String(decoding: data, as: UTF8.self).trimmingCharacters(in: .whitespacesAndNewlines)
             guard isValid(t) else { throw Error(description: "\(url.path) does not hold a 64-hex-character token; delete it to regenerate.") }
             return t

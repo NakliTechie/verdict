@@ -211,3 +211,60 @@ final class ScriptedBackend: DecisionBackend, Sendable {
         try? FileManager.default.removeItem(at: dir)
     }
 }
+
+/// Regression tests for the 2026-09-21 Codex review findings (plan/history.md).
+@Suite struct ServerReviewTests {
+    @Test func insecureExistingTokenFileIsRejected() throws {   // finding 4
+        let dir = FileManager.default.temporaryDirectory.appendingPathComponent("verdict-test-\(UUID().uuidString)")
+        try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        let file = dir.appendingPathComponent("token")
+        try Data((String(repeating: "cd", count: 32) + "\n").utf8).write(to: file)
+        try FileManager.default.setAttributes([.posixPermissions: 0o644], ofItemAtPath: file.path)
+        #expect(throws: Token.Error.self) { try Token.loadOrCreate(at: file) }
+        try FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: file.path)
+        let reloaded = try Token.loadOrCreate(at: file)
+        #expect(reloaded == String(repeating: "cd", count: 32))
+        try? FileManager.default.removeItem(at: dir)
+    }
+
+    @Test func configuredButMissingBackendIs503NotUnknownModel() async throws {   // finding 6
+        let registry = Registry(entries: [
+            "verdict-fm": .init(model: "verdict-fm", backend: ScriptedBackend([]), confidence: "test"),
+            "verdict-laya": .init(model: "verdict-laya", confidence: "decoded",
+                                  backend: UnavailableBackend(name: "laya-coreml", reason: "No Laya checkpoint at /nowhere.", remedy: "hf download …")),
+        ])
+        let app = Application(router: VerdictServer.router(.init(port: 0, token: ServerTests.token, registry: registry)))
+        try await app.test(.router) { client in
+            let body = ByteBuffer(string: #"{"model":"verdict-laya","state":"s","questions":{"q":{"type":"noul","instructions":"i"}}}"#)
+            try await client.execute(uri: "/v1/systemone", method: .post, headers: ServerTests.auth, body: body) { r in
+                #expect(r.status == .serviceUnavailable)
+                let e = try ServerTests.json(r)["error"] as! [String: Any]
+                #expect(e["code"] as? String == "model_unavailable")
+                #expect((e["remedy"] as? String)?.contains("hf download") == true)
+            }
+            try await client.execute(uri: "/health", method: .get) { r in
+                #expect(r.status == .ok)   // FM is still available
+                let b = (try ServerTests.json(r)["backends"] as! [String: [String: Any]])["verdict-laya"]!
+                #expect(b["available"] as? Bool == false)
+                #expect((b["reason"] as? String)?.contains("No Laya checkpoint") == true)
+            }
+        }
+    }
+
+    @Test func votesAboveTheAdvertisedLimitAre422() async throws {   // finding 5
+        let app = ServerTests.app(ScriptedBackend([]))
+        try await app.test(.router) { client in
+            for (votes, status) in [(25, HTTPResponse.Status.ok), (26, .unprocessableContent), (1_000_000, .unprocessableContent)] {
+                let body = ByteBuffer(string: #"{"state":"s","questions":{"q":{"type":"noul","instructions":"i"}},"policy":{"votes":\#(votes)}}"#)
+                try await client.execute(uri: "/v1/systemone", method: .post, headers: ServerTests.auth, body: body) { r in
+                    // 25 votes against an empty script fails per question (200 with failures), never 422.
+                    #expect(r.status == status, "votes=\(votes)")
+                }
+            }
+            try await client.execute(uri: "/v1/limits", method: .get, headers: ServerTests.auth) { r in
+                let j = try ServerTests.json(r)
+                #expect(j["max_votes"] as? Int == Limits.maxVotes)
+            }
+        }
+    }
+}
