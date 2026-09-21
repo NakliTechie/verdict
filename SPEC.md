@@ -387,7 +387,114 @@ Laya loads once at start (~2–3 s) and serves every caller; Foundation Models s
   loopback model server) and Inlay's passage ranking (one score per passage plus a best-passage choice,
   Node `fetch` standing in for the extension worker).
 
-## §11 Non-goals and honesty rules
+## §12 Dataflow mode — the second door (M4)
+
+The request/response face (§10) is one door; dataflow mode is the second door on the same daemon,
+from the vault note `notes/decision-dataflow-for-local-apps.md`. Instead of a caller posting one
+request, verdict watches an SQLite table of events, asks each event the questions its type declares,
+and writes the answers to a decisions table. The consumer joins decisions back to events in SQL. No
+new model path, no new confidence story: the same `confidenceKind` contract, which is what makes a
+join auditable.
+
+Scope of the first layer (M4a): the mechanism, verified against a scripted backend. The live gate
+(join precision on labelled Summon clipboard events) is M4b.
+
+### §12.1 Tables
+
+`verdictd watch` creates these if absent (all `IF NOT EXISTS`; it never drops or alters):
+
+```sql
+CREATE TABLE events (
+  id           INTEGER PRIMARY KEY,
+  type         TEXT NOT NULL,                       -- key into the topology
+  state        TEXT NOT NULL,                       -- the material every question is asked about
+  status       TEXT NOT NULL DEFAULT 'pending',     -- pending | done | skipped
+  created_at   TEXT,
+  processed_at TEXT
+);
+CREATE TABLE decisions (
+  event_id        INTEGER NOT NULL,
+  question_id     TEXT NOT NULL,
+  type            TEXT NOT NULL,                     -- choice | score | noul
+  answer          TEXT,                              -- choice key | level index | "true"/"false"; NULL on failure
+  confidence      REAL,                              -- NULL when kind = none or on failure
+  confidence_kind TEXT NOT NULL,                     -- decoded | agreement | none | failed
+  probabilities   TEXT,                              -- JSON map over labels, or NULL
+  backend         TEXT NOT NULL,
+  failed          INTEGER NOT NULL DEFAULT 0,        -- 1 = the question failed (code set), no answer
+  code            TEXT,                              -- failure code when failed = 1
+  created_at      TEXT,
+  PRIMARY KEY (event_id, question_id)
+);
+```
+
+The consumer owns both tables' lifecycle beyond these columns; verdict only reads `events` and writes
+`decisions`. A consumer inserts events (`status` defaults to `pending`) and reads decisions once its
+event is `done`.
+
+### §12.2 Topology
+
+A JSON file mapping event `type` to the model and the questions to ask. The question shape is exactly
+§3's, so the vocabulary is identical to the request door:
+
+```json
+{
+  "version": 1,
+  "types": {
+    "clipboard": {
+      "model": "verdict-fm",
+      "questions": {
+        "is_url":       {"type": "noul",   "instructions": "Is the text a single URL?"},
+        "is_contact":   {"type": "noul",   "instructions": "Is it a person's contact details?"},
+        "sensitivity":  {"type": "score",  "instructions": "How sensitive is this text?",
+                         "criteria": ["public", "personal", "secret"]}
+      }
+    }
+  }
+}
+```
+
+An event whose `type` is not in the topology is marked `skipped`, never answered — verdict does not
+guess a topology. `model` is optional per type; absent → `verdict-fm`.
+
+### §12.3 The loop
+
+`verdictd watch --db <file> --topology <file> [--once] [--interval 1.0] [--batch 50]`:
+
+1. Ensure the schema.
+2. Select up to `--batch` events with `status = 'pending'`, oldest id first.
+3. For each event, in **one transaction**: build a Request from its type's questions, decide it, upsert
+   one `decisions` row per question (an answer, or a `failed = 1` row carrying the code for a
+   per-question failure), then set the event `status = 'done'`, `processed_at = now`. Commit.
+4. `--once` processes the current backlog and exits; otherwise sleep `--interval` seconds and repeat.
+
+Crash-safety: each event is one transaction, so a crash mid-event rolls back to `pending` with no
+partial decisions; a re-run reprocesses it. Idempotent by `status`. A decision row is keyed by
+`(event_id, question_id)` and upserted, so a re-run after a crash overwrites cleanly rather than
+duplicating.
+
+A **request-level** failure (model unavailable, a malformed topology question) stops the watcher with a
+nonzero exit and leaves the event `pending` — indeterminate, never a fabricated `done`, the same rule
+as `replay`. A **per-question** failure is a `failed` row and the event still completes.
+
+### §12.4 The join and the fallback live in SQL, not in verdict
+
+verdict writes honest rows and stops there. The consumer's SQL applies the threshold and the join
+(AND/OR/feedback), and routes a low-confidence or `failed` decision to its own fallback tier (a bigger
+model, or a human). This is deliberate (the vault note: "the fallback rule is the design"): verdict has
+no larger on-device model to fall back to, and a threshold is only meaningful on the consumer's own
+data. verdict's contribution is the `confidence_kind` that makes the consumer's join auditable.
+
+### §12.5 Verifier
+
+M4a: `Tests/VerdictServerTests` over a scripted backend and a temp SQLite file — pending events get
+decisions, unknown types are skipped, per-question failures are `failed` rows, a re-run is idempotent,
+a mid-event crash leaves no partial rows. M4b (live, gated on the ANE being free): feed Summon's
+clipboard history export, report the join's precision at the chosen threshold on 200 hand-labelled
+events and the fallback rate; if precision is under 0.9 the calibration limit is confirmed locally and
+the fallback tier carries the product.
+
+## §13 Non-goals and honesty rules
 
 - Never label Foundation Models output `decoded`. Never emit `confidence` without a kind.
 - Never answer a refused question with a default option.
