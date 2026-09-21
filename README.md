@@ -35,6 +35,14 @@ TOKEN=$(.build/release/verdictd token)
 .build/release/verdict decide --example | curl -s -X POST http://127.0.0.1:7311/v1/systemone -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' -d @-
 ```
 
+To have it up at login (per-user launchd agent, restarts on exit, no sudo):
+
+```bash
+.build/release/verdictd install        # copies the binary, writes the LaunchAgent plist, waits for /health
+.build/release/verdictd agent-status   # loaded? pid? healthy?
+.build/release/verdictd uninstall      # boots it out; token and logs stay
+```
+
 A stock Jev client works unchanged: send `"model": "jev-latest"` and the default backend answers. Contract: [SPEC.md §10](SPEC.md).
 
  `swift test`: 29 tests in 6 suites (offline contract tests over a fake backend; tokenizer and sequence parity against the laya-coreml Python port; a live Laya fidelity test when the checkpoint is present). `verdict replay` over the 40-item fm-bench fixture on macOS 26.5.2, M4 Pro:

@@ -372,7 +372,13 @@ Laya loads once at start (~2–3 s) and serves every caller; Foundation Models s
 - **Concurrency.** Requests run concurrently; Laya predictions serialise on one queue off the
   cooperative pool, so a 2 s Laya call never stalls a Foundation Models call beside it.
 - **Lifecycle.** `verdictd [serve] [--port 7311] [--token-file …] [--no-warm] [--pidfile …]`; SIGTERM
-  drains. `verdictd token [--path]`. No daemon manager in M2; a `launchd` plist is a follow-up.
+  drains. `verdictd token [--path]`. `verdictd install [--port]` copies the running binary to
+  `~/Library/Application Support/verdict/bin/verdictd`, writes
+  `~/Library/LaunchAgents/com.naklitechie.verdictd.plist` (RunAtLoad, KeepAlive, ProcessType
+  Interactive, logs to `~/Library/Logs/verdict/verdictd.log`), bootstraps it into `gui/<uid>` and
+  waits for `/health` (exit 1 if it never answers). Re-running replaces binary and plist in place.
+  `verdictd uninstall` boots it out and removes both (token and logs stay). `verdictd agent-status`
+  prints loaded/pid/healthy, exit 0 · 1 loaded-but-unhealthy · 3 not loaded. All per-user, no sudo.
 - **CORS.** None, deliberately. Inlay's MV3 worker has `host_permissions: <all_urls>` and is exempt from
   CORS; a web page must not be able to drive a local model with the user's token via a drive-by fetch.
 - **Verifier.** `Tests/VerdictServerTests` (11 in-process router tests over a scripted backend) and

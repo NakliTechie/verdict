@@ -15,8 +15,51 @@ struct VerdictD: AsyncParsableCommand {
             Routes: GET /health (no token) · GET /v1/models · GET /v1/limits · POST /v1/systemone.
             """,
         version: VerdictServer.version,
-        subcommands: [Serve.self, TokenCmd.self],
+        subcommands: [Serve.self, TokenCmd.self, Install.self, Uninstall.self, AgentStatus.self],
         defaultSubcommand: Serve.self)
+}
+
+enum AgentIO {
+    static func print(_ r: LaunchAgent.Report, action: String) {
+        let obj: [String: Any] = [
+            "action": action, "label": LaunchAgent.label, "binary": r.binary, "plist": r.plist, "log": r.log,
+            "loaded": r.loaded, "pid": r.pid as Any, "healthy": r.healthy, "health_wait_ms": r.healthWaitMs,
+        ]
+        let data = try! JSONSerialization.data(withJSONObject: obj, options: [.prettyPrinted, .sortedKeys])
+        Swift.print(String(decoding: data, as: UTF8.self))
+    }
+}
+
+struct Install: ParsableCommand {
+    static let configuration = CommandConfiguration(
+        abstract: "Install verdictd as a per-user launchd agent (runs at login, restarts on exit) and verify /health.",
+        discussion: "Copies this binary to ~/Library/Application Support/verdict/bin, writes ~/Library/LaunchAgents/\(LaunchAgent.label).plist, bootstraps it. Re-running replaces both. No sudo.")
+    @Option(help: "Loopback port the agent serves on.") var port = VerdictServer.defaultPort
+    @Option(help: "Binary to install (default: the one running this command).") var binary: String?
+
+    func run() throws {
+        let source = binary.map { URL(fileURLWithPath: $0) } ?? Bundle.main.executableURL!.resolvingSymlinksInPath()
+        let r = try LaunchAgent.install(source: source, port: port)
+        AgentIO.print(r, action: "install")
+        if !r.healthy { throw ExitCode(1) }
+    }
+}
+
+struct Uninstall: ParsableCommand {
+    static let configuration = CommandConfiguration(abstract: "Unload the launchd agent and remove the plist and binary copy. Token and logs stay.")
+    func run() throws {
+        AgentIO.print(try LaunchAgent.uninstall(), action: "uninstall")
+    }
+}
+
+struct AgentStatus: ParsableCommand {
+    static let configuration = CommandConfiguration(commandName: "agent-status", abstract: "Is the launchd agent loaded, and is /health answering?")
+    @Option(help: "Port to probe.") var port = VerdictServer.defaultPort
+    func run() throws {
+        let r = LaunchAgent.status(port: port)
+        AgentIO.print(r, action: "status")
+        if !(r.loaded && r.healthy) { throw ExitCode(r.loaded ? 1 : 3) }
+    }
 }
 
 struct Serve: AsyncParsableCommand {
