@@ -45,6 +45,8 @@ To have it up at login (per-user launchd agent, restarts on exit, no sudo):
 
 A stock Jev client works unchanged: send `"model": "jev-latest"` and the default backend answers. Contract: [SPEC.md §10](SPEC.md).
 
+Calling verdictd from another program (token handshake, the three question types, error handling per HTTP status, picking a backend): **[docs/INTEGRATION.md](docs/INTEGRATION.md)**.
+
  `swift test`: 29 tests in 6 suites (offline contract tests over a fake backend; tokenizer and sequence parity against the laya-coreml Python port; a live Laya fidelity test when the checkpoint is present). `verdict replay` over the 40-item fm-bench fixture on macOS 26.5.2, M4 Pro:
 
 | backend · run | top-1 | out-of-schema | refusals | P50 / item | confidence | record |
