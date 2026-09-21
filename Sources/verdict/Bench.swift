@@ -50,7 +50,7 @@ struct Bench: AsyncParsableCommand {
             var load: Int? = nil
             var placement: [String: Int]? = nil
             if let laya = backend as? LayaCoreMLBackend {
-                load = try laya.warmUp().wholeMilliseconds
+                load = try await laya.warmUp().wholeMilliseconds
                 placement = try? await laya.opPlacement()
             }
             var cases: [Result.Case] = []

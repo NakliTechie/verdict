@@ -84,7 +84,7 @@ struct Replay: AsyncParsableCommand {
             throw Exit.unavailable
         }
         if let laya = backend as? LayaCoreMLBackend {
-            let t = try laya.warmUp()
+            let t = try await laya.warmUp()
             print("laya: model loaded in \(t.wholeMilliseconds) ms (excluded from per-item latency)")
         }
         let engine = Verdict(backend: backend)

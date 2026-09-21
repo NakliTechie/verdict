@@ -25,9 +25,10 @@ public final class LayaCoreMLBackend: DecisionBackend, @unchecked Sendable {
     let temperatureByOptions: [String: Double]
     let computeUnits: MLComputeUnits
     private let tokenizer: BPETokenizer
-    /// MLModel is not Sendable; access is serialised by `lock` (Core ML also rejects concurrent
-    /// predictions on one instance).
-    private let lock = NSLock()
+    /// MLModel is not Sendable and Core ML rejects concurrent predictions on one instance. Every load
+    /// and prediction runs on this serial queue, off the Swift cooperative pool: a 2 s forward pass
+    /// never starves other requests in `verdictd`.
+    private let queue = DispatchQueue(label: "verdict.laya", qos: .userInitiated)
     nonisolated(unsafe) private var loadedModel: MLModel?
 
     public static let defaultDirectory: URL = {
@@ -122,9 +123,9 @@ public final class LayaCoreMLBackend: DecisionBackend, @unchecked Sendable {
     // MARK: Model
 
     /// Compiled model cached beside the package as `model.mlmodelc`; falls back to the user cache dir.
-    func model() throws -> MLModel {
-        lock.lock()
-        defer { lock.unlock() }
+    /// Callers hold `queue` (via `onQueue`) or are the queue itself.
+    private func model() throws -> MLModel {
+        dispatchPrecondition(condition: .onQueue(queue))
         if let m = loadedModel { return m }
         let package = directory.appendingPathComponent("model.mlpackage")
         let compiled = directory.appendingPathComponent("model.mlmodelc")
@@ -147,19 +148,26 @@ public final class LayaCoreMLBackend: DecisionBackend, @unchecked Sendable {
         return m
     }
 
-    /// Loads (and compiles if needed) the model now. Returns the wall time.
+    /// Runs `body` on the serial model queue without blocking the cooperative pool.
+    func onQueue<T: Sendable>(_ body: @escaping @Sendable () throws -> T) async throws -> T {
+        try await withCheckedThrowingContinuation { cont in
+            queue.async { cont.resume(with: Result { try body() }) }
+        }
+    }
+
+    /// Loads (and compiles if needed) the model now, off the cooperative pool. Returns the wall time.
     @discardableResult
-    public func warmUp() throws -> Duration {
+    public func warmUp() async throws -> Duration {
         let clock = ContinuousClock()
         let start = clock.now
-        _ = try model()
+        try await onQueue { _ = try self.model() }
         return clock.now - start
     }
 
     /// Where Core ML placed the model's operations (`MLComputePlan`): counts per preferred device.
     /// On macOS 26.5 this export places every op on the CPU under every compute-unit setting.
     public func opPlacement() async throws -> [String: Int] {
-        _ = try model()
+        try await onQueue { _ = try self.model() }
         let config = MLModelConfiguration()
         config.computeUnits = computeUnits
         let plan = try await MLComputePlan.load(contentsOf: compiledModelURL(), configuration: config)
@@ -203,7 +211,7 @@ public final class LayaCoreMLBackend: DecisionBackend, @unchecked Sendable {
         guard seq.markers.count == k else {
             throw BackendError(code: .contextExceeded, message: "Question has too many options for the token budget (\(seq.markers.count) of \(k) fit).")
         }
-        let probs = try forward(seq, options: k)
+        let probs = try await onQueue { try self.forward(seq, options: k) }
         let labels = LayaPrompt.labels(question)      // marker order; noul is [false, true]
         let best = probs.indices.max { probs[$0] < probs[$1] }!
         let raw: RawAnswer
@@ -216,7 +224,8 @@ public final class LayaCoreMLBackend: DecisionBackend, @unchecked Sendable {
     }
 
     /// Calibrated probabilities over the first `k` marker logits (`ResultMixin.system_one`).
-    func forward(_ seq: LayaPrompt.Sequence, options k: Int) throws -> [Double] {
+    /// Runs on `queue`.
+    private func forward(_ seq: LayaPrompt.Sequence, options k: Int) throws -> [Double] {
         let model = try model()
         let length = manifest.lengths.first { $0 >= seq.ids.count } ?? manifest.maxLength
         guard seq.ids.count <= manifest.maxLength else {
@@ -243,8 +252,6 @@ public final class LayaCoreMLBackend: DecisionBackend, @unchecked Sendable {
         let input = try MLDictionaryFeatureProvider(dictionary: [
             "input_ids": inputIDs, "attention_mask": mask, "marker_pos": markerPos, "marker_mask": markerMask, "qtype": qtype,
         ])
-        lock.lock()
-        defer { lock.unlock() }
         let output = try model.prediction(from: input)
         guard let logits = output.featureValue(for: "logits")?.multiArrayValue else {
             throw BackendError(code: .backendError, message: "Core ML output lacks `logits`.")

@@ -7,9 +7,12 @@ let package = Package(
     products: [
         .library(name: "VerdictCore", targets: ["VerdictCore"]),
         .executable(name: "verdict", targets: ["verdict"]),
+        .library(name: "VerdictServer", targets: ["VerdictServer"]),
+        .executable(name: "verdictd", targets: ["verdictd"]),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.5.0"),
+        .package(url: "https://github.com/hummingbird-project/hummingbird.git", from: "2.26.0"),
     ],
     targets: [
         .target(
@@ -21,6 +24,27 @@ let package = Package(
             dependencies: [
                 "VerdictCore",
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
+            ]
+        ),
+        .target(
+            name: "VerdictServer",
+            dependencies: [
+                "VerdictCore",
+                .product(name: "Hummingbird", package: "hummingbird"),
+            ]
+        ),
+        .executableTarget(
+            name: "verdictd",
+            dependencies: [
+                "VerdictServer",
+                .product(name: "ArgumentParser", package: "swift-argument-parser"),
+            ]
+        ),
+        .testTarget(
+            name: "VerdictServerTests",
+            dependencies: [
+                "VerdictServer",
+                .product(name: "HummingbirdTesting", package: "hummingbird"),
             ]
         ),
         .testTarget(
