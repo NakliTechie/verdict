@@ -1,0 +1,49 @@
+# verdict
+
+> Sovereign typed decisions on your Mac — zero install.
+
+verdict answers typed questions (choice / score / noul) about a piece of text and returns typed answers
+with an honest confidence label. It runs on-device on Apple Silicon (macOS 26+), speaks TypeSafe Jev's
+`POST /v1/systemone`, and never claims a calibrated probability it does not have. "Zero install" = the
+model story: the default backend (`verdict-fm`) is the OS Foundation Model, so there is no multi-GB
+download and no model server to run.
+
+## Surface
+
+- Library `VerdictCore` (Swift): `Verdict(backend:).decide(_ request) -> Response`.
+- CLI `verdict`: `status` · `decide` · `replay` · `bench`.
+- Server `verdictd`: loopback HTTP on `127.0.0.1:7311`, bearer token, `serve|token|watch|install|uninstall|agent-status`.
+
+## HTTP API (Jev-compatible)
+
+- `GET /health` — no token; `{status, bind, models, backends, uptime_s, limits, version}`; 200 or 503.
+- `GET /v1/models` · `GET /v1/limits`.
+- `POST /v1/systemone` — bearer token required. Body:
+  `{"model": "verdict-fm", "state": "<text>", "questions": {"<id>": {"type": "noul|choice|score", "instructions": "...", "criteria": ...}}, "policy": {"votes": 1}}`
+  - choice.criteria: `{key: description|null}` (2–64). score.criteria: `[level0, level1, ...]` (2–64, lowest first). noul.criteria: optional `{"true": "...", "false": "..."}`.
+  - models: `verdict-fm` (Apple Foundation Models; default; no probability) · `verdict-laya` (Laya Core ML; decoded probability). Aliases: `fm`, `laya`, `jev-latest` (→ verdict-fm).
+- Response: `answers[id]` = `{type, choice|score|level|noul, probabilities?, confidence, confidence_kind, samples, latency_ms}`; `failures[id]` = `{code, message, remedy, retryable}`; `usage`.
+- `confidence_kind`: `none` (greedy, confidence null) · `agreement` (N sampled votes) · `decoded` (real model probability). A number is never emitted without a kind.
+
+## Errors (HTTP status → action)
+
+401 missing/wrong token · 422 fix request or unknown model · 413 shorten state/body · 429 back off (retryable) · 503 backend unavailable · 502 model declined.
+
+## Dataflow mode (second door)
+
+`verdictd watch --db events.sqlite --topology topology.json [--once]` — reads a `pending` events table,
+answers each type's questions from the topology, writes a `decisions` table you join in SQL. The join
+and any fallback live in the consumer's SQL; verdict writes honest rows.
+
+## Honest limits
+
+- verdict-fm returns no calibrated probability (single greedy run). Use `votes >= 3` for an agreement
+  signal, or `verdict-laya` for a decoded distribution (measure its calibration on your own data first).
+- No engine gates secrets perfectly; a consumer that must never surface a credential needs defense in
+  depth (e.g. a regex for token-shaped strings) alongside the model.
+- On-device Apple Silicon macOS 26+ only. No cloud, no API key, no network egress.
+
+## Docs
+
+`README.md` (pitch + run) · `SPEC.md` (contract §0–§13) · `docs/INTEGRATION.md` (how to call it) ·
+`docs/COMPARISON.md` (benchmarks vs local Jev-mechanism engines).

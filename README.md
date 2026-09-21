@@ -1,6 +1,8 @@
 # verdict
 
-> Tier: **Tool**. A reusable typed-decision service for the Mac: one Swift process, one loopback HTTP face, Jev-style `Choice` / `Score` / `Noul` over a shared state, fronting Apple Foundation Models and Laya (Core ML / MLX). Honest contract: **constrained choice + agreement confidence**, never "calibrated probabilities" unless the backend actually reads logits.
+> **Sovereign typed decisions on your Mac — zero install.**
+
+Tier: **Tool**. A reusable typed-decision service for the Mac: one Swift process, one loopback HTTP face, Jev-style `Choice` / `Score` / `Noul` over a shared state, fronting Apple Foundation Models and Laya (Core ML / MLX). "Zero install" is the model story: verdict-fm *is* the OS model, so there is no multi-GB download and no model server to run. Honest contract: **constrained choice + agreement confidence**, never "calibrated probabilities" unless the backend actually reads logits.
 
 ## Why
 Every NakliTechie surface that wants a small, fast, on-device *decision* (rank these passages, pick this field, file under this topic, yes/no with a reason) currently re-solves the same problem: Inlay against Gemini Nano, Summon against its agent socket, the on-device capture app against Foundation Models directly. Needle showed the shape (extension → loopback server → decision model) with a cloud hop in the middle. `verdict` is that loopback server, sovereign, reusable, and explicit about what each backend can and cannot promise.
@@ -104,3 +106,7 @@ Contract and agent face: [SPEC.md](SPEC.md) (§0 agent contract, §3 Jev-compati
 - ~~Does laya-coreml's Apache-2.0 port carry usable weights for the `laya-typed-decisions` checkpoint?~~ Yes: `aac6fef/laya-typed-decisions-coreml`, Apache-2.0, sha256 manifest, validated 63/63 against upstream by the porter and 40/40 + 4.5e-5 drift against the Python port here.
 - Native-messaging host vs plain `127.0.0.1` fetch for Inlay: Inlay's manifest already has `host_permissions: <all_urls>`, so a worker `fetch` to `127.0.0.1` needs no new permission and no CORS. Open only if Chrome tightens loopback access; the token still has to reach the extension (options page paste, or a native host later).
 - Agreement N: measured 2026-09-21, N=3 and N=5 give the same unanimous-right / unanimous-wrong split (9/25 vs 0/15) on this fixture; N=3 at 2.4× greedy latency is the working default for callers that want a confidence. Re-measure on the passage-ranking fixture before fixing it in policy.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
