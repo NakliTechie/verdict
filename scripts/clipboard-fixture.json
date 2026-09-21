@@ -1,0 +1,864 @@
+{
+ "seed": 7,
+ "questions": [
+  "is_url",
+  "is_contact",
+  "is_code",
+  "is_secret"
+ ],
+ "join": "surface = (is_url OR is_contact) AND NOT is_secret",
+ "cases": [
+  {
+   "id": "api_key-1",
+   "class": "api_key",
+   "state": "xoxb-vk4WaaB3xzXpMZuZN8Ab5KbH0FZk4XdxKIADjJ",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "code-6",
+   "class": "code",
+   "state": "func total(_ xs: [Int]) -> Int { xs.reduce(0, +) }",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-4",
+   "class": "email",
+   "state": "arjun.mehta@fastmail.com",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "private_key-2",
+   "class": "private_key",
+   "state": "-----BEGIN OPENSSH PRIVATE KEY-----\n/McDA09G9L90+aKcNO9KHF9Ge0G33F5B1Nda5+K2O7IC0e/J6eK76aOIf7P+\n-----END OPENSSH PRIVATE KEY-----",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-2",
+   "class": "email",
+   "state": "priya@proton.me",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "api_key-10",
+   "class": "api_key",
+   "state": "xoxb-INXn1eKIA7zPtJcGEoJ3qyRZzQ9ADp0j5Wmplcm7",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "api_key-5",
+   "class": "api_key",
+   "state": "sk-EIWbXFzcggqCCoIF7uUxugFDwg5Yp8yI",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "prose-2",
+   "class": "prose",
+   "state": "The quarterly numbers were softer than expected, mostly on the enterprise side of the book.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "phone-2",
+   "class": "phone",
+   "state": "+1 (415) 555-0182",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "prose-5",
+   "class": "prose",
+   "state": "She argued that the primitives matter more than the framework, and the room mostly agreed.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "pure_url-2",
+   "class": "pure_url",
+   "state": "https://github.com/mizorewww/laya-coreml",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "password-3",
+   "class": "password",
+   "state": "db_pass=5oF%jCjpB724$1mA",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "url_secret-2",
+   "class": "url_secret",
+   "state": "https://hooks.slack.com/services/T00/B00/429fa05ea3c25f51410161095aa29205",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "private_key-1",
+   "class": "private_key",
+   "state": "-----BEGIN OPENSSH PRIVATE KEY-----\nM2fP288/AB5OdN3EKJCBHGK0JBBCICECE1ME2GPNNHCCFc8GIGNcef5aB0acD1e+8cB4B5/G08DNFcK5\n-----END OPENSSH PRIVATE KEY-----",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "phone-1",
+   "class": "phone",
+   "state": "+91 98765 43210",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "contact_card-10",
+   "class": "contact_card",
+   "state": "Lena Vogel\nFounder, Atlas Robotics\nlena@atlas.example\n+61 2 5550 1234",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "code-2",
+   "class": "code",
+   "state": "docker run --rm -p 8080:8080 -e LOG_LEVEL=debug myimage:latest",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "contact_card-4",
+   "class": "contact_card",
+   "state": "Sara Khan\nHead of Design, Meridian Health\nsara@meridian.example\n+61 2 5550 1234",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "email-5",
+   "class": "email",
+   "state": "hello@fastmail.com",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "private_key-3",
+   "class": "private_key",
+   "state": "-----BEGIN OPENSSH PRIVATE KEY-----\nbdJJPe/0KPeMaGKGM2JJdd5bMGGbN27CA35O+c7BJa3AP54OOLH75eaG4P3K\n-----END OPENSSH PRIVATE KEY-----",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-1",
+   "class": "email",
+   "state": "hello@proton.me",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-3",
+   "class": "pure_url",
+   "state": "https://en.wikipedia.org/wiki/Actor_model",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "api_key-6",
+   "class": "api_key",
+   "state": "xoxb-nus0HMI4fS9z6yKryu7OE1WnwQKU5nR5",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-7",
+   "class": "email",
+   "state": "s.khan@gmail.com",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "api_key-8",
+   "class": "api_key",
+   "state": "AKIA2X93cjhls45GQio2",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "password-6",
+   "class": "password",
+   "state": "login: admin  /  7%AFi7h52g9F",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "contact_card-6",
+   "class": "contact_card",
+   "state": "Wei Chen\nFounder, Atlas Robotics\nwei@atlas.example\n+91 98765 43210",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "address-4",
+   "class": "address",
+   "state": "Rua Augusta 1200\n01304-001 São Paulo, SP",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "contact_card-1",
+   "class": "contact_card",
+   "state": "Omar Haddad\nPM, Meridian Health\nomar@meridian.example\n+44 7700 900123",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "prose-4",
+   "class": "prose",
+   "state": "The meeting is moved to Thursday; please review the deck before then and bring questions.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "private_key-4",
+   "class": "private_key",
+   "state": "-----BEGIN OPENSSH PRIVATE KEY-----\n587B4/LeA29GCaNKM/0G7N8+B1/f47NL3+H0Dab23DAE440aGOd3/O37NKIEM8OJ047cI80Ob2a5L8Ab\n-----END OPENSSH PRIVATE KEY-----",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "api_key-3",
+   "class": "api_key",
+   "state": "sk-7oYF5tns05Koy2OnZn2M1eLkNCZ8hKYWHJPu05MC",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "prose-3",
+   "class": "prose",
+   "state": "I finished the draft last night. It still needs a conclusion but the argument holds together.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-3",
+   "class": "email",
+   "state": "arjun.mehta@atlas.example",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "url_secret-6",
+   "class": "url_secret",
+   "state": "https://api.example.com/v1/data?api_key=17c03de5e2e81d69f1f7647054c5a488",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "contact_card-3",
+   "class": "contact_card",
+   "state": "Arjun Mehta\nFounder, Meridian Health\narjun@meridian.example\n+91 98765 43210",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "api_key-9",
+   "class": "api_key",
+   "state": "AKIA93l7q5UuAvCOJSno",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "url_secret-1",
+   "class": "url_secret",
+   "state": "https://api.example.com/v1/data?api_key=b0c08fd4bdaed5ac06e2559dd98993ce",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "contact_card-5",
+   "class": "contact_card",
+   "state": "Ana Costa\nHead of Design, Cobalt Systems\nana@cobalt.example\n+61 2 5550 1234",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "contact_card-7",
+   "class": "contact_card",
+   "state": "Sara Khan\nSenior Engineer, Cobalt Systems\nsara@cobalt.example\n+44 7700 900123",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-5",
+   "class": "pure_url",
+   "state": "https://developer.apple.com/documentation/foundationmodels",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "contact_card-2",
+   "class": "contact_card",
+   "state": "Arjun Mehta\nHead of Design, Atlas Robotics\narjun@atlas.example\n+91 98765 43210",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "code-7",
+   "class": "code",
+   "state": "git rebase -i HEAD~3 && git push --force-with-lease",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "password-5",
+   "class": "password",
+   "state": "password: 1Bipm0@048%ijp89",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "pure_url-1",
+   "class": "pure_url",
+   "state": "https://news.ycombinator.com/item?id=41234567",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "phone-4",
+   "class": "phone",
+   "state": "98765 43210",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "code-3",
+   "class": "code",
+   "state": "for i in range(10):\n    print(i * i)",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "address-1",
+   "class": "address",
+   "state": "Flat 4, Sunder Nagar\nNew Delhi 110003\nIndia",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "email-8",
+   "class": "email",
+   "state": "dev@atlas.example",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "url_secret-3",
+   "class": "url_secret",
+   "state": "https://hooks.slack.com/services/T00/B00/55c1d190409a95cd609f74c686cffeae",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "prose-6",
+   "class": "prose",
+   "state": "Turns out the bug was a race in the cache layer, not the parser like everyone assumed.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "contact_card-9",
+   "class": "contact_card",
+   "state": "Devlin Fox\nFounder, Atlas Robotics\ndevlin@atlas.example\n+91 98765 43210",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "phone-3",
+   "class": "phone",
+   "state": "+44 7700 900123",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "api_key-2",
+   "class": "api_key",
+   "state": "sk-kn7XvgKJWSKhK7EGYfwzy9zMTI18C6eU",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "pure_url-6",
+   "class": "pure_url",
+   "state": "https://arxiv.org/abs/2411.00001",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "pure_url-4",
+   "class": "pure_url",
+   "state": "www.bbc.co.uk/news/technology-12345678",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "address-3",
+   "class": "address",
+   "state": "221B Baker Street\nLondon NW1 6XE\nUnited Kingdom",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "password-4",
+   "class": "password",
+   "state": "login: admin  /  28#C2p#FhDihpBDk",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "contact_card-8",
+   "class": "contact_card",
+   "state": "Priya Raman\nFounder, Atlas Robotics\npriya@atlas.example\n+91 98765 43210",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "url_secret-4",
+   "class": "url_secret",
+   "state": "https://api.example.com/v1/data?api_key=e95eeaade700a2031427eb587eea8fae",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "address-2",
+   "class": "address",
+   "state": "1600 Amphitheatre Parkway\nMountain View, CA 94043",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "api_key-7",
+   "class": "api_key",
+   "state": "sk-Qg96eNlQngPUXCMLZKo7RrU5YKyyQHxh",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "code-5",
+   "class": "code",
+   "state": "const sum = (a, b) => a + b;\nexport default sum;",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "url_secret-5",
+   "class": "url_secret",
+   "state": "https://api.example.com/v1/data?api_key=e9db49db102bd8ac8402891208e7d684",
+   "truth": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "api_key-4",
+   "class": "api_key",
+   "state": "xoxb-1UHYmdj2oxTpaTlPbYqXcgcLBAnfdPcwnx0d1Lze",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "password-2",
+   "class": "password",
+   "state": "login: admin  /  om09gE@g%op%",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "password-1",
+   "class": "password",
+   "state": "password: F7ABBmA!FhFB",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "should_surface": false
+  },
+  {
+   "id": "code-4",
+   "class": "code",
+   "state": "SELECT id, name FROM users WHERE active = 1 ORDER BY created_at DESC LIMIT 50;",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "code-1",
+   "class": "code",
+   "state": "{\"model\": \"verdict-fm\", \"policy\": {\"votes\": 3}, \"timeout_ms\": 5000}",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "should_surface": false
+  },
+  {
+   "id": "email-6",
+   "class": "email",
+   "state": "priya@fastmail.com",
+   "truth": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": true
+  },
+  {
+   "id": "prose-1",
+   "class": "prose",
+   "state": "Remember to water the plants and the spare key is with the neighbour while we're away.",
+   "truth": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "should_surface": false
+  }
+ ]
+}

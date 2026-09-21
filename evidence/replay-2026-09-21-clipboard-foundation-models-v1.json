@@ -1,0 +1,952 @@
+{
+ "summary": {
+  "model": "verdict-fm",
+  "items": 71,
+  "completed": 71,
+  "wall_s": 79.3,
+  "per_question_accuracy": {
+   "is_url": 0.9,
+   "is_contact": 0.971,
+   "is_code": 0.9,
+   "is_secret": 0.971
+  },
+  "join": "surface = (is_url OR is_contact) AND NOT is_secret",
+  "surface_precision": 1.0,
+  "surface_recall": 0.839,
+  "confusion": {
+   "tp": 26,
+   "fp": 0,
+   "fn": 5,
+   "tn": 38
+  },
+  "secret_leaks": [],
+  "fallback_rate": 0.028,
+  "conf_threshold": 0.6,
+  "gate_passed": true
+ },
+ "items": [
+  {
+   "id": "api_key-1",
+   "class": "api_key",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "code-6",
+   "class": "code",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "email-4",
+   "class": "email",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "private_key-2",
+   "class": "private_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "email-2",
+   "class": "email",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "api_key-10",
+   "class": "api_key",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "api_key-5",
+   "class": "api_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "prose-2",
+   "class": "prose",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "phone-2",
+   "class": "phone",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "prose-5",
+   "class": "prose",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "pure_url-2",
+   "class": "pure_url",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "password-3",
+   "class": "password",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "url_secret-2",
+   "class": "url_secret",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "private_key-1",
+   "class": "private_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "phone-1",
+   "class": "phone",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "contact_card-10",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "code-2",
+   "class": "code",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "contact_card-4",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "email-5",
+   "class": "email",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "private_key-3",
+   "class": "private_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "email-1",
+   "class": "email",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "pure_url-3",
+   "class": "pure_url",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "api_key-6",
+   "class": "api_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "email-7",
+   "class": "email",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "api_key-8",
+   "class": "api_key",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "password-6",
+   "class": "password",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "contact_card-6",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "address-4",
+   "class": "address",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": null
+   },
+   "surface_pred": null,
+   "should_surface": true,
+   "fallback": true
+  },
+  {
+   "id": "contact_card-1",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "prose-4",
+   "class": "prose",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "private_key-4",
+   "class": "private_key",
+   "answers": {
+    "is_url": null,
+    "is_contact": null,
+    "is_code": null,
+    "is_secret": null
+   },
+   "surface_pred": null,
+   "should_surface": false,
+   "fallback": true
+  },
+  {
+   "id": "api_key-3",
+   "class": "api_key",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "prose-3",
+   "class": "prose",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "email-3",
+   "class": "email",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "url_secret-6",
+   "class": "url_secret",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "contact_card-3",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "api_key-9",
+   "class": "api_key",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "url_secret-1",
+   "class": "url_secret",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "contact_card-5",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "contact_card-7",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "pure_url-5",
+   "class": "pure_url",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "contact_card-2",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "code-7",
+   "class": "code",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "password-5",
+   "class": "password",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "pure_url-1",
+   "class": "pure_url",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": false,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "phone-4",
+   "class": "phone",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": false,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "code-3",
+   "class": "code",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "address-1",
+   "class": "address",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "email-8",
+   "class": "email",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "url_secret-3",
+   "class": "url_secret",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "prose-6",
+   "class": "prose",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "contact_card-9",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "phone-3",
+   "class": "phone",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "api_key-2",
+   "class": "api_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "pure_url-6",
+   "class": "pure_url",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": false,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "pure_url-4",
+   "class": "pure_url",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "address-3",
+   "class": "address",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "password-4",
+   "class": "password",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "contact_card-8",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "url_secret-4",
+   "class": "url_secret",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "address-2",
+   "class": "address",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "api_key-7",
+   "class": "api_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "code-5",
+   "class": "code",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "url_secret-5",
+   "class": "url_secret",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "api_key-4",
+   "class": "api_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "password-2",
+   "class": "password",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "password-1",
+   "class": "password",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "code-4",
+   "class": "code",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "code-1",
+   "class": "code",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  },
+  {
+   "id": "email-6",
+   "class": "email",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": true,
+   "should_surface": true,
+   "fallback": false
+  },
+  {
+   "id": "prose-1",
+   "class": "prose",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   },
+   "surface_pred": false,
+   "should_surface": false,
+   "fallback": false
+  }
+ ]
+}

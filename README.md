@@ -69,6 +69,8 @@ Laya's answers match the laya-coreml Python port on all 40 items and its probabi
 
 Core ML placement on macOS 26.5: every one of the export's 1,643 ops runs on the CPU under every compute-unit setting (the port's 5–14 ms figures are M3 Max GPU/ANE numbers on another OS build). `VERDICT_LAYA_COMPUTE` overrides the default `cpu`.
 
+**Dataflow mode (SPEC §12) is live.** `verdictd watch` answers an SQLite `events` table into a `decisions` table you join in SQL. On a 71-item labelled clipboard fixture, the routing join `surface = (is_url OR is_contact) AND NOT is_secret` scored **precision 1.00 on `verdict-fm`** (2.8% fallback) and 0.90 on `verdict-laya` (45% fallback), zero secret leaks either way (`evidence/replay-2026-09-21-clipboard-*.json`). The join reads answers, not confidences, so Foundation Models — which has no confidence — gives the most precise routing; Laya's decoded confidence only buys a coarse abstain gate.
+
 Agreement (Foundation Models): winner share on right vs wrong answers is 0.77 vs 0.58 at N=3 and 0.86 vs 0.63 at N=5; at both N, 9/25 right answers are unanimous and 0/15 wrong ones are. "Unanimous → accept, split → ask" holds on this fixture at either N; N=3 buys it at 2.4× greedy latency instead of 4×.
 
 ```bash

@@ -489,10 +489,25 @@ data. verdict's contribution is the `confidence_kind` that makes the consumer's 
 
 M4a: `Tests/VerdictServerTests` over a scripted backend and a temp SQLite file — pending events get
 decisions, unknown types are skipped, per-question failures are `failed` rows, a re-run is idempotent,
-a mid-event crash leaves no partial rows. M4b (live, gated on the ANE being free): feed Summon's
-clipboard history export, report the join's precision at the chosen threshold on 200 hand-labelled
-events and the fallback rate; if precision is under 0.9 the calibration limit is confirmed locally and
-the fallback tier carries the product.
+a mid-event crash leaves no partial rows.
+
+M4b (live): `scripts/make-clipboard-fixture.py` builds a labelled clipboard fixture (71 items across
+URLs, contact cards, code, secrets, prose; ground truth per question); `scripts/score-clipboard.py`
+runs it through `verdictd watch`, applies the routing join `surface = (is_url OR is_contact) AND NOT
+is_secret`, and gates on join precision >= 0.9 with zero secret leaks. Measured 2026-09-21 (M4 Pro,
+macOS 26.5.2):
+
+| backend | join precision | recall | secret leaks | fallback | per-question accuracy |
+|---|---|---|---|---|---|
+| `verdict-fm`   | 1.00 | 0.84 | 0 | 2.8% (refusals only) | 0.90–0.97 |
+| `verdict-laya` | 0.90 | 0.64 | 0 | 45% (abstains at conf < 0.6) | 0.68–0.89 |
+
+Records: `evidence/replay-2026-09-21-clipboard-*.json`. The gate passes, decisively on `verdict-fm`.
+The lesson refines §4.2: **for a routing join, answer accuracy dominates confidence calibration.**
+Foundation Models has no confidence yet gives a perfect-precision join because its answers are right;
+Laya's decoded confidence is only a coarse abstain gate, holding 0.9 precision only by routing 45% of
+events to the consumer's fallback tier. Both never surfaced a secret. Follow-up: widen the fixture to
+~200 items for a tighter interval; the signal at 71 is already unambiguous.
 
 ## §13 Non-goals and honesty rules
 
