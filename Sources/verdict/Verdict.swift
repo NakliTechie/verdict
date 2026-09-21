@@ -4,6 +4,12 @@ import VerdictCore
 
 @main
 struct VerdictCLI: AsyncParsableCommand {
+    /// Line-buffer stdout even when piped, so replay progress streams to a driver reading a log.
+    static func main() async {
+        setlinebuf(stdout)
+        await Self.main(nil)
+    }
+
     static let configuration = CommandConfiguration(
         commandName: "verdict",
         abstract: "Typed decisions (choice / score / noul) over a text state, on-device.",
