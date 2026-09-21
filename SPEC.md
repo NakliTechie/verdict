@@ -3,7 +3,30 @@
 Tier: **Tool**. One Swift process, no network, typed decisions over a text state. This document is
 the contract the code answers to; `README.md` is the pitch. Field names in §3 are load-bearing.
 
-§0 (the agent contract) is added by the ntkit DRIVER pass after this draft. §1–§9 follow.
+
+## §0 Agent contract
+
+Per ntkit `DRIVER.md`. The driver is an agent that is context-poor, may be killed mid-turn, and
+will otherwise re-derive what the tool already knows. verdict is a stateless decision process; the
+contract makes every call self-describing and every outcome branchable.
+
+| Principle | How verdict answers it |
+|---|---|
+| One perception act | `verdict status --json`: backend, availability with reason and remedy, OS build, model use case, limits, supported-language count, and the newest `evidence/replay-*.json` gate result. Fixed size. Exit 0 or 3 says whether a `decide` can succeed before one is attempted. |
+| Machine-decidable | `decide` prints exactly one JSON document, always. `code`, `confidence_kind`, `type`, and exit codes are closed vocabularies (§3, §6, §7). Every failure carries `retryable: true|false`. Nothing is inferred from prose. |
+| One verdict per next action | Exit `0` consume `answers` · `1` read `failures[id].remedy` (or the replay summary) · `2` fix the invocation, the message names the flag · `3` fix the environment, the remedy names the setting. No exit code covers two actions. |
+| Bounded output | A `decide` response grows with `questions × options` only (the `probabilities` maps). `replay` prints one line per fixture item plus one summary. Nothing grows with model size, OS, history, or vault size. |
+| Every failure names its remedy | `Failure.remedy` is a required field, imperative, and names the next command or the field to change (§6). Usage errors print the correct invocation. |
+| Crash-safe and idempotent | The process holds no state between calls. The only write is `replay --out`, done to a temp file then renamed. Greedy runs are deterministic for a given OS model; sampled runs are seeded and the seed is echoed in `usage.seed`, so any run can be replayed exactly. |
+| The tool holds the memory | Each gate run writes a full record to `evidence/replay-<date>-<backend>-v<votes>.json` (per-item answers, shares, latency, OS build). `replay --baseline <record>` prints the items that flipped, so "did this change help" is read from the tool, not remembered. |
+| Accretive by mechanism | The gate threshold never decreases (§10). Every gate run adds a record. A refusal or out-of-schema answer seen in the wild becomes a fixture item before it is fixed. Seeds make voting reproducible, so an improvement is a diff, not an anecdote. |
+| A tower, not a toolbox | FoundationModels framework → `FoundationModelsBackend` (schema + prompt compiler + one sample) → `Engine` (validate, vote, retry, time, schema-check) → `Wire` (Jev JSON) → `verdict` CLI → M2 `verdictd`. Each layer consumes only the one below; an agent enters at the JSON layer and never needs the ones under it. |
+| Evaluator outside the loop | Correctness is judged by `swift test` (offline contract tests over a fake backend) and `verdict replay` over a fixture that lives outside the repo and is never written by verdict. The out-of-schema check runs in the engine, not the backend. Model unavailable or zero completed items is exit 3, indeterminate, never a pass. |
+
+Driver's-seat consequences folded into this spec: `--request -` reads a Jev request from stdin;
+`decide --example` prints a valid request to start from; per-answer `latency_ms` lets the driver
+choose `votes` from measured cost; `usage.seed` and `usage.retries` say what already happened so the
+driver never retries blindly.
 
 ## §1 Scope of M0
 
@@ -61,6 +84,7 @@ public struct Failure: Sendable, Error {
     public let code: FailureCode              // closed set, §6
     public let message: String                // what happened
     public let remedy: String                 // the next thing to do, imperative
+    public let retryable: Bool                // true only when the same call can succeed later unchanged
 }
 
 public enum Outcome: Sendable { case decision(Decision), failure(Failure) }
@@ -116,13 +140,13 @@ Response:
   "model": "verdict-fm",
   "backend": "foundation-models",
   "answers": {
-    "refund":     {"type": "noul",   "noul": 1.0, "confidence": null, "confidence_kind": "none"},
-    "department": {"type": "choice", "choice": "billing", "confidence": null, "confidence_kind": "none"},
+    "refund":     {"type": "noul",   "noul": 1.0, "confidence": null, "confidence_kind": "none", "samples": 1, "latency_ms": 880},
+    "department": {"type": "choice", "choice": "billing", "confidence": null, "confidence_kind": "none", "samples": 1, "latency_ms": 910},
     "urgency":    {"type": "score",  "score": 1.0, "level": 1, "legend": {"0": "Routine", "1": "Urgent", "2": "Emergency"},
-                   "confidence": null, "confidence_kind": "none"}
+                   "confidence": null, "confidence_kind": "none", "samples": 1, "latency_ms": 920}
   },
   "failures": {},
-  "usage": {"samples": 3, "latency_ms": 2710}
+  "usage": {"samples": 3, "retries": 0, "seed": 1, "latency_ms": 2710}
 }
 ```
 
@@ -132,9 +156,10 @@ Response:
   `noul` becomes the share of `true`.
 - With a decoded backend (M1) `probabilities` are model probabilities and `confidence_kind` is
   `decoded`; `confidence = 1 − H(p)/log n` as in openjev. Not in M0.
-- `failures[id] = {"code", "message", "remedy"}` with `code` from §6.
-- Superset of Jev: the extra fields are `backend`, `confidence_kind`, `level`, `failures`,
-  `usage.samples`, `usage.latency_ms`, and `confidence` being nullable. A Jev client reading only
+- `failures[id] = {"code", "message", "remedy", "retryable"}` with `code` from §6.
+- Superset of Jev: the extra fields are `backend`, `confidence_kind`, `level`, `samples`,
+  `latency_ms`, `failures`, `usage.samples`, `usage.retries`, `usage.seed`, `usage.latency_ms`, and
+  `confidence` being nullable. A Jev client reading only
   `choice` / `score` / `noul` keeps working.
 
 ## §4 Backend protocol
@@ -190,19 +215,19 @@ public protocol DecisionBackend: Sendable {
 
 ## §6 Failures — closed code set
 
-| code | when | retried | remedy text |
-|---|---|---|---|
-| `refused` | `GenerationError.refusal` | once, fresh session | "Rephrase the state or question; the on-device guardrail declined twice." |
-| `guardrail_violation` | `GenerationError.guardrailViolation` | once | same as `refused` |
-| `context_exceeded` | `exceededContextWindowSize` | no | "Shorten `state` (measured safe: 3,400 words on macOS 26.5)." |
-| `model_unavailable` | `assetsUnavailable` or `availability != .available` | no | reason-specific: enable Apple Intelligence / wait for download / device not eligible |
-| `unsupported_language` | `unsupportedLanguageOrLocale` | no | "Write the state in a supported language (`verdict status` lists them)." |
-| `decoding_failure` | `decodingFailure`, `unsupportedGuide` | no | "Report with the request; the schema builder emitted something the model could not follow." |
-| `rate_limited` | `rateLimited` | no | "Wait and retry; the system model is throttling." |
-| `concurrent_requests` | `concurrentRequests` | no | "Serialise calls; one request at a time per process." |
-| `out_of_schema` | engine check (§2 invariants) failed | no | "Report as a bug; constrained decoding returned a value outside the schema." |
-| `validation` | request malformed (ids, counts, empty state) | no | field-specific |
-| `backend_error` | anything else | no | includes the underlying description |
+| code | when | retried by engine | `retryable` | remedy text |
+|---|---|---|---|---|
+| `refused` | `GenerationError.refusal` | once, fresh session | false | "Rephrase the state or question; the on-device guardrail declined twice." |
+| `guardrail_violation` | `GenerationError.guardrailViolation` | once | false | same as `refused` |
+| `context_exceeded` | `exceededContextWindowSize` | no | false | "Shorten `state` (measured safe: 3,400 words on macOS 26.5)." |
+| `model_unavailable` | `assetsUnavailable` or `availability != .available` | no | true (after the remedy) | reason-specific: enable Apple Intelligence / wait for download / device not eligible |
+| `unsupported_language` | `unsupportedLanguageOrLocale` | no | false | "Write the state in a supported language (`verdict status` lists them)." |
+| `decoding_failure` | `decodingFailure`, `unsupportedGuide` | no | false | "Report with the request; the schema builder emitted something the model could not follow." |
+| `rate_limited` | `rateLimited` | no | true | "Wait and retry; the system model is throttling." |
+| `concurrent_requests` | `concurrentRequests` | no | true | "Serialise calls; one request at a time per process." |
+| `out_of_schema` | engine check (§2 invariants) failed | no | false | "Report as a bug; constrained decoding returned a value outside the schema." |
+| `validation` | request malformed (ids, counts, empty state) | no | false | field-specific |
+| `backend_error` | anything else | no | false | includes the underlying description |
 
 A failed question never gets a fallback answer. The other questions in the request still run.
 
@@ -212,7 +237,8 @@ A failed question never gets a fallback answer. The other questions in the reque
 verdict status [--json]
 verdict decide --state <file|-> (--choice "k1|k2|..." | --score "l0|l1|..." | --noul) [--ask "<instructions>"] [--votes N] [--seed S]
 verdict decide --request <req.json|->
-verdict replay <fixture.json> [--limit N] [--votes N] [--gate 26] [--out <record.json>]
+verdict decide --example
+verdict replay <fixture.json> [--limit N] [--votes N] [--gate 26] [--out <record.json>] [--baseline <record.json>]
 ```
 
 - `decide` prints the §3 response JSON on stdout, one document, always. Human-readable pretty JSON
@@ -220,8 +246,11 @@ verdict replay <fixture.json> [--limit N] [--votes N] [--gate 26] [--out <record
 - `--choice` accepts `key|key|...` or `key=description|key=description`.
 - Exit codes (closed): `0` every question answered · `1` at least one failure / gate failed ·
   `2` usage or validation · `3` model unavailable (indeterminate, never a fallback).
+- `decide --example` prints the §3 example request and exits 0.
+- `replay --baseline` prints one line per item whose correctness flipped against the prior record.
 - `status` is the one perception act: backend name, availability + reason + remedy, OS version,
-  limits (`max_options: 64`, `max_questions: 64`), supported languages count. Exit 0 / 3.
+  limits (`max_options: 64`, `max_questions: 64`), supported languages count, newest gate record
+  (`evidence/`). Exit 0 / 3.
 
 ## §8 Verifier — fixture replay (the gate)
 
