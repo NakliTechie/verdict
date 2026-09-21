@@ -28,15 +28,16 @@ Driver's-seat consequences folded into this spec: `--request -` reads a Jev requ
 choose `votes` from measured cost; `usage.seed` and `usage.retries` say what already happened so the
 driver never retries blindly.
 
-## §1 Scope of M0
+## §1 Scope (M0 + M1)
 
 - Library `VerdictCore`: `Verdict(backend:).decide(_ request) -> Response`.
-- Executable `verdict`: `status`, `decide`, `replay`.
-- One backend: `FoundationModelsBackend` (Apple Foundation Models, macOS 26+).
-- Verifier: `verdict replay` over `~/Code/knowledge/plan/fm-bench/fixture.json` (§8).
+- Executable `verdict`: `status`, `decide`, `replay`, `bench`.
+- Backends: `FoundationModelsBackend` (Apple Foundation Models, macOS 26+, M0) and
+  `LayaCoreMLBackend` (Laya typed-decisions via the laya-coreml export, in-process Core ML, M1).
+- Verifier: `verdict replay` over `~/Code/knowledge/plan/fm-bench/fixture.json` per backend (§8), plus
+  Laya fidelity tests against the Python port (§4.2).
 
-Out of scope for M0: `verdictd` (HTTP face, M2), Laya backends (M1/M3), images, chat-transcript
-states, tools.
+Out of scope: `verdictd` (HTTP face, M2), the MLX sidecar (M3), images, chat-transcript states, tools.
 
 ## §2 Types (`VerdictCore`)
 
@@ -55,7 +56,7 @@ public enum Question: Sendable {
 }
 public struct ChoiceQuestion: Sendable { instructions: String; options: [ChoiceOption] }   // ChoiceOption { key; description? }
 public struct ScoreQuestion:  Sendable { instructions: String; levels: [String] }    // index 0 = lowest
-public struct NoulQuestion:   Sendable { instructions: String; yes: String = "Yes"; no: String = "No" }
+public struct NoulQuestion:   Sendable { instructions: String; yes: String?; no: String? }   // nil = backend's trained default
 
 public struct Policy: Sendable {
     public var votes: Int = 1        // 1 = one greedy run; N >= 2 = N sampled runs (§5)
@@ -127,10 +128,14 @@ Request:
 }
 ```
 
-- `model`: `verdict-fm` (alias for the Foundation Models backend). M1 adds `verdict-laya`.
+- `model`: `verdict-fm` (Foundation Models) or `verdict-laya` (Laya Core ML). The CLI flag `--model`
+  overrides the request field. Unknown → `validation`.
 - `state`: a string in M0. Objects/arrays/chat transcripts are M2.
 - `questions`: 1–64 entries. `choice.criteria` maps key → description or `null` (key shown as its own
-  description). `score.criteria` is the ordered rubric, lowest first. `noul.criteria` is optional.
+  description). `score.criteria` is the ordered rubric, lowest first. `noul.criteria` is optional; when
+  absent each backend renders its own trained default wording (Laya: "yes, the statement holds" /
+  "no, the statement does not hold"). Laya's P(true) moved from 0.76 to 0.82 on the example when the
+  wording changed to "Yes"/"No", so callers who care state the criteria explicitly.
 - `policy` is a verdict extension; absent ⇒ `{"votes": 1}`. Jev clients that omit it get greedy.
 
 Response:
@@ -154,8 +159,10 @@ Response:
 - With `votes >= 2` each answer also carries `"probabilities"` (vote shares, sum 1),
   `"confidence"` = winner share, `"confidence_kind": "agreement"`. `score` becomes Σ level × share and
   `noul` becomes the share of `true`.
-- With a decoded backend (M1) `probabilities` are model probabilities and `confidence_kind` is
-  `decoded`; `confidence = 1 − H(p)/log n` as in openjev. Not in M0.
+- With `verdict-laya` a single forward pass yields model probabilities: `probabilities` is that
+  distribution, `confidence_kind` is `decoded`, `confidence = 1 − H(p)/log n` (openjev's definition; the
+  laya-coreml port reports max(p, 1−p) for noul, verdict does not special-case it), `samples` is 1 and
+  `policy.votes` is ignored.
 - `failures[id] = {"code", "message", "remedy", "retryable"}` with `code` from §6.
 - Superset of Jev: the extra fields are `backend`, `confidence_kind`, `level`, `samples`,
   `latency_ms`, `failures`, `usage.samples`, `usage.retries`, `usage.seed`, `usage.latency_ms`, and
@@ -176,6 +183,7 @@ public struct Sample: Sendable {
 
 public protocol DecisionBackend: Sendable {
     var name: String { get }
+    var producesDistribution: Bool { get }          // default false; true ⇒ engine runs one sample, kind = .decoded
     func availability() -> BackendAvailability     // .available | .unavailable(reason:, remedy:)
     func sample(state: String, question: Question, sampling: Sampling) async throws -> Sample
 }
@@ -201,11 +209,37 @@ public protocol DecisionBackend: Sendable {
 - Prompt compilation (§9) puts the legend in the session instructions and the state + question in the
   prompt, as the fm-bench harness did.
 
+### §4.2 LayaCoreMLBackend
+
+- Checkpoint: `aac6fef/laya-typed-decisions-coreml` (Apache-2.0; an independent Core ML export of
+  `convaiinnovations/laya-typed-decisions`, ModernBERT-large 421M, FP16, enumerated sequence lengths
+  16…1024, 32 option slots). Default location `~/Library/Application Support/verdict/models/
+  laya-typed-decisions-coreml`, override `VERDICT_LAYA_MODEL`. `status --verify` SHA-256s every file
+  against the checkpoint's own `coreml_config.json` manifest.
+- Input format (ported from the laya-coreml `common.py`, verified token-for-token against the Python
+  port on 43 fixture sequences): `[CLS] <type> question: <instructions> [SEP] [MASK] opt0 [MASK] opt1 …
+  [SEP] state [SEP]`; choice options render `key: description`, score `level i: text`, noul
+  `false: …`, `true: …`. Tokenizer: byte-level BPE from the checkpoint's `tokenizer.json`
+  (`BPETokenizer`, verified on 96 goldens from the Python `tokenizers` library).
+- Output: `logits[:k]` at the marker positions, divided by the checkpoint's calibration temperature for
+  the (type, option-count) bucket, softmax. Noul markers are `[false, true]`; the engine's label order is
+  `[true, false]`, and the backend maps between them (a mislabel here was caught by the fidelity test).
+- Fidelity gate: probabilities within 0.02 of the Python port on every checked question (measured max
+  drift 4.5e-5). `Tests/VerdictCoreTests/LayaBackendLiveTests.swift`; skipped when the checkpoint is absent.
+- Limits: ≤ 32 options (`validation` above that), ≤ 1024 tokens with options capped at 48 tokens each and
+  the state truncated on the right to fit (`context_exceeded` only when the options alone overflow).
+- Compute: on macOS 26.5 the Core ML compute plan places all 1,643 ops on the CPU under every
+  compute-unit setting (`bench` reports it). Default `.cpuOnly` (`VERDICT_LAYA_COMPUTE=all|gpu|ane` to
+  override): same latency, 2.7 s load instead of 18 s, and no E5RT stderr noise.
+- Model load is per process (compile once to `model.mlmodelc` beside the package, then ~3 s to load);
+  `verdictd` (M2) amortises it. `replay` excludes load from per-item latency and prints it separately.
+
 ## §5 Confidence
 
 | `votes` | runs | `confidenceKind` | `confidence` | `probabilities` |
 |---|---|---|---|---|
-| 1 | one greedy sample | `.none` (or `.decoded` if the backend supplied a distribution) | `nil` | absent |
+| 1 | one greedy sample | `.none` | `nil` | absent |
+| any, `producesDistribution` backend | one forward pass | `.decoded` | 1 − H(p)/log n | model probabilities |
 | N ≥ 2 | N sampled runs, seeds `seed + v·7919`, v = 0..<N | `.agreement` | winner count / N | counts / N over every option (zeros included) |
 
 - Winner = most votes; tie → the tied option that comes first in the question's option order.
@@ -238,7 +272,8 @@ verdict status [--json]
 verdict decide --state <file|-> (--choice "k1|k2|..." | --score "l0|l1|..." | --noul) [--ask "<instructions>"] [--votes N] [--seed S]
 verdict decide --request <req.json|->
 verdict decide --example
-verdict replay <fixture.json> [--limit N] [--votes N] [--gate 26] [--out <record.json>] [--baseline <record.json>]
+verdict replay <fixture.json> [--model verdict-fm|verdict-laya] [--limit N] [--votes N] [--gate 26] [--out <record.json>] [--baseline <record.json>]
+verdict bench [--models verdict-fm,verdict-laya] [--iterations 5]
 ```
 
 - `decide` prints the §3 response JSON on stdout, one document, always. Human-readable pretty JSON
@@ -247,6 +282,8 @@ verdict replay <fixture.json> [--limit N] [--votes N] [--gate 26] [--out <record
 - Exit codes (closed): `0` every question answered · `1` at least one failure / gate failed ·
   `2` usage or validation · `3` model unavailable (indeterminate, never a fallback).
 - `decide --example` prints the §3 example request and exits 0.
+- `bench` prints warm P50 latency for a short noul and a 26-way choice per backend, Laya's load time and
+  Core ML op placement, as one JSON document. This is where a driver reads the cost of `model` and `votes`.
 - `replay --baseline` prints one line per item whose correctness flipped against the prior record.
 - `status` is the one perception act: backend name, availability + reason + remedy, OS version,
   limits (`max_options: 64`, `max_questions: 64`), supported languages count, and one line per gate
@@ -266,6 +303,10 @@ sampling settings, same metrics; the model call goes through `VerdictCore` inste
   P50 / P90 per item (ms), and with `--votes ≥ 2` the winner-share means for right vs wrong.
 - Gate: `top1 >= gate` (default 26) **and** `out_of_schema == 0`. Prior greedy result: 26/39
   (1 refusal). Exit 0 pass · 1 fail · 3 indeterminate (model unavailable or 0 completed).
+- Per backend, 2026-09-21, macOS 26.5.2, M4 Pro: Foundation Models greedy 28/40 PASS (P50 1184 ms);
+  Laya typed-decisions 18/40 FAIL (P50 2.3–2.7 s on CPU across two runs; identical answers to the Python port). Laya is
+  therefore not the router for this 26-way task; it is the decoded-confidence backend for narrow
+  decisions (2–10 options, short states: ~230–370 ms), where Foundation Models gives no confidence at all.
 - Output: one line per item (`[i] slug  answer OK|MISS  share  ms`), one summary block, and with
   `--out` a JSON record `{run, backend, votes, items: [...], summary}` — committed under `evidence/`
   for each gate run so later runs diff against it.
