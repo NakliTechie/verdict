@@ -24,8 +24,27 @@ Every NakliTechie surface that wants a small, fast, on-device *decision* (rank t
 - **Summon** — smart-paste field routing over the agent socket.
 - **On-device capture app** — topic filing and link proposals (`~/Code/knowledge/notes/jcr-pattern-applications-smart-paste-and-on-device-capture.md`).
 
+## Status (2026-09-21)
+M0 shipped. `swift build` + `swift test` (25 offline tests over a fake backend) + `verdict replay` over the 40-item fm-bench fixture on macOS 26.5.2:
+
+| run | top-1 | out-of-schema | refusals | P50 / item | record |
+|---|---|---|---|---|---|
+| greedy (`--votes 1`) | 28/40 | 0 | 0 | 1184 ms | `evidence/replay-2026-09-21-foundation-models-v1.json` |
+| agreement (`--votes 5`) | 25/40 | 0 | 0 | 4782 ms | `evidence/replay-2026-09-21-foundation-models-v5.json` |
+
+Agreement at N=5: winner share 0.86 mean on right answers vs 0.63 on wrong; 9/25 right answers unanimous, 0/15 wrong ones. "Unanimous → accept, split → ask" holds on this fixture at 4× the greedy latency.
+
+```bash
+swift build -c release
+.build/release/verdict status
+.build/release/verdict decide --example | .build/release/verdict decide --request -
+.build/release/verdict replay ~/Code/knowledge/plan/fm-bench/fixture.json --votes 1 --gate 26
+```
+
+Contract and agent face: [SPEC.md](SPEC.md) (§0 agent contract, §3 Jev-compatible wire shape, §6 failure codes, §7 exit codes).
+
 ## Milestones
-- **M0 — core + Foundation Models backend, CLI only.** `verdict decide --state f.txt --choice "a|b|c"`; agreement confidence; refusal retry-then-fail; fixture replay gate: matches the fm-bench greedy result (26/39 top-1) and never emits an option outside the schema.
+- **M0 — core + Foundation Models backend, CLI only.** `verdict decide --state f.txt --choice "a|b|c"`; agreement confidence; refusal retry-then-fail; fixture replay gate: matches the fm-bench greedy result (26/39 top-1) and never emits an option outside the schema. **Shipped 2026-09-21 — see Status.**
 - **M1 — Laya Core ML backend.** In-process; decoded confidence; fixture replay ≥ fm-bench; measured P50 on this Mac.
 - **M2 — `verdictd` loopback face.** Jev-compatible JSON, token gate, one process serving many callers; Inlay and Summon smoke calls.
 - **M3 — MLX sidecar + policy routing.** Only if Core ML weights fail their fidelity gate on this machine.
