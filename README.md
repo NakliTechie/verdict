@@ -11,12 +11,11 @@ Ask a piece of text a typed question — *pick one of these*, *score on a rubric
 ## Install
 
 ```bash
-git clone https://github.com/NakliTechie/verdict && cd verdict
-swift build -c release
-.build/release/verdictd install       # per-user launchd agent, up at login, no sudo
+brew install NakliTechie/tap/verdict
+verdictd install       # per-user launchd agent, up at login, no sudo
 ```
 
-Apple Silicon, macOS 26+, Apple Intelligence enabled. The default backend is the OS model, so there is **no model download, no API key, no network**. (An optional Laya backend does need a ~0.8 GB download — see Backends.)
+Apple Silicon, macOS 26+, Apple Intelligence enabled. The default backend is the OS model, so there is **no model download, no API key, no network**. (An optional Laya backend does need a ~0.8 GB download — see Backends.) Prefer source? `git clone … && swift build -c release`.
 
 ## Use it
 
@@ -24,16 +23,16 @@ Three doors, one core.
 
 ```bash
 # CLI — a typed answer as JSON
-.build/release/verdict decide --state note.txt --choice "billing|technical|sales" --ask "Which team handles this?"
+verdict decide --state note.txt --choice "billing|technical|sales" --ask "Which team handles this?"
 
 # HTTP — Jev-compatible; a client written for Jev works unchanged
-TOKEN=$(.build/release/verdictd token)
-.build/release/verdict decide --example | curl -s http://127.0.0.1:7311/v1/systemone \
+TOKEN=$(verdictd token)
+verdict decide --example | curl -s http://127.0.0.1:7311/v1/systemone \
   -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' -d @-
 ```
 
 ```swift
-// Library
+// Library (SwiftPM)
 import VerdictCore
 let r = try await Verdict(backend: FoundationModelsBackend()).decide(request)
 ```
@@ -64,8 +63,8 @@ Selected per request via `model` on the wire:
 
 ```bash
 swift test                                                  # 55 tests, 11 suites
-.build/release/verdict bench                                # warm latency per backend on your Mac
-.build/release/verdict replay <fm-bench>/fixture.json --gate 26   # the accuracy gate
+verdict bench                                # warm latency per backend on your Mac
+verdict replay <fm-bench>/fixture.json --gate 26   # the accuracy gate
 ```
 
 Benchmarks and the honest "not better than the rest" boundary: [docs/COMPARISON.md](docs/COMPARISON.md).
