@@ -310,8 +310,13 @@ sampling settings, same metrics; the model call goes through `VerdictCore` inste
   (1 refusal). Exit 0 pass · 1 fail · 3 indeterminate (model unavailable or 0 completed).
 - Per backend, 2026-09-21, macOS 26.5.2, M4 Pro: Foundation Models greedy 28/40 PASS (P50 1184 ms);
   Laya typed-decisions 18/40 FAIL (P50 2.3–2.7 s on CPU across two runs; identical answers to the Python port). Laya is
-  therefore not the router for this 26-way task; it is the decoded-confidence backend for narrow
-  decisions (2–10 options, short states: ~230–370 ms), where Foundation Models gives no confidence at all.
+  therefore not the router for this 26-way task.
+- Narrow fixture (160 cases, same day): Foundation Models 130/160 at P50 518 ms; Laya 113/160 at P50
+  1775 ms with mean decoded confidence 0.14 (right) vs 0.08 (wrong), 158/160 answers under 0.5. Laya's
+  advantage is the *kind* of confidence, not its accuracy or speed, and on this vault's text that
+  advantage is thin. Both backends stay; `verdict-fm` is the default and the recommendation, and
+  `verdict-laya` is the backend to pick only when a caller needs a probability to threshold on and has
+  measured it on its own fixture.
 - Output: one line per item (`[i] slug  answer OK|MISS  share  ms`), one summary block, and with
   `--out` a JSON record `{run, backend, votes, items: [...], summary}` — committed under `evidence/`
   for each gate run so later runs diff against it.

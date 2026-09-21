@@ -1,0 +1,1965 @@
+{
+  "backend" : "foundation-models",
+  "fixture" : "/Users/chiragpatnaik/Code/knowledge/plan/fm-bench/narrow.json",
+  "items" : [
+    {
+      "answer" : "false",
+      "index" : 1,
+      "kind" : "noul",
+      "latency_ms" : 3975,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-09-08-edge0-streaming-moe-inference-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 2,
+      "kind" : "noul",
+      "latency_ms" : 902,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-08-edge0-streaming-moe-inference-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 3,
+      "kind" : "choice3",
+      "latency_ms" : 958,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-08-edge0-streaming-moe-inference-repo::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 4,
+      "kind" : "choice5",
+      "latency_ms" : 1015,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-08-edge0-streaming-moe-inference-repo::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 5,
+      "kind" : "noul",
+      "latency_ms" : 807,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-02-18-am-compaction-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 6,
+      "kind" : "noul",
+      "latency_ms" : 843,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-02-18-am-compaction-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 7,
+      "kind" : "choice3",
+      "latency_ms" : 929,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-02-18-am-compaction-repo::choice3",
+      "truth" : [
+        "llm-architecture"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 8,
+      "kind" : "choice5",
+      "latency_ms" : 909,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-02-18-am-compaction-repo::choice5",
+      "truth" : [
+        "llm-architecture"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 9,
+      "kind" : "noul",
+      "latency_ms" : 910,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-21-sol-pi-harness-efficiency::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 10,
+      "kind" : "noul",
+      "latency_ms" : 862,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-21-sol-pi-harness-efficiency::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 11,
+      "kind" : "choice3",
+      "latency_ms" : 1214,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-21-sol-pi-harness-efficiency::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 12,
+      "kind" : "choice5",
+      "latency_ms" : 1136,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-21-sol-pi-harness-efficiency::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 13,
+      "kind" : "noul",
+      "latency_ms" : 1001,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-17-jev-reproductions-tracker::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 14,
+      "kind" : "noul",
+      "latency_ms" : 944,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-17-jev-reproductions-tracker::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "multimodal-models",
+      "index" : 15,
+      "kind" : "choice3",
+      "latency_ms" : 1080,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-09-17-jev-reproductions-tracker::choice3",
+      "truth" : [
+        "typed-decision-models"
+      ]
+    },
+    {
+      "answer" : "typed-decision-models",
+      "index" : 16,
+      "kind" : "choice5",
+      "latency_ms" : 1182,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-17-jev-reproductions-tracker::choice5",
+      "truth" : [
+        "typed-decision-models"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 17,
+      "kind" : "noul",
+      "latency_ms" : 855,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-02-repo-to-skill-disco-arex::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 18,
+      "kind" : "noul",
+      "latency_ms" : 1055,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-02-repo-to-skill-disco-arex::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 19,
+      "kind" : "choice3",
+      "latency_ms" : 1256,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-02-repo-to-skill-disco-arex::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 20,
+      "kind" : "choice5",
+      "latency_ms" : 1191,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-02-repo-to-skill-disco-arex::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 21,
+      "kind" : "noul",
+      "latency_ms" : 857,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-09-20-classifier-dev-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 22,
+      "kind" : "noul",
+      "latency_ms" : 873,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-20-classifier-dev-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "human-impact-of-ai",
+      "index" : 23,
+      "kind" : "choice3",
+      "latency_ms" : 1268,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-09-20-classifier-dev-repo::choice3",
+      "truth" : [
+        "typed-decision-models"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 24,
+      "kind" : "choice5",
+      "latency_ms" : 1231,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-09-20-classifier-dev-repo::choice5",
+      "truth" : [
+        "typed-decision-models"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 25,
+      "kind" : "noul",
+      "latency_ms" : 848,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2001-01-01-breiman-random-forests::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 26,
+      "kind" : "noul",
+      "latency_ms" : 651,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2001-01-01-breiman-random-forests::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "machine-learning-foundations",
+      "index" : 27,
+      "kind" : "choice3",
+      "latency_ms" : 778,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2001-01-01-breiman-random-forests::choice3",
+      "truth" : [
+        "machine-learning-foundations"
+      ]
+    },
+    {
+      "answer" : "machine-learning-foundations",
+      "index" : 28,
+      "kind" : "choice5",
+      "latency_ms" : 744,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2001-01-01-breiman-random-forests::choice5",
+      "truth" : [
+        "machine-learning-foundations"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 29,
+      "kind" : "noul",
+      "latency_ms" : 502,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-20-harvard-llm-serving-traces-dataset::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 30,
+      "kind" : "noul",
+      "latency_ms" : 472,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-20-harvard-llm-serving-traces-dataset::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "llm-evaluation",
+      "index" : 31,
+      "kind" : "choice3",
+      "latency_ms" : 543,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-20-harvard-llm-serving-traces-dataset::choice3",
+      "truth" : [
+        "llm-evaluation"
+      ]
+    },
+    {
+      "answer" : "llm-evaluation",
+      "index" : 32,
+      "kind" : "choice5",
+      "latency_ms" : 638,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-20-harvard-llm-serving-traces-dataset::choice5",
+      "truth" : [
+        "llm-evaluation"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 33,
+      "kind" : "noul",
+      "latency_ms" : 494,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-20-rakyll-google-ax-announcement::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 34,
+      "kind" : "noul",
+      "latency_ms" : 625,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-09-20-rakyll-google-ax-announcement::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 35,
+      "kind" : "choice3",
+      "latency_ms" : 900,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-20-rakyll-google-ax-announcement::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 36,
+      "kind" : "choice5",
+      "latency_ms" : 717,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-20-rakyll-google-ax-announcement::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 37,
+      "kind" : "noul",
+      "latency_ms" : 382,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-09-15-free-mac-notch-apps-ranked::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 38,
+      "kind" : "noul",
+      "latency_ms" : 480,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-15-free-mac-notch-apps-ranked::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "local-first-tools",
+      "index" : 39,
+      "kind" : "choice3",
+      "latency_ms" : 546,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-15-free-mac-notch-apps-ranked::choice3",
+      "truth" : [
+        "local-first-tools"
+      ]
+    },
+    {
+      "answer" : "local-first-tools",
+      "index" : 40,
+      "kind" : "choice5",
+      "latency_ms" : 758,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-15-free-mac-notch-apps-ranked::choice5",
+      "truth" : [
+        "local-first-tools"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 41,
+      "kind" : "noul",
+      "latency_ms" : 526,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-06-26-deepspec-spec-decoding-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 42,
+      "kind" : "noul",
+      "latency_ms" : 518,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-06-26-deepspec-spec-decoding-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 43,
+      "kind" : "choice3",
+      "latency_ms" : 554,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-06-26-deepspec-spec-decoding-repo::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 44,
+      "kind" : "choice5",
+      "latency_ms" : 623,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-06-26-deepspec-spec-decoding-repo::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 45,
+      "kind" : "noul",
+      "latency_ms" : 365,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-04-reddit-subreddits-remote-job-hunt::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 46,
+      "kind" : "noul",
+      "latency_ms" : 387,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-04-reddit-subreddits-remote-job-hunt::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "job-search",
+      "index" : 47,
+      "kind" : "choice3",
+      "latency_ms" : 598,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-04-reddit-subreddits-remote-job-hunt::choice3",
+      "truth" : [
+        "job-search"
+      ]
+    },
+    {
+      "answer" : "job-search",
+      "index" : 48,
+      "kind" : "choice5",
+      "latency_ms" : 649,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-04-reddit-subreddits-remote-job-hunt::choice5",
+      "truth" : [
+        "job-search"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 49,
+      "kind" : "noul",
+      "latency_ms" : 486,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-09-12-colibri-moe-ssd-inference-engine::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 50,
+      "kind" : "noul",
+      "latency_ms" : 667,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-12-colibri-moe-ssd-inference-engine::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 51,
+      "kind" : "choice3",
+      "latency_ms" : 911,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-12-colibri-moe-ssd-inference-engine::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 52,
+      "kind" : "choice5",
+      "latency_ms" : 774,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-12-colibri-moe-ssd-inference-engine::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 53,
+      "kind" : "noul",
+      "latency_ms" : 714,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2020-04-17-stanford-cs229-decision-trees-ensembles::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 54,
+      "kind" : "noul",
+      "latency_ms" : 776,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2020-04-17-stanford-cs229-decision-trees-ensembles::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "machine-learning-foundations",
+      "index" : 55,
+      "kind" : "choice3",
+      "latency_ms" : 855,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2020-04-17-stanford-cs229-decision-trees-ensembles::choice3",
+      "truth" : [
+        "machine-learning-foundations"
+      ]
+    },
+    {
+      "answer" : "machine-learning-foundations",
+      "index" : 56,
+      "kind" : "choice5",
+      "latency_ms" : 934,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2020-04-17-stanford-cs229-decision-trees-ensembles::choice5",
+      "truth" : [
+        "machine-learning-foundations"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 57,
+      "kind" : "noul",
+      "latency_ms" : 528,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-04-agent-substrate-env-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 58,
+      "kind" : "noul",
+      "latency_ms" : 483,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-04-agent-substrate-env-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 59,
+      "kind" : "choice3",
+      "latency_ms" : 650,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-04-agent-substrate-env-repo::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 60,
+      "kind" : "choice5",
+      "latency_ms" : 530,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-04-agent-substrate-env-repo::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 61,
+      "kind" : "noul",
+      "latency_ms" : 396,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-06-29-best-paper-awards-cs::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 62,
+      "kind" : "noul",
+      "latency_ms" : 348,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-06-29-best-paper-awards-cs::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 63,
+      "kind" : "choice3",
+      "latency_ms" : 378,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-06-29-best-paper-awards-cs::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 64,
+      "kind" : "choice5",
+      "latency_ms" : 478,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-06-29-best-paper-awards-cs::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 65,
+      "kind" : "noul",
+      "latency_ms" : 515,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-01-spark-x2.5-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 66,
+      "kind" : "noul",
+      "latency_ms" : 484,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-01-spark-x2.5-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 67,
+      "kind" : "choice3",
+      "latency_ms" : 404,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-01-spark-x2.5-repo::choice3",
+      "truth" : [
+        "llm-architecture"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 68,
+      "kind" : "choice5",
+      "latency_ms" : 601,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-01-spark-x2.5-repo::choice5",
+      "truth" : [
+        "llm-architecture"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 69,
+      "kind" : "noul",
+      "latency_ms" : 454,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-06-16-qwable-3-6-35b::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 70,
+      "kind" : "noul",
+      "latency_ms" : 422,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-06-16-qwable-3-6-35b::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "machine-learning-foundations",
+      "index" : 71,
+      "kind" : "choice3",
+      "latency_ms" : 555,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-06-16-qwable-3-6-35b::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 72,
+      "kind" : "choice5",
+      "latency_ms" : 665,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-06-16-qwable-3-6-35b::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 73,
+      "kind" : "noul",
+      "latency_ms" : 376,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2024-icml-debating-persuasive-llms-truthful::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 74,
+      "kind" : "noul",
+      "latency_ms" : 378,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2024-icml-debating-persuasive-llms-truthful::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "llm-evaluation",
+      "index" : 75,
+      "kind" : "choice3",
+      "latency_ms" : 414,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2024-icml-debating-persuasive-llms-truthful::choice3",
+      "truth" : [
+        "llm-evaluation"
+      ]
+    },
+    {
+      "answer" : "llm-evaluation",
+      "index" : 76,
+      "kind" : "choice5",
+      "latency_ms" : 493,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2024-icml-debating-persuasive-llms-truthful::choice5",
+      "truth" : [
+        "llm-evaluation"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 77,
+      "kind" : "noul",
+      "latency_ms" : 551,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-09-sureforge-agent-skill::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 78,
+      "kind" : "noul",
+      "latency_ms" : 629,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-09-sureforge-agent-skill::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 79,
+      "kind" : "choice3",
+      "latency_ms" : 503,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-09-sureforge-agent-skill::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 80,
+      "kind" : "choice5",
+      "latency_ms" : 818,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-09-sureforge-agent-skill::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 81,
+      "kind" : "noul",
+      "latency_ms" : 826,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-09-06-cordis-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 82,
+      "kind" : "noul",
+      "latency_ms" : 652,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-06-cordis-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "multimodal-models",
+      "index" : 83,
+      "kind" : "choice3",
+      "latency_ms" : 419,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-09-06-cordis-repo::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 84,
+      "kind" : "choice5",
+      "latency_ms" : 610,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-09-06-cordis-repo::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 85,
+      "kind" : "noul",
+      "latency_ms" : 387,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-07-08-how-to-build-a-diffusion-language-model::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 86,
+      "kind" : "noul",
+      "latency_ms" : 391,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-07-08-how-to-build-a-diffusion-language-model::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "diffusion-language-models",
+      "index" : 87,
+      "kind" : "choice3",
+      "latency_ms" : 452,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-07-08-how-to-build-a-diffusion-language-model::choice3",
+      "truth" : [
+        "diffusion-language-models"
+      ]
+    },
+    {
+      "answer" : "diffusion-language-models",
+      "index" : 88,
+      "kind" : "choice5",
+      "latency_ms" : 461,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-07-08-how-to-build-a-diffusion-language-model::choice5",
+      "truth" : [
+        "diffusion-language-models"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 89,
+      "kind" : "noul",
+      "latency_ms" : 373,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2025-11-10-mply-monopoly-etf-concentration-factor::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 90,
+      "kind" : "noul",
+      "latency_ms" : 370,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2025-11-10-mply-monopoly-etf-concentration-factor::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "investing-markets",
+      "index" : 91,
+      "kind" : "choice3",
+      "latency_ms" : 511,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2025-11-10-mply-monopoly-etf-concentration-factor::choice3",
+      "truth" : [
+        "investing-markets"
+      ]
+    },
+    {
+      "answer" : "investing-markets",
+      "index" : 92,
+      "kind" : "choice5",
+      "latency_ms" : 557,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2025-11-10-mply-monopoly-etf-concentration-factor::choice5",
+      "truth" : [
+        "investing-markets"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 93,
+      "kind" : "noul",
+      "latency_ms" : 617,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-08-31-kaggle-tpu-lab-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 94,
+      "kind" : "noul",
+      "latency_ms" : 661,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-31-kaggle-tpu-lab-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 95,
+      "kind" : "choice3",
+      "latency_ms" : 632,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-31-kaggle-tpu-lab-repo::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 96,
+      "kind" : "choice5",
+      "latency_ms" : 618,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-31-kaggle-tpu-lab-repo::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 97,
+      "kind" : "noul",
+      "latency_ms" : 332,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-06-22-qwable-35b-dgx-spark::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 98,
+      "kind" : "noul",
+      "latency_ms" : 339,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-06-22-qwable-35b-dgx-spark::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 99,
+      "kind" : "choice3",
+      "latency_ms" : 382,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-06-22-qwable-35b-dgx-spark::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 100,
+      "kind" : "choice5",
+      "latency_ms" : 411,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-06-22-qwable-35b-dgx-spark::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 101,
+      "kind" : "noul",
+      "latency_ms" : 392,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2025-11-25-latentmas-latent-collaboration-multi-agent::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 102,
+      "kind" : "noul",
+      "latency_ms" : 495,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2025-11-25-latentmas-latent-collaboration-multi-agent::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 103,
+      "kind" : "choice3",
+      "latency_ms" : 594,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2025-11-25-latentmas-latent-collaboration-multi-agent::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 104,
+      "kind" : "choice5",
+      "latency_ms" : 651,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2025-11-25-latentmas-latent-collaboration-multi-agent::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 105,
+      "kind" : "noul",
+      "latency_ms" : 467,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-05-13-agent-substrate-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 106,
+      "kind" : "noul",
+      "latency_ms" : 465,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-05-13-agent-substrate-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 107,
+      "kind" : "choice3",
+      "latency_ms" : 576,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-05-13-agent-substrate-repo::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 108,
+      "kind" : "choice5",
+      "latency_ms" : 552,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-05-13-agent-substrate-repo::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 109,
+      "kind" : "noul",
+      "latency_ms" : 374,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-18-tencent-auk-vram-optimization::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 110,
+      "kind" : "noul",
+      "latency_ms" : 370,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-18-tencent-auk-vram-optimization::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "speech-audio-models",
+      "index" : 111,
+      "kind" : "choice3",
+      "latency_ms" : 453,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-18-tencent-auk-vram-optimization::choice3",
+      "truth" : [
+        "speech-audio-models"
+      ]
+    },
+    {
+      "answer" : "speech-audio-models",
+      "index" : 112,
+      "kind" : "choice5",
+      "latency_ms" : 463,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-18-tencent-auk-vram-optimization::choice5",
+      "truth" : [
+        "speech-audio-models"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 113,
+      "kind" : "noul",
+      "latency_ms" : 499,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-28-contextpilot-proactive-context-management::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 114,
+      "kind" : "noul",
+      "latency_ms" : 475,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-28-contextpilot-proactive-context-management::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 115,
+      "kind" : "choice3",
+      "latency_ms" : 656,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-28-contextpilot-proactive-context-management::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 116,
+      "kind" : "choice5",
+      "latency_ms" : 526,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-28-contextpilot-proactive-context-management::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 117,
+      "kind" : "noul",
+      "latency_ms" : 430,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-21-qwen38-27b-256k-rtx5090-fast-long-context::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 118,
+      "kind" : "noul",
+      "latency_ms" : 418,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-21-qwen38-27b-256k-rtx5090-fast-long-context::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 119,
+      "kind" : "choice3",
+      "latency_ms" : 516,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-21-qwen38-27b-256k-rtx5090-fast-long-context::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 120,
+      "kind" : "choice5",
+      "latency_ms" : 540,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-21-qwen38-27b-256k-rtx5090-fast-long-context::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 121,
+      "kind" : "noul",
+      "latency_ms" : 441,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-01-07-hyper-extract-knowledge-extraction::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 122,
+      "kind" : "noul",
+      "latency_ms" : 436,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-01-07-hyper-extract-knowledge-extraction::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "open-data-knowledge-graphs",
+      "index" : 123,
+      "kind" : "choice3",
+      "latency_ms" : 460,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-01-07-hyper-extract-knowledge-extraction::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 124,
+      "kind" : "choice5",
+      "latency_ms" : 500,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-01-07-hyper-extract-knowledge-extraction::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 125,
+      "kind" : "noul",
+      "latency_ms" : 389,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-07-27-kimi-k3-technical-report::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 126,
+      "kind" : "noul",
+      "latency_ms" : 389,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-07-27-kimi-k3-technical-report::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "multimodal-models",
+      "index" : 127,
+      "kind" : "choice3",
+      "latency_ms" : 502,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-07-27-kimi-k3-technical-report::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 128,
+      "kind" : "choice5",
+      "latency_ms" : 498,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-07-27-kimi-k3-technical-report::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 129,
+      "kind" : "noul",
+      "latency_ms" : 356,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-01-sparkllm-x2.5-1m-context-on-device::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 130,
+      "kind" : "noul",
+      "latency_ms" : 358,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-01-sparkllm-x2.5-1m-context-on-device::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 131,
+      "kind" : "choice3",
+      "latency_ms" : 443,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-01-sparkllm-x2.5-1m-context-on-device::choice3",
+      "truth" : [
+        "llm-architecture"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 132,
+      "kind" : "choice5",
+      "latency_ms" : 441,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-01-sparkllm-x2.5-1m-context-on-device::choice5",
+      "truth" : [
+        "llm-architecture"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 133,
+      "kind" : "noul",
+      "latency_ms" : 422,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-26-swarmworld-stigmergic-agent-societies::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 134,
+      "kind" : "noul",
+      "latency_ms" : 362,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-26-swarmworld-stigmergic-agent-societies::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 135,
+      "kind" : "choice3",
+      "latency_ms" : 523,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-26-swarmworld-stigmergic-agent-societies::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 136,
+      "kind" : "choice5",
+      "latency_ms" : 500,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-26-swarmworld-stigmergic-agent-societies::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 137,
+      "kind" : "noul",
+      "latency_ms" : 570,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-06-15-loop-engineering-playbook::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 138,
+      "kind" : "noul",
+      "latency_ms" : 462,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-06-15-loop-engineering-playbook::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 139,
+      "kind" : "choice3",
+      "latency_ms" : 457,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-06-15-loop-engineering-playbook::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 140,
+      "kind" : "choice5",
+      "latency_ms" : 497,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-06-15-loop-engineering-playbook::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 141,
+      "kind" : "noul",
+      "latency_ms" : 359,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2025-08-28-dbt-m365-copilot-evaluation::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 142,
+      "kind" : "noul",
+      "latency_ms" : 374,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2025-08-28-dbt-m365-copilot-evaluation::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "cs-best-papers-concepts",
+      "index" : 143,
+      "kind" : "choice3",
+      "latency_ms" : 419,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2025-08-28-dbt-m365-copilot-evaluation::choice3",
+      "truth" : [
+        "economics-of-ai"
+      ]
+    },
+    {
+      "answer" : "economics-of-ai",
+      "index" : 144,
+      "kind" : "choice5",
+      "latency_ms" : 611,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2025-08-28-dbt-m365-copilot-evaluation::choice5",
+      "truth" : [
+        "economics-of-ai"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 145,
+      "kind" : "noul",
+      "latency_ms" : 481,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-17-jev-architecture-unmasked-archer-hume::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 146,
+      "kind" : "noul",
+      "latency_ms" : 550,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-17-jev-architecture-unmasked-archer-hume::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "typed-decision-models",
+      "index" : 147,
+      "kind" : "choice3",
+      "latency_ms" : 539,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-17-jev-architecture-unmasked-archer-hume::choice3",
+      "truth" : [
+        "typed-decision-models"
+      ]
+    },
+    {
+      "answer" : "typed-decision-models",
+      "index" : 148,
+      "kind" : "choice5",
+      "latency_ms" : 606,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-17-jev-architecture-unmasked-archer-hume::choice5",
+      "truth" : [
+        "typed-decision-models"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 149,
+      "kind" : "noul",
+      "latency_ms" : 382,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-03-10-rys-github-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 150,
+      "kind" : "noul",
+      "latency_ms" : 383,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-03-10-rys-github-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "cs-best-papers-concepts",
+      "index" : 151,
+      "kind" : "choice3",
+      "latency_ms" : 448,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-03-10-rys-github-repo::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "cs-best-papers-concepts",
+      "index" : 152,
+      "kind" : "choice5",
+      "latency_ms" : 508,
+      "ok" : false,
+      "retries" : 0,
+      "slug" : "2026-03-10-rys-github-repo::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 153,
+      "kind" : "noul",
+      "latency_ms" : 394,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-14-ai-research-preference-models::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 154,
+      "kind" : "noul",
+      "latency_ms" : 399,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-14-ai-research-preference-models::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 155,
+      "kind" : "choice3",
+      "latency_ms" : 469,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-14-ai-research-preference-models::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 156,
+      "kind" : "choice5",
+      "latency_ms" : 453,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-08-14-ai-research-preference-models::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 157,
+      "kind" : "noul",
+      "latency_ms" : 501,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-10-feyospace-v1-cyber-mercury-seven::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 158,
+      "kind" : "noul",
+      "latency_ms" : 487,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-10-feyospace-v1-cyber-mercury-seven::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "cybersecurity-ai",
+      "index" : 159,
+      "kind" : "choice3",
+      "latency_ms" : 603,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-10-feyospace-v1-cyber-mercury-seven::choice3",
+      "truth" : [
+        "cybersecurity-ai"
+      ]
+    },
+    {
+      "answer" : "cybersecurity-ai",
+      "index" : 160,
+      "kind" : "choice5",
+      "latency_ms" : 572,
+      "ok" : true,
+      "retries" : 0,
+      "slug" : "2026-09-10-feyospace-v1-cyber-mercury-seven::choice5",
+      "truth" : [
+        "cybersecurity-ai"
+      ]
+    }
+  ],
+  "os" : "Version 26.5.2 (Build 25F84)",
+  "question" : "Which topic does this note belong under?",
+  "run" : "2026-09-21T10:54:41Z",
+  "seed" : 1,
+  "summary" : {
+    "attempted" : 160,
+    "by_kind" : {
+      "choice3" : {
+        "completed" : 40,
+        "top1" : 30
+      },
+      "choice5" : {
+        "completed" : 40,
+        "top1" : 34
+      },
+      "noul" : {
+        "completed" : 80,
+        "top1" : 66
+      }
+    },
+    "completed" : 160,
+    "failures" : {
+
+    },
+    "gate" : 0,
+    "gate_passed" : true,
+    "indeterminate" : false,
+    "latency_mean_ms" : 613,
+    "latency_p50_ms" : 518,
+    "latency_p90_ms" : 911,
+    "out_of_schema" : 0,
+    "refused" : 0,
+    "reliability" : [
+
+    ],
+    "retries" : 0,
+    "top1" : 130
+  },
+  "votes" : 1
+}

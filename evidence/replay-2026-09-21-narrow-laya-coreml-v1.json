@@ -1,0 +1,2956 @@
+{
+  "backend" : "laya-coreml",
+  "fixture" : "/Users/chiragpatnaik/Code/knowledge/plan/fm-bench/narrow.json",
+  "items" : [
+    {
+      "answer" : "true",
+      "index" : 1,
+      "kind" : "noul",
+      "latency_ms" : 2728,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.2974459240978899,
+        "true" : 0.7025540759021102
+      },
+      "retries" : 0,
+      "share" : 0.12185362780888565,
+      "slug" : "2026-09-08-edge0-streaming-moe-inference-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 2,
+      "kind" : "noul",
+      "latency_ms" : 1708,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.5436440080004104,
+        "true" : 0.45635599199958965
+      },
+      "retries" : 0,
+      "share" : 0.005503090052165538,
+      "slug" : "2026-09-08-edge0-streaming-moe-inference-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 3,
+      "kind" : "choice3",
+      "latency_ms" : 1508,
+      "ok" : false,
+      "probabilities" : {
+        "consumer-gpu-inference" : 0.34572152310214993,
+        "diffusion-language-models" : 0.18415173386649059,
+        "llm-architecture" : 0.47012674303135954
+      },
+      "retries" : 0,
+      "share" : 0.05916606285196824,
+      "slug" : "2026-09-08-edge0-streaming-moe-inference-repo::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 4,
+      "kind" : "choice5",
+      "latency_ms" : 2086,
+      "ok" : true,
+      "probabilities" : {
+        "consumer-gpu-inference" : 0.3566159726937038,
+        "cs-best-papers-concepts" : 0.23683012656704389,
+        "cybersecurity-ai" : 0.26650166053321167,
+        "job-search" : 0.0621148671335833,
+        "optical-analog-computing" : 0.07793737307245738
+      },
+      "retries" : 0,
+      "share" : 0.1097881597304936,
+      "slug" : "2026-09-08-edge0-streaming-moe-inference-repo::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 5,
+      "kind" : "noul",
+      "latency_ms" : 1665,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.5403592663242522,
+        "true" : 0.45964073367574776
+      },
+      "retries" : 0,
+      "share" : 0.004705043495695338,
+      "slug" : "2026-02-18-am-compaction-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 6,
+      "kind" : "noul",
+      "latency_ms" : 2713,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.3215728443471876,
+        "true" : 0.6784271556528124
+      },
+      "retries" : 0,
+      "share" : 0.09391632622183288,
+      "slug" : "2026-02-18-am-compaction-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 7,
+      "kind" : "choice3",
+      "latency_ms" : 1206,
+      "ok" : true,
+      "probabilities" : {
+        "consumer-gpu-inference" : 0.31815630847350596,
+        "llm-architecture" : 0.3862370900694453,
+        "llm-evaluation" : 0.2956066014570487
+      },
+      "retries" : 0,
+      "share" : 0.0059743492319864755,
+      "slug" : "2026-02-18-am-compaction-repo::choice3",
+      "truth" : [
+        "llm-architecture"
+      ]
+    },
+    {
+      "answer" : "open-data-knowledge-graphs",
+      "index" : 8,
+      "kind" : "choice5",
+      "latency_ms" : 1932,
+      "ok" : false,
+      "probabilities" : {
+        "consumer-gpu-inference" : 0.22526334531735936,
+        "economics-of-ai" : 0.06391523326830535,
+        "llm-architecture" : 0.22246877502383305,
+        "llm-evaluation" : 0.19279817595719165,
+        "open-data-knowledge-graphs" : 0.2955544704333107
+      },
+      "retries" : 0,
+      "share" : 0.05338753321254164,
+      "slug" : "2026-02-18-am-compaction-repo::choice5",
+      "truth" : [
+        "llm-architecture"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 9,
+      "kind" : "noul",
+      "latency_ms" : 3656,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.46572654856121054,
+        "true" : 0.5342734514387895
+      },
+      "retries" : 0,
+      "share" : 0.0033920389166995912,
+      "slug" : "2026-09-21-sol-pi-harness-efficiency::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 10,
+      "kind" : "noul",
+      "latency_ms" : 2485,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.6797817866218868,
+        "true" : 0.3202182133781132
+      },
+      "retries" : 0,
+      "share" : 0.09538140116774307,
+      "slug" : "2026-09-21-sol-pi-harness-efficiency::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 11,
+      "kind" : "choice3",
+      "latency_ms" : 2467,
+      "ok" : false,
+      "probabilities" : {
+        "ai-agents" : 0.30327593217270166,
+        "llm-architecture" : 0.5812011174579194,
+        "optical-analog-computing" : 0.11552295036937905
+      },
+      "retries" : 0,
+      "share" : 0.15660193579882598,
+      "slug" : "2026-09-21-sol-pi-harness-efficiency::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 12,
+      "kind" : "choice5",
+      "latency_ms" : 2960,
+      "ok" : false,
+      "probabilities" : {
+        "ai-agents" : 0.27624879349500725,
+        "consumer-gpu-inference" : 0.33750856534405643,
+        "diffusion-language-models" : 0.21418686916773166,
+        "india-political-economy" : 0.04437270140367642,
+        "open-data-knowledge-graphs" : 0.12768307058952827
+      },
+      "retries" : 0,
+      "share" : 0.09717704321406384,
+      "slug" : "2026-09-21-sol-pi-harness-efficiency::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 13,
+      "kind" : "noul",
+      "latency_ms" : 2285,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.36579879644539215,
+        "true" : 0.6342012035546079
+      },
+      "retries" : 0,
+      "share" : 0.05260840893869467,
+      "slug" : "2026-09-17-jev-reproductions-tracker::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 14,
+      "kind" : "noul",
+      "latency_ms" : 3032,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.3987008646585305,
+        "true" : 0.6012991353414696
+      },
+      "retries" : 0,
+      "share" : 0.02981442557507763,
+      "slug" : "2026-09-17-jev-reproductions-tracker::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "typed-decision-models",
+      "index" : 15,
+      "kind" : "choice3",
+      "latency_ms" : 3637,
+      "ok" : true,
+      "probabilities" : {
+        "human-impact-of-ai" : 0.3203501258842321,
+        "multimodal-models" : 0.2815808297447621,
+        "typed-decision-models" : 0.39806904437100576
+      },
+      "retries" : 0,
+      "share" : 0.009479212438408546,
+      "slug" : "2026-09-17-jev-reproductions-tracker::choice3",
+      "truth" : [
+        "typed-decision-models"
+      ]
+    },
+    {
+      "answer" : "typed-decision-models",
+      "index" : 16,
+      "kind" : "choice5",
+      "latency_ms" : 7167,
+      "ok" : true,
+      "probabilities" : {
+        "cs-best-papers-concepts" : 0.11542417321834883,
+        "distributed-systems-databases" : 0.17501389971081935,
+        "open-data-knowledge-graphs" : 0.1322576708818976,
+        "rl-post-training" : 0.2336411628421834,
+        "typed-decision-models" : 0.3436630933467508
+      },
+      "retries" : 0,
+      "share" : 0.05024230293523013,
+      "slug" : "2026-09-17-jev-reproductions-tracker::choice5",
+      "truth" : [
+        "typed-decision-models"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 17,
+      "kind" : "noul",
+      "latency_ms" : 3562,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.24641986580617595,
+        "true" : 0.7535801341938241
+      },
+      "retries" : 0,
+      "share" : 0.1944457230122365,
+      "slug" : "2026-09-02-repo-to-skill-disco-arex::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 18,
+      "kind" : "noul",
+      "latency_ms" : 2623,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.5089885945869491,
+        "true" : 0.4910114054130508
+      },
+      "retries" : 0,
+      "share" : 0.00023313716724882028,
+      "slug" : "2026-09-02-repo-to-skill-disco-arex::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 19,
+      "kind" : "choice3",
+      "latency_ms" : 2512,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.5924230852671584,
+        "consumer-gpu-inference" : 0.13850098497614238,
+        "rl-post-training" : 0.2690759297566993
+      },
+      "retries" : 0,
+      "share" : 0.146936668881543,
+      "slug" : "2026-09-02-repo-to-skill-disco-arex::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 20,
+      "kind" : "choice5",
+      "latency_ms" : 4010,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.48358600368214133,
+        "llm-evaluation" : 0.29843084362974404,
+        "open-data-knowledge-graphs" : 0.13851084867875232,
+        "speech-audio-models" : 0.03432455006007209,
+        "web-scraping" : 0.045147753949290256
+      },
+      "retries" : 0,
+      "share" : 0.22854257941634404,
+      "slug" : "2026-09-02-repo-to-skill-disco-arex::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 21,
+      "kind" : "noul",
+      "latency_ms" : 3649,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.49320727784736523,
+        "true" : 0.5067927221526348
+      },
+      "retries" : 0,
+      "share" : 0.0001331390936131216,
+      "slug" : "2026-09-20-classifier-dev-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 22,
+      "kind" : "noul",
+      "latency_ms" : 3338,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.5062119800463679,
+        "true" : 0.4937880199536321
+      },
+      "retries" : 0,
+      "share" : 0.00011134630556119962,
+      "slug" : "2026-09-20-classifier-dev-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "typed-decision-models",
+      "index" : 23,
+      "kind" : "choice3",
+      "latency_ms" : 3120,
+      "ok" : true,
+      "probabilities" : {
+        "economics-of-ai" : 0.25514625436317595,
+        "human-impact-of-ai" : 0.3622529349694773,
+        "typed-decision-models" : 0.38260081066734686
+      },
+      "retries" : 0,
+      "share" : 0.013360857577939478,
+      "slug" : "2026-09-20-classifier-dev-repo::choice3",
+      "truth" : [
+        "typed-decision-models"
+      ]
+    },
+    {
+      "answer" : "machine-learning-foundations",
+      "index" : 24,
+      "kind" : "choice5",
+      "latency_ms" : 3632,
+      "ok" : false,
+      "probabilities" : {
+        "consumer-gpu-inference" : 0.20014369834657958,
+        "human-impact-of-ai" : 0.23734224710291454,
+        "machine-learning-foundations" : 0.23747396519643543,
+        "open-data-knowledge-graphs" : 0.11995036639001609,
+        "typed-decision-models" : 0.20508972296405437
+      },
+      "retries" : 0,
+      "share" : 0.01577439152037685,
+      "slug" : "2026-09-20-classifier-dev-repo::choice5",
+      "truth" : [
+        "typed-decision-models"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 25,
+      "kind" : "noul",
+      "latency_ms" : 2397,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.29559721593163024,
+        "true" : 0.7044027840683698
+      },
+      "retries" : 0,
+      "share" : 0.12415780415557132,
+      "slug" : "2001-01-01-breiman-random-forests::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 26,
+      "kind" : "noul",
+      "latency_ms" : 2525,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.521754309405867,
+        "true" : 0.47824569059413297
+      },
+      "retries" : 0,
+      "share" : 0.0013659419371144788,
+      "slug" : "2001-01-01-breiman-random-forests::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "machine-learning-foundations",
+      "index" : 27,
+      "kind" : "choice3",
+      "latency_ms" : 3004,
+      "ok" : true,
+      "probabilities" : {
+        "consumer-gpu-inference" : 0.11665626514328534,
+        "machine-learning-foundations" : 0.6935749562732161,
+        "rl-post-training" : 0.18976877858349867
+      },
+      "retries" : 0,
+      "share" : 0.2537849498130582,
+      "slug" : "2001-01-01-breiman-random-forests::choice3",
+      "truth" : [
+        "machine-learning-foundations"
+      ]
+    },
+    {
+      "answer" : "machine-learning-foundations",
+      "index" : 28,
+      "kind" : "choice5",
+      "latency_ms" : 2490,
+      "ok" : true,
+      "probabilities" : {
+        "cybersecurity-ai" : 0.07486302457975266,
+        "diffusion-language-models" : 0.15242281336340432,
+        "india-political-economy" : 0.041370188428310695,
+        "machine-learning-foundations" : 0.6823187666751003,
+        "web-scraping" : 0.04902520695343207
+      },
+      "retries" : 0,
+      "share" : 0.3654928039485569,
+      "slug" : "2001-01-01-breiman-random-forests::choice5",
+      "truth" : [
+        "machine-learning-foundations"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 29,
+      "kind" : "noul",
+      "latency_ms" : 1822,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.369662399751465,
+        "true" : 0.6303376002485351
+      },
+      "retries" : 0,
+      "share" : 0.04958747849589995,
+      "slug" : "2026-09-20-harvard-llm-serving-traces-dataset::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 30,
+      "kind" : "noul",
+      "latency_ms" : 1499,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.4303246576041281,
+        "true" : 0.569675342395872
+      },
+      "retries" : 0,
+      "share" : 0.014053259026983178,
+      "slug" : "2026-09-20-harvard-llm-serving-traces-dataset::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "llm-evaluation",
+      "index" : 31,
+      "kind" : "choice3",
+      "latency_ms" : 1403,
+      "ok" : true,
+      "probabilities" : {
+        "llm-evaluation" : 0.6190962854182841,
+        "open-data-knowledge-graphs" : 0.2992388976378785,
+        "optical-analog-computing" : 0.08166481694383756
+      },
+      "retries" : 0,
+      "share" : 0.21494595427406427,
+      "slug" : "2026-09-20-harvard-llm-serving-traces-dataset::choice3",
+      "truth" : [
+        "llm-evaluation"
+      ]
+    },
+    {
+      "answer" : "llm-evaluation",
+      "index" : 32,
+      "kind" : "choice5",
+      "latency_ms" : 1921,
+      "ok" : true,
+      "probabilities" : {
+        "investing-markets" : 0.05251418678639005,
+        "llm-evaluation" : 0.4408952231663012,
+        "machine-learning-foundations" : 0.25357370382188354,
+        "rl-post-training" : 0.1515300839148266,
+        "synthetic-populations" : 0.10148680231059867
+      },
+      "retries" : 0,
+      "share" : 0.14140328375718647,
+      "slug" : "2026-09-20-harvard-llm-serving-traces-dataset::choice5",
+      "truth" : [
+        "llm-evaluation"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 33,
+      "kind" : "noul",
+      "latency_ms" : 1773,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.31798502015000396,
+        "true" : 0.682014979849996
+      },
+      "retries" : 0,
+      "share" : 0.09782323245377955,
+      "slug" : "2026-09-20-rakyll-google-ax-announcement::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 34,
+      "kind" : "noul",
+      "latency_ms" : 1583,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.5403860171460104,
+        "true" : 0.4596139828539896
+      },
+      "retries" : 0,
+      "share" : 0.004711289544035324,
+      "slug" : "2026-09-20-rakyll-google-ax-announcement::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 35,
+      "kind" : "choice3",
+      "latency_ms" : 3718,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.5244761827934753,
+        "machine-learning-foundations" : 0.3744089234063663,
+        "synthetic-populations" : 0.10111489380015852
+      },
+      "retries" : 0,
+      "share" : 0.14619573224684967,
+      "slug" : "2026-09-20-rakyll-google-ax-announcement::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 36,
+      "kind" : "choice5",
+      "latency_ms" : 2691,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.38716776812516696,
+        "consumer-gpu-inference" : 0.32391605211845836,
+        "india-political-economy" : 0.06479556384208354,
+        "synthetic-populations" : 0.09872551112329296,
+        "typed-decision-models" : 0.12539510479099808
+      },
+      "retries" : 0,
+      "share" : 0.13088659910945843,
+      "slug" : "2026-09-20-rakyll-google-ax-announcement::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 37,
+      "kind" : "noul",
+      "latency_ms" : 1676,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.40678381924673196,
+        "true" : 0.593216180753268
+      },
+      "retries" : 0,
+      "share" : 0.025219189150938348,
+      "slug" : "2026-09-15-free-mac-notch-apps-ranked::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 38,
+      "kind" : "noul",
+      "latency_ms" : 1679,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.8757173969927542,
+        "true" : 0.12428260300724579
+      },
+      "retries" : 0,
+      "share" : 0.4584529446249933,
+      "slug" : "2026-09-15-free-mac-notch-apps-ranked::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "local-first-tools",
+      "index" : 39,
+      "kind" : "choice3",
+      "latency_ms" : 1610,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.2178126153859464,
+        "investing-markets" : 0.08420323109867564,
+        "local-first-tools" : 0.697984153515378
+      },
+      "retries" : 0,
+      "share" : 0.2797261142516977,
+      "slug" : "2026-09-15-free-mac-notch-apps-ranked::choice3",
+      "truth" : [
+        "local-first-tools"
+      ]
+    },
+    {
+      "answer" : "local-first-tools",
+      "index" : 40,
+      "kind" : "choice5",
+      "latency_ms" : 2067,
+      "ok" : true,
+      "probabilities" : {
+        "cs-best-papers-concepts" : 0.2262622804882727,
+        "diffusion-language-models" : 0.09937504002259394,
+        "local-first-tools" : 0.450626617581253,
+        "machine-learning-foundations" : 0.11633442948044488,
+        "rl-post-training" : 0.10740163242743553
+      },
+      "retries" : 0,
+      "share" : 0.12094484381392545,
+      "slug" : "2026-09-15-free-mac-notch-apps-ranked::choice5",
+      "truth" : [
+        "local-first-tools"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 41,
+      "kind" : "noul",
+      "latency_ms" : 1627,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.4486979434047533,
+        "true" : 0.5513020565952467
+      },
+      "retries" : 0,
+      "share" : 0.007607442046504098,
+      "slug" : "2026-06-26-deepspec-spec-decoding-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 42,
+      "kind" : "noul",
+      "latency_ms" : 1704,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.41590401047938014,
+        "true" : 0.5840959895206198
+      },
+      "retries" : 0,
+      "share" : 0.02050318364550907,
+      "slug" : "2026-06-26-deepspec-spec-decoding-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 43,
+      "kind" : "choice3",
+      "latency_ms" : 1616,
+      "ok" : false,
+      "probabilities" : {
+        "consumer-gpu-inference" : 0.20143366793103415,
+        "frontier-ai-labs" : 0.29456800898902274,
+        "llm-architecture" : 0.5039983230799431
+      },
+      "retries" : 0,
+      "share" : 0.06416364206206282,
+      "slug" : "2026-06-26-deepspec-spec-decoding-repo::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 44,
+      "kind" : "choice5",
+      "latency_ms" : 3346,
+      "ok" : false,
+      "probabilities" : {
+        "consumer-gpu-inference" : 0.14651462273108545,
+        "cs-best-papers-concepts" : 0.19023042005765084,
+        "distributed-systems-databases" : 0.1496052612770277,
+        "llm-architecture" : 0.34615401843961235,
+        "local-first-tools" : 0.16749567749462374
+      },
+      "retries" : 0,
+      "share" : 0.03829120949293641,
+      "slug" : "2026-06-26-deepspec-spec-decoding-repo::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 45,
+      "kind" : "noul",
+      "latency_ms" : 1377,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.776766594004682,
+        "true" : 0.22323340599531805
+      },
+      "retries" : 0,
+      "share" : 0.2339721882941843,
+      "slug" : "2026-09-04-reddit-subreddits-remote-job-hunt::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 46,
+      "kind" : "noul",
+      "latency_ms" : 966,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.8624797351009867,
+        "true" : 0.1375202648990132
+      },
+      "retries" : 0,
+      "share" : 0.42229241554537233,
+      "slug" : "2026-09-04-reddit-subreddits-remote-job-hunt::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "job-search",
+      "index" : 47,
+      "kind" : "choice3",
+      "latency_ms" : 1437,
+      "ok" : true,
+      "probabilities" : {
+        "frontier-ai-labs" : 0.17212576294559406,
+        "job-search" : 0.6750185105981591,
+        "synthetic-populations" : 0.1528557264562469
+      },
+      "retries" : 0,
+      "share" : 0.22151257634302712,
+      "slug" : "2026-09-04-reddit-subreddits-remote-job-hunt::choice3",
+      "truth" : [
+        "job-search"
+      ]
+    },
+    {
+      "answer" : "job-search",
+      "index" : 48,
+      "kind" : "choice5",
+      "latency_ms" : 1215,
+      "ok" : true,
+      "probabilities" : {
+        "cybersecurity-ai" : 0.13119336717931132,
+        "economics-of-ai" : 0.11931876171481597,
+        "job-search" : 0.6188984266107476,
+        "llm-architecture" : 0.07638035776875779,
+        "speech-audio-models" : 0.05420908672636741
+      },
+      "retries" : 0,
+      "share" : 0.2720723771062318,
+      "slug" : "2026-09-04-reddit-subreddits-remote-job-hunt::choice5",
+      "truth" : [
+        "job-search"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 49,
+      "kind" : "noul",
+      "latency_ms" : 1113,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.28265818420727085,
+        "true" : 0.7173418157927292
+      },
+      "retries" : 0,
+      "share" : 0.14095246130956074,
+      "slug" : "2026-09-12-colibri-moe-ssd-inference-engine::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 50,
+      "kind" : "noul",
+      "latency_ms" : 693,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.8842172884703212,
+        "true" : 0.11578271152967881
+      },
+      "retries" : 0,
+      "share" : 0.48288434375959044,
+      "slug" : "2026-09-12-colibri-moe-ssd-inference-engine::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 51,
+      "kind" : "choice3",
+      "latency_ms" : 688,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.11154056301135636,
+        "consumer-gpu-inference" : 0.6580286622372782,
+        "frontier-ai-labs" : 0.23043077475136553
+      },
+      "retries" : 0,
+      "share" : 0.21877239905092194,
+      "slug" : "2026-09-12-colibri-moe-ssd-inference-engine::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 52,
+      "kind" : "choice5",
+      "latency_ms" : 1139,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.11866239053157783,
+        "consumer-gpu-inference" : 0.5487142610696297,
+        "diffusion-language-models" : 0.13722810055789145,
+        "human-impact-of-ai" : 0.157492505781894,
+        "india-political-economy" : 0.03790274205900701
+      },
+      "retries" : 0,
+      "share" : 0.2109338999169731,
+      "slug" : "2026-09-12-colibri-moe-ssd-inference-engine::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 53,
+      "kind" : "noul",
+      "latency_ms" : 1636,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.43402496559276477,
+        "true" : 0.5659750344072352
+      },
+      "retries" : 0,
+      "share" : 0.012595952998346926,
+      "slug" : "2020-04-17-stanford-cs229-decision-trees-ensembles::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 54,
+      "kind" : "noul",
+      "latency_ms" : 1156,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.5431400776605654,
+        "true" : 0.4568599223394347
+      },
+      "retries" : 0,
+      "share" : 0.005376584659677386,
+      "slug" : "2020-04-17-stanford-cs229-decision-trees-ensembles::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "machine-learning-foundations",
+      "index" : 55,
+      "kind" : "choice3",
+      "latency_ms" : 1242,
+      "ok" : true,
+      "probabilities" : {
+        "machine-learning-foundations" : 0.564139076603374,
+        "multimodal-models" : 0.32391580693230065,
+        "synthetic-populations" : 0.1119451164643253
+      },
+      "retries" : 0,
+      "share" : 0.15054975706200757,
+      "slug" : "2020-04-17-stanford-cs229-decision-trees-ensembles::choice3",
+      "truth" : [
+        "machine-learning-foundations"
+      ]
+    },
+    {
+      "answer" : "machine-learning-foundations",
+      "index" : 56,
+      "kind" : "choice5",
+      "latency_ms" : 2050,
+      "ok" : true,
+      "probabilities" : {
+        "llm-evaluation" : 0.26298681573528876,
+        "machine-learning-foundations" : 0.45460597401996183,
+        "open-data-knowledge-graphs" : 0.13191908370664152,
+        "speech-audio-models" : 0.08818099440505399,
+        "web-scraping" : 0.062307132133053944
+      },
+      "retries" : 0,
+      "share" : 0.15254472606121916,
+      "slug" : "2020-04-17-stanford-cs229-decision-trees-ensembles::choice5",
+      "truth" : [
+        "machine-learning-foundations"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 57,
+      "kind" : "noul",
+      "latency_ms" : 1088,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.3136099615932018,
+        "true" : 0.6863900384067982
+      },
+      "retries" : 0,
+      "share" : 0.10270331612182015,
+      "slug" : "2026-08-04-agent-substrate-env-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 58,
+      "kind" : "noul",
+      "latency_ms" : 1024,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.46839217305842756,
+        "true" : 0.5316078269415724
+      },
+      "retries" : 0,
+      "share" : 0.0028845856257613267,
+      "slug" : "2026-08-04-agent-substrate-env-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 59,
+      "kind" : "choice3",
+      "latency_ms" : 1506,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.44981912678347546,
+        "machine-learning-foundations" : 0.32586942933103824,
+        "robotics-manipulation" : 0.2243114438854864
+      },
+      "retries" : 0,
+      "share" : 0.035117747122841325,
+      "slug" : "2026-08-04-agent-substrate-env-repo::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 60,
+      "kind" : "choice5",
+      "latency_ms" : 1274,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.28755893612568195,
+        "cs-best-papers-concepts" : 0.20625068393656146,
+        "distributed-systems-databases" : 0.25003824948376857,
+        "economics-of-ai" : 0.05773057355260929,
+        "local-first-tools" : 0.1984215569013787
+      },
+      "retries" : 0,
+      "share" : 0.05796526841959304,
+      "slug" : "2026-08-04-agent-substrate-env-repo::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 61,
+      "kind" : "noul",
+      "latency_ms" : 953,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.9274393427647044,
+        "true" : 0.0725606572352957
+      },
+      "retries" : 0,
+      "share" : 0.6245923291362833,
+      "slug" : "2026-06-29-best-paper-awards-cs::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 62,
+      "kind" : "noul",
+      "latency_ms" : 705,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.9244689855664918,
+        "true" : 0.07553101443350822
+      },
+      "retries" : 0,
+      "share" : 0.6137667245082461,
+      "slug" : "2026-06-29-best-paper-awards-cs::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 63,
+      "kind" : "choice3",
+      "latency_ms" : 689,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.313040187973599,
+        "consumer-gpu-inference" : 0.3865116880339535,
+        "speech-audio-models" : 0.3004481239924474
+      },
+      "retries" : 0,
+      "share" : 0.005772475201778149,
+      "slug" : "2026-06-29-best-paper-awards-cs::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 64,
+      "kind" : "choice5",
+      "latency_ms" : 695,
+      "ok" : false,
+      "probabilities" : {
+        "ai-agents" : 0.18604476202309916,
+        "consumer-gpu-inference" : 0.1852208252652302,
+        "cybersecurity-ai" : 0.20535593863086338,
+        "llm-architecture" : 0.24362458446575577,
+        "synthetic-populations" : 0.17975388961505145
+      },
+      "retries" : 0,
+      "share" : 0.004123287280863419,
+      "slug" : "2026-06-29-best-paper-awards-cs::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 65,
+      "kind" : "noul",
+      "latency_ms" : 696,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.4705995788330021,
+        "true" : 0.5294004211669979
+      },
+      "retries" : 0,
+      "share" : 0.0024955264525923226,
+      "slug" : "2026-09-01-spark-x2.5-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 66,
+      "kind" : "noul",
+      "latency_ms" : 684,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.64873663408035,
+        "true" : 0.35126336591965
+      },
+      "retries" : 0,
+      "share" : 0.06480870975421182,
+      "slug" : "2026-09-01-spark-x2.5-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 67,
+      "kind" : "choice3",
+      "latency_ms" : 882,
+      "ok" : true,
+      "probabilities" : {
+        "investing-markets" : 0.12565813411391513,
+        "llm-architecture" : 0.6227919870438402,
+        "rl-post-training" : 0.2515498788422446
+      },
+      "retries" : 0,
+      "share" : 0.17830430493626992,
+      "slug" : "2026-09-01-spark-x2.5-repo::choice3",
+      "truth" : [
+        "llm-architecture"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 68,
+      "kind" : "choice5",
+      "latency_ms" : 763,
+      "ok" : true,
+      "probabilities" : {
+        "cs-best-papers-concepts" : 0.1455610573579575,
+        "human-impact-of-ai" : 0.12944444622030482,
+        "llm-architecture" : 0.36090808382201695,
+        "local-first-tools" : 0.17467418416879057,
+        "machine-learning-foundations" : 0.18941222843093017
+      },
+      "retries" : 0,
+      "share" : 0.04755015179975164,
+      "slug" : "2026-09-01-spark-x2.5-repo::choice5",
+      "truth" : [
+        "llm-architecture"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 69,
+      "kind" : "noul",
+      "latency_ms" : 742,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.4387932770798376,
+        "true" : 0.5612067229201624
+      },
+      "retries" : 0,
+      "share" : 0.010836589677838737,
+      "slug" : "2026-06-16-qwable-3-6-35b::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 70,
+      "kind" : "noul",
+      "latency_ms" : 772,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.5617068063799978,
+        "true" : 0.4382931936200022
+      },
+      "retries" : 0,
+      "share" : 0.011014847366974667,
+      "slug" : "2026-06-16-qwable-3-6-35b::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "machine-learning-foundations",
+      "index" : 71,
+      "kind" : "choice3",
+      "latency_ms" : 1218,
+      "ok" : false,
+      "probabilities" : {
+        "consumer-gpu-inference" : 0.287186696700413,
+        "human-impact-of-ai" : 0.2740572849130296,
+        "machine-learning-foundations" : 0.4387560183865575
+      },
+      "retries" : 0,
+      "share" : 0.02194999280929033,
+      "slug" : "2026-06-16-qwable-3-6-35b::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 72,
+      "kind" : "choice5",
+      "latency_ms" : 1081,
+      "ok" : false,
+      "probabilities" : {
+        "ai-agents" : 0.34482251219367616,
+        "consumer-gpu-inference" : 0.2315532325855281,
+        "economics-of-ai" : 0.08861335179885614,
+        "job-search" : 0.07117415465519447,
+        "multimodal-models" : 0.2638367487667451
+      },
+      "retries" : 0,
+      "share" : 0.09268177297127822,
+      "slug" : "2026-06-16-qwable-3-6-35b::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 73,
+      "kind" : "noul",
+      "latency_ms" : 1189,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.4180585806343973,
+        "true" : 0.5819414193656026
+      },
+      "retries" : 0,
+      "share" : 0.019461319093089013,
+      "slug" : "2024-icml-debating-persuasive-llms-truthful::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 74,
+      "kind" : "noul",
+      "latency_ms" : 939,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.872685273190537,
+        "true" : 0.12731472680946304
+      },
+      "retries" : 0,
+      "share" : 0.4499724485896238,
+      "slug" : "2024-icml-debating-persuasive-llms-truthful::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "llm-evaluation",
+      "index" : 75,
+      "kind" : "choice3",
+      "latency_ms" : 983,
+      "ok" : true,
+      "probabilities" : {
+        "consumer-gpu-inference" : 0.12549555680262725,
+        "llm-evaluation" : 0.7050767155220083,
+        "synthetic-populations" : 0.1694277276753645
+      },
+      "retries" : 0,
+      "share" : 0.2648524038879869,
+      "slug" : "2024-icml-debating-persuasive-llms-truthful::choice3",
+      "truth" : [
+        "llm-evaluation"
+      ]
+    },
+    {
+      "answer" : "llm-evaluation",
+      "index" : 76,
+      "kind" : "choice5",
+      "latency_ms" : 1021,
+      "ok" : true,
+      "probabilities" : {
+        "diffusion-language-models" : 0.33667951177320116,
+        "economics-of-ai" : 0.12436672107467224,
+        "investing-markets" : 0.04802506963240523,
+        "llm-evaluation" : 0.4460467586206515,
+        "web-scraping" : 0.04488193889906974
+      },
+      "retries" : 0,
+      "share" : 0.21029787353145601,
+      "slug" : "2024-icml-debating-persuasive-llms-truthful::choice5",
+      "truth" : [
+        "llm-evaluation"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 77,
+      "kind" : "noul",
+      "latency_ms" : 2304,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.25206275981972004,
+        "true" : 0.7479372401802801
+      },
+      "retries" : 0,
+      "share" : 0.1854688184028921,
+      "slug" : "2026-09-09-sureforge-agent-skill::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 78,
+      "kind" : "noul",
+      "latency_ms" : 2089,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.35290603662960407,
+        "true" : 0.6470939633703959
+      },
+      "retries" : 0,
+      "share" : 0.06336335072854549,
+      "slug" : "2026-09-09-sureforge-agent-skill::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 79,
+      "kind" : "choice3",
+      "latency_ms" : 2807,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.7471991780771772,
+        "economics-of-ai" : 0.15883040957102545,
+        "web-scraping" : 0.09397041235179732
+      },
+      "retries" : 0,
+      "share" : 0.3335180374608596,
+      "slug" : "2026-09-09-sureforge-agent-skill::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 80,
+      "kind" : "choice5",
+      "latency_ms" : 2396,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.4297964629353228,
+        "economics-of-ai" : 0.07786913375237593,
+        "frontier-ai-labs" : 0.1418966684530872,
+        "multimodal-models" : 0.1423648790663393,
+        "typed-decision-models" : 0.20807285579287482
+      },
+      "retries" : 0,
+      "share" : 0.10343844006668246,
+      "slug" : "2026-09-09-sureforge-agent-skill::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 81,
+      "kind" : "noul",
+      "latency_ms" : 1484,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.7834178025913058,
+        "true" : 0.21658219740869433
+      },
+      "retries" : 0,
+      "share" : 0.24612259273236503,
+      "slug" : "2026-09-06-cordis-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 82,
+      "kind" : "noul",
+      "latency_ms" : 1310,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.3408873630861173,
+        "true" : 0.6591126369138828
+      },
+      "retries" : 0,
+      "share" : 0.07433467965734819,
+      "slug" : "2026-09-06-cordis-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "multimodal-models",
+      "index" : 83,
+      "kind" : "choice3",
+      "latency_ms" : 1238,
+      "ok" : false,
+      "probabilities" : {
+        "ai-agents" : 0.45592705213425067,
+        "india-political-economy" : 0.08372952982718924,
+        "multimodal-models" : 0.46034341803856
+      },
+      "retries" : 0,
+      "share" : 0.15995419495320318,
+      "slug" : "2026-09-06-cordis-repo::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "machine-learning-foundations",
+      "index" : 84,
+      "kind" : "choice5",
+      "latency_ms" : 1124,
+      "ok" : false,
+      "probabilities" : {
+        "ai-agents" : 0.15846952343175863,
+        "llm-architecture" : 0.2978315731886843,
+        "machine-learning-foundations" : 0.3181590391814798,
+        "robotics-manipulation" : 0.09911944720917852,
+        "typed-decision-models" : 0.1264204169888988
+      },
+      "retries" : 0,
+      "share" : 0.06327971643847063,
+      "slug" : "2026-09-06-cordis-repo::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 85,
+      "kind" : "noul",
+      "latency_ms" : 1253,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.25635662602595144,
+        "true" : 0.7436433739740486
+      },
+      "retries" : 0,
+      "share" : 0.1788014482445841,
+      "slug" : "2026-07-08-how-to-build-a-diffusion-language-model::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 86,
+      "kind" : "noul",
+      "latency_ms" : 1136,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.39631299500299055,
+        "true" : 0.6036870049970096
+      },
+      "retries" : 0,
+      "share" : 0.03124706584929826,
+      "slug" : "2026-07-08-how-to-build-a-diffusion-language-model::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "diffusion-language-models",
+      "index" : 87,
+      "kind" : "choice3",
+      "latency_ms" : 1393,
+      "ok" : true,
+      "probabilities" : {
+        "diffusion-language-models" : 0.6510924706163941,
+        "frontier-ai-labs" : 0.14962149375187503,
+        "machine-learning-foundations" : 0.1992860356317308
+      },
+      "retries" : 0,
+      "share" : 0.1943788741495731,
+      "slug" : "2026-07-08-how-to-build-a-diffusion-language-model::choice3",
+      "truth" : [
+        "diffusion-language-models"
+      ]
+    },
+    {
+      "answer" : "diffusion-language-models",
+      "index" : 88,
+      "kind" : "choice5",
+      "latency_ms" : 1919,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.07430626190109044,
+        "diffusion-language-models" : 0.48953894414385013,
+        "economics-of-ai" : 0.07588949581594995,
+        "machine-learning-foundations" : 0.18539053383805928,
+        "rl-post-training" : 0.17487476430105026
+      },
+      "retries" : 0,
+      "share" : 0.15754452786762718,
+      "slug" : "2026-07-08-how-to-build-a-diffusion-language-model::choice5",
+      "truth" : [
+        "diffusion-language-models"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 89,
+      "kind" : "noul",
+      "latency_ms" : 1365,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.2675401662919727,
+        "true" : 0.7324598337080273
+      },
+      "retries" : 0,
+      "share" : 0.16208725762584852,
+      "slug" : "2025-11-10-mply-monopoly-etf-concentration-factor::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 90,
+      "kind" : "noul",
+      "latency_ms" : 1212,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.8328012968249959,
+        "true" : 0.16719870317500413
+      },
+      "retries" : 0,
+      "share" : 0.34874369673016425,
+      "slug" : "2025-11-10-mply-monopoly-etf-concentration-factor::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "investing-markets",
+      "index" : 91,
+      "kind" : "choice3",
+      "latency_ms" : 1891,
+      "ok" : true,
+      "probabilities" : {
+        "cs-best-papers-concepts" : 0.08555977309526733,
+        "investing-markets" : 0.8084470561474948,
+        "llm-architecture" : 0.10599317075723792
+      },
+      "retries" : 0,
+      "share" : 0.43551569170033466,
+      "slug" : "2025-11-10-mply-monopoly-etf-concentration-factor::choice3",
+      "truth" : [
+        "investing-markets"
+      ]
+    },
+    {
+      "answer" : "investing-markets",
+      "index" : 92,
+      "kind" : "choice5",
+      "latency_ms" : 1957,
+      "ok" : true,
+      "probabilities" : {
+        "diffusion-language-models" : 0.0849251530104775,
+        "investing-markets" : 0.7008507004133622,
+        "llm-evaluation" : 0.12903742421126654,
+        "machine-learning-foundations" : 0.043254990762824,
+        "robotics-manipulation" : 0.041931731602069845
+      },
+      "retries" : 0,
+      "share" : 0.38387401165723,
+      "slug" : "2025-11-10-mply-monopoly-etf-concentration-factor::choice5",
+      "truth" : [
+        "investing-markets"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 93,
+      "kind" : "noul",
+      "latency_ms" : 1603,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.33265341253972563,
+        "true" : 0.6673465874602744
+      },
+      "retries" : 0,
+      "share" : 0.08238558788032702,
+      "slug" : "2026-08-31-kaggle-tpu-lab-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 94,
+      "kind" : "noul",
+      "latency_ms" : 2076,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.4229026737198182,
+        "true" : 0.5770973262801817
+      },
+      "retries" : 0,
+      "share" : 0.017219369462128098,
+      "slug" : "2026-08-31-kaggle-tpu-lab-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 95,
+      "kind" : "choice3",
+      "latency_ms" : 2230,
+      "ok" : false,
+      "probabilities" : {
+        "consumer-gpu-inference" : 0.34565730128362465,
+        "llm-architecture" : 0.45755994890809376,
+        "typed-decision-models" : 0.19678274980828167
+      },
+      "retries" : 0,
+      "share" : 0.04894817654183414,
+      "slug" : "2026-08-31-kaggle-tpu-lab-repo::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "diffusion-language-models",
+      "index" : 96,
+      "kind" : "choice5",
+      "latency_ms" : 3039,
+      "ok" : false,
+      "probabilities" : {
+        "ai-agents" : 0.23571701249718688,
+        "consumer-gpu-inference" : 0.26798565681445913,
+        "diffusion-language-models" : 0.27445590173837364,
+        "distributed-systems-databases" : 0.11623990352526813,
+        "optical-analog-computing" : 0.1056015254247122
+      },
+      "retries" : 0,
+      "share" : 0.04565935178925973,
+      "slug" : "2026-08-31-kaggle-tpu-lab-repo::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 97,
+      "kind" : "noul",
+      "latency_ms" : 1416,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.4670438060402287,
+        "true" : 0.5329561939597712
+      },
+      "retries" : 0,
+      "share" : 0.00313612619353576,
+      "slug" : "2026-06-22-qwable-35b-dgx-spark::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 98,
+      "kind" : "noul",
+      "latency_ms" : 878,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.7212932743211934,
+        "true" : 0.27870672567880667
+      },
+      "retries" : 0,
+      "share" : 0.14631735658408918,
+      "slug" : "2026-06-22-qwable-35b-dgx-spark::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "diffusion-language-models",
+      "index" : 99,
+      "kind" : "choice3",
+      "latency_ms" : 1692,
+      "ok" : false,
+      "probabilities" : {
+        "consumer-gpu-inference" : 0.43800039201798396,
+        "diffusion-language-models" : 0.46984562305484245,
+        "job-search" : 0.09215398492717354
+      },
+      "retries" : 0,
+      "share" : 0.14782903432108374,
+      "slug" : "2026-06-22-qwable-35b-dgx-spark::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 100,
+      "kind" : "choice5",
+      "latency_ms" : 1487,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.1690539774086944,
+        "consumer-gpu-inference" : 0.30976099404213475,
+        "cybersecurity-ai" : 0.2501665873094941,
+        "robotics-manipulation" : 0.0981228051565032,
+        "typed-decision-models" : 0.17289563608317365
+      },
+      "retries" : 0,
+      "share" : 0.042272864216394646,
+      "slug" : "2026-06-22-qwable-35b-dgx-spark::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 101,
+      "kind" : "noul",
+      "latency_ms" : 2424,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.20535579310345908,
+        "true" : 0.7946442068965409
+      },
+      "retries" : 0,
+      "share" : 0.2674887874128806,
+      "slug" : "2025-11-25-latentmas-latent-collaboration-multi-agent::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 102,
+      "kind" : "noul",
+      "latency_ms" : 2146,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.21601881857977473,
+        "true" : 0.7839811814202253
+      },
+      "retries" : 0,
+      "share" : 0.2471689358849155,
+      "slug" : "2025-11-25-latentmas-latent-collaboration-multi-agent::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 103,
+      "kind" : "choice3",
+      "latency_ms" : 915,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.5940416987085968,
+        "computing-foundations" : 0.23515999570277046,
+        "human-impact-of-ai" : 0.1707983055886327
+      },
+      "retries" : 0,
+      "share" : 0.1337991171572529,
+      "slug" : "2025-11-25-latentmas-latent-collaboration-multi-agent::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 104,
+      "kind" : "choice5",
+      "latency_ms" : 929,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.3749567890676625,
+        "frontier-ai-labs" : 0.20801182745067542,
+        "multimodal-models" : 0.2819232181020351,
+        "optical-analog-computing" : 0.08705429130691685,
+        "web-scraping" : 0.04805387407271021
+      },
+      "retries" : 0,
+      "share" : 0.12406950526295812,
+      "slug" : "2025-11-25-latentmas-latent-collaboration-multi-agent::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 105,
+      "kind" : "noul",
+      "latency_ms" : 2359,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.2958664036495958,
+        "true" : 0.7041335963504042
+      },
+      "retries" : 0,
+      "share" : 0.12382082540586681,
+      "slug" : "2026-05-13-agent-substrate-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 106,
+      "kind" : "noul",
+      "latency_ms" : 3096,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.480868537713911,
+        "true" : 0.519131462286089
+      },
+      "retries" : 0,
+      "share" : 0.001056347690895354,
+      "slug" : "2026-05-13-agent-substrate-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 107,
+      "kind" : "choice3",
+      "latency_ms" : 3131,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.4860075484110352,
+        "consumer-gpu-inference" : 0.26857349096183536,
+        "typed-decision-models" : 0.24541896062712937
+      },
+      "retries" : 0,
+      "share" : 0.04560847548974045,
+      "slug" : "2026-05-13-agent-substrate-repo::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 108,
+      "kind" : "choice5",
+      "latency_ms" : 2653,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.44640934120299886,
+        "llm-evaluation" : 0.2672088176574001,
+        "multimodal-models" : 0.1731508887187657,
+        "optical-analog-computing" : 0.06997562324936377,
+        "speech-audio-models" : 0.04325532917147162
+      },
+      "retries" : 0,
+      "share" : 0.16848445707273163,
+      "slug" : "2026-05-13-agent-substrate-repo::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 109,
+      "kind" : "noul",
+      "latency_ms" : 2291,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.2725871818132409,
+        "true" : 0.7274128181867592
+      },
+      "retries" : 0,
+      "share" : 0.15484736865563264,
+      "slug" : "2026-09-18-tencent-auk-vram-optimization::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 110,
+      "kind" : "noul",
+      "latency_ms" : 1711,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.3411086513567407,
+        "true" : 0.6588913486432594
+      },
+      "retries" : 0,
+      "share" : 0.07412434083255293,
+      "slug" : "2026-09-18-tencent-auk-vram-optimization::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "speech-audio-models",
+      "index" : 111,
+      "kind" : "choice3",
+      "latency_ms" : 1399,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.07049507199437326,
+        "machine-learning-foundations" : 0.45701759867909614,
+        "speech-audio-models" : 0.47248732932653065
+      },
+      "retries" : 0,
+      "share" : 0.18162880726975916,
+      "slug" : "2026-09-18-tencent-auk-vram-optimization::choice3",
+      "truth" : [
+        "speech-audio-models"
+      ]
+    },
+    {
+      "answer" : "speech-audio-models",
+      "index" : 112,
+      "kind" : "choice5",
+      "latency_ms" : 1428,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.063280585917695,
+        "cybersecurity-ai" : 0.15645412220475924,
+        "optical-analog-computing" : 0.07727053987350592,
+        "speech-audio-models" : 0.6501843499145232,
+        "web-scraping" : 0.0528104020895167
+      },
+      "retries" : 0,
+      "share" : 0.3178019503766979,
+      "slug" : "2026-09-18-tencent-auk-vram-optimization::choice5",
+      "truth" : [
+        "speech-audio-models"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 113,
+      "kind" : "noul",
+      "latency_ms" : 1716,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.2022995708530938,
+        "true" : 0.7977004291469062
+      },
+      "retries" : 0,
+      "share" : 0.27349653595455303,
+      "slug" : "2026-08-28-contextpilot-proactive-context-management::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 114,
+      "kind" : "noul",
+      "latency_ms" : 2524,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.2652548707364892,
+        "true" : 0.7347451292635108
+      },
+      "retries" : 0,
+      "share" : 0.16542703817719118,
+      "slug" : "2026-08-28-contextpilot-proactive-context-management::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 115,
+      "kind" : "choice3",
+      "latency_ms" : 2149,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.5704815194714558,
+        "consumer-gpu-inference" : 0.32313512204864614,
+        "investing-markets" : 0.10638335847989806
+      },
+      "retries" : 0,
+      "share" : 0.15929269144979596,
+      "slug" : "2026-08-28-contextpilot-proactive-context-management::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 116,
+      "kind" : "choice5",
+      "latency_ms" : 6063,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.4045460871311647,
+        "consumer-gpu-inference" : 0.200243652066822,
+        "cybersecurity-ai" : 0.22195029780093803,
+        "open-data-knowledge-graphs" : 0.09293918099403829,
+        "web-scraping" : 0.08032078200703686
+      },
+      "retries" : 0,
+      "share" : 0.10179758235095171,
+      "slug" : "2026-08-28-contextpilot-proactive-context-management::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 117,
+      "kind" : "noul",
+      "latency_ms" : 4616,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.2876764710942144,
+        "true" : 0.7123235289057857
+      },
+      "retries" : 0,
+      "share" : 0.13429915366816592,
+      "slug" : "2026-09-21-qwen38-27b-256k-rtx5090-fast-long-context::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 118,
+      "kind" : "noul",
+      "latency_ms" : 1775,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.4985498263672561,
+        "true" : 0.5014501736327439
+      },
+      "retries" : 0,
+      "share" : 6.067994136049748e-06,
+      "slug" : "2026-09-21-qwen38-27b-256k-rtx5090-fast-long-context::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 119,
+      "kind" : "choice3",
+      "latency_ms" : 1621,
+      "ok" : true,
+      "probabilities" : {
+        "consumer-gpu-inference" : 0.3620870959106258,
+        "cybersecurity-ai" : 0.36138465565159233,
+        "multimodal-models" : 0.27652824843778184
+      },
+      "retries" : 0,
+      "share" : 0.006822983098340396,
+      "slug" : "2026-09-21-qwen38-27b-256k-rtx5090-fast-long-context::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "local-first-tools",
+      "index" : 120,
+      "kind" : "choice5",
+      "latency_ms" : 2668,
+      "ok" : false,
+      "probabilities" : {
+        "consumer-gpu-inference" : 0.33614252557529656,
+        "cs-best-papers-concepts" : 0.1309975035765242,
+        "investing-markets" : 0.07084120525551221,
+        "local-first-tools" : 0.3497451274530711,
+        "web-scraping" : 0.112273638139596
+      },
+      "retries" : 0,
+      "share" : 0.10949187613294475,
+      "slug" : "2026-09-21-qwen38-27b-256k-rtx5090-fast-long-context::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 121,
+      "kind" : "noul",
+      "latency_ms" : 3308,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.2613392022119248,
+        "true" : 0.7386607977880751
+      },
+      "retries" : 0,
+      "share" : 0.1712394696905386,
+      "slug" : "2026-01-07-hyper-extract-knowledge-extraction::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 122,
+      "kind" : "noul",
+      "latency_ms" : 3143,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.2771258036273236,
+        "true" : 0.7228741963726765
+      },
+      "retries" : 0,
+      "share" : 0.14849510443164193,
+      "slug" : "2026-01-07-hyper-extract-knowledge-extraction::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 123,
+      "kind" : "choice3",
+      "latency_ms" : 2696,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.43015576371137876,
+        "multimodal-models" : 0.2933374132051027,
+        "open-data-knowledge-graphs" : 0.27650682308351854
+      },
+      "retries" : 0,
+      "share" : 0.018674633733458346,
+      "slug" : "2026-01-07-hyper-extract-knowledge-extraction::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 124,
+      "kind" : "choice5",
+      "latency_ms" : 4010,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.3034419665501161,
+        "human-impact-of-ai" : 0.16448360694887154,
+        "multimodal-models" : 0.2231449718694689,
+        "open-data-knowledge-graphs" : 0.2266385685316576,
+        "synthetic-populations" : 0.0822908860998859
+      },
+      "retries" : 0,
+      "share" : 0.04600003043705336,
+      "slug" : "2026-01-07-hyper-extract-knowledge-extraction::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 125,
+      "kind" : "noul",
+      "latency_ms" : 2864,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.2511124974196914,
+        "true" : 0.7488875025803087
+      },
+      "retries" : 0,
+      "share" : 0.18696336562481286,
+      "slug" : "2026-07-27-kimi-k3-technical-report::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 126,
+      "kind" : "noul",
+      "latency_ms" : 1417,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.272001805043234,
+        "true" : 0.7279981949567661
+      },
+      "retries" : 0,
+      "share" : 0.1556775424742215,
+      "slug" : "2026-07-27-kimi-k3-technical-report::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 127,
+      "kind" : "choice3",
+      "latency_ms" : 2602,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.37016007131228484,
+        "local-first-tools" : 0.31020279597621,
+        "multimodal-models" : 0.3196371327115051
+      },
+      "retries" : 0,
+      "share" : 0.0027947624451898356,
+      "slug" : "2026-07-27-kimi-k3-technical-report::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "machine-learning-foundations",
+      "index" : 128,
+      "kind" : "choice5",
+      "latency_ms" : 2012,
+      "ok" : false,
+      "probabilities" : {
+        "ai-agents" : 0.22753796985012162,
+        "cs-best-papers-concepts" : 0.16148949679562913,
+        "human-impact-of-ai" : 0.18660050255760388,
+        "machine-learning-foundations" : 0.27121632878106156,
+        "typed-decision-models" : 0.1531557020155839
+      },
+      "retries" : 0,
+      "share" : 0.014672204329392868,
+      "slug" : "2026-07-27-kimi-k3-technical-report::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 129,
+      "kind" : "noul",
+      "latency_ms" : 1749,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.264320316371876,
+        "true" : 0.7356796836281241
+      },
+      "retries" : 0,
+      "share" : 0.16680394164179602,
+      "slug" : "2026-09-01-sparkllm-x2.5-1m-context-on-device::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 130,
+      "kind" : "noul",
+      "latency_ms" : 2039,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.35088478608878093,
+        "true" : 0.6491152139112192
+      },
+      "retries" : 0,
+      "share" : 0.06514423687425863,
+      "slug" : "2026-09-01-sparkllm-x2.5-1m-context-on-device::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 131,
+      "kind" : "choice3",
+      "latency_ms" : 1773,
+      "ok" : true,
+      "probabilities" : {
+        "llm-architecture" : 0.7669604539419728,
+        "robotics-manipulation" : 0.1548322824144152,
+        "speech-audio-models" : 0.07820726364361194
+      },
+      "retries" : 0,
+      "share" : 0.37046132757800576,
+      "slug" : "2026-09-01-sparkllm-x2.5-1m-context-on-device::choice3",
+      "truth" : [
+        "llm-architecture"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 132,
+      "kind" : "choice5",
+      "latency_ms" : 1830,
+      "ok" : true,
+      "probabilities" : {
+        "cybersecurity-ai" : 0.16397233791009858,
+        "economics-of-ai" : 0.08198959715674245,
+        "frontier-ai-labs" : 0.186135233032696,
+        "llm-architecture" : 0.3556986297945941,
+        "local-first-tools" : 0.21220420210586888
+      },
+      "retries" : 0,
+      "share" : 0.06108689886308305,
+      "slug" : "2026-09-01-sparkllm-x2.5-1m-context-on-device::choice5",
+      "truth" : [
+        "llm-architecture"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 133,
+      "kind" : "noul",
+      "latency_ms" : 2005,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.26186229972134156,
+        "true" : 0.7381377002786585
+      },
+      "retries" : 0,
+      "share" : 0.1704563746126576,
+      "slug" : "2026-08-26-swarmworld-stigmergic-agent-societies::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 134,
+      "kind" : "noul",
+      "latency_ms" : 1528,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.83031859430518,
+        "true" : 0.1696814056948201
+      },
+      "retries" : 0,
+      "share" : 0.3430245492998699,
+      "slug" : "2026-08-26-swarmworld-stigmergic-agent-societies::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 135,
+      "kind" : "choice3",
+      "latency_ms" : 1437,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.4521269456813491,
+        "distributed-systems-databases" : 0.2900662213865467,
+        "frontier-ai-labs" : 0.25780683293210416
+      },
+      "retries" : 0,
+      "share" : 0.02844444540423874,
+      "slug" : "2026-08-26-swarmworld-stigmergic-agent-societies::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "llm-architecture",
+      "index" : 136,
+      "kind" : "choice5",
+      "latency_ms" : 2435,
+      "ok" : false,
+      "probabilities" : {
+        "ai-agents" : 0.21373379254780187,
+        "investing-markets" : 0.08058904089543106,
+        "llm-architecture" : 0.2791078722771373,
+        "llm-evaluation" : 0.2561086279916971,
+        "multimodal-models" : 0.1704606662879327
+      },
+      "retries" : 0,
+      "share" : 0.04352718854125759,
+      "slug" : "2026-08-26-swarmworld-stigmergic-agent-societies::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 137,
+      "kind" : "noul",
+      "latency_ms" : 1772,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.28107601867372994,
+        "true" : 0.7189239813262701
+      },
+      "retries" : 0,
+      "share" : 0.1430871781516886,
+      "slug" : "2026-06-15-loop-engineering-playbook::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 138,
+      "kind" : "noul",
+      "latency_ms" : 1887,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.49177857969642624,
+        "true" : 0.5082214203035738
+      },
+      "retries" : 0,
+      "share" : 0.00019503735944259581,
+      "slug" : "2026-06-15-loop-engineering-playbook::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 139,
+      "kind" : "choice3",
+      "latency_ms" : 1972,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.5153565299619582,
+        "computing-foundations" : 0.19906025193050503,
+        "llm-architecture" : 0.2855832181075368
+      },
+      "retries" : 0,
+      "share" : 0.07079164153783313,
+      "slug" : "2026-06-15-loop-engineering-playbook::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 140,
+      "kind" : "choice5",
+      "latency_ms" : 1675,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.3520345696969082,
+        "computing-foundations" : 0.1438006298939239,
+        "llm-evaluation" : 0.19140687690646743,
+        "machine-learning-foundations" : 0.1665475741103809,
+        "typed-decision-models" : 0.14621034939231953
+      },
+      "retries" : 0,
+      "share" : 0.041575200891017405,
+      "slug" : "2026-06-15-loop-engineering-playbook::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 141,
+      "kind" : "noul",
+      "latency_ms" : 1583,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.4310339227249609,
+        "true" : 0.5689660772750392
+      },
+      "retries" : 0,
+      "share" : 0.013767689243195047,
+      "slug" : "2025-08-28-dbt-m365-copilot-evaluation::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 142,
+      "kind" : "noul",
+      "latency_ms" : 1326,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.8097746735495535,
+        "true" : 0.19022532645044662
+      },
+      "retries" : 0,
+      "share" : 0.29805741254940465,
+      "slug" : "2025-08-28-dbt-m365-copilot-evaluation::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "economics-of-ai",
+      "index" : 143,
+      "kind" : "choice3",
+      "latency_ms" : 1639,
+      "ok" : true,
+      "probabilities" : {
+        "cs-best-papers-concepts" : 0.16799609203869892,
+        "economics-of-ai" : 0.4697940315464488,
+        "frontier-ai-labs" : 0.36220987641485236
+      },
+      "retries" : 0,
+      "share" : 0.06935281926857795,
+      "slug" : "2025-08-28-dbt-m365-copilot-evaluation::choice3",
+      "truth" : [
+        "economics-of-ai"
+      ]
+    },
+    {
+      "answer" : "human-impact-of-ai",
+      "index" : 144,
+      "kind" : "choice5",
+      "latency_ms" : 1424,
+      "ok" : false,
+      "probabilities" : {
+        "computing-foundations" : 0.1515571498289748,
+        "cybersecurity-ai" : 0.1493865935844849,
+        "diffusion-language-models" : 0.1692490671344766,
+        "economics-of-ai" : 0.1459457842371742,
+        "human-impact-of-ai" : 0.3838614052148896
+      },
+      "retries" : 0,
+      "share" : 0.05616896741484234,
+      "slug" : "2025-08-28-dbt-m365-copilot-evaluation::choice5",
+      "truth" : [
+        "economics-of-ai"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 145,
+      "kind" : "noul",
+      "latency_ms" : 3268,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.3315749221163172,
+        "true" : 0.6684250778836829
+      },
+      "retries" : 0,
+      "share" : 0.08347262288388402,
+      "slug" : "2026-09-17-jev-architecture-unmasked-archer-hume::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 146,
+      "kind" : "noul",
+      "latency_ms" : 2786,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.3294232443795387,
+        "true" : 0.6705767556204613
+      },
+      "retries" : 0,
+      "share" : 0.085663981190372,
+      "slug" : "2026-09-17-jev-architecture-unmasked-archer-hume::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "typed-decision-models",
+      "index" : 147,
+      "kind" : "choice3",
+      "latency_ms" : 2682,
+      "ok" : true,
+      "probabilities" : {
+        "machine-learning-foundations" : 0.33625870618769266,
+        "open-data-knowledge-graphs" : 0.22451037020509176,
+        "typed-decision-models" : 0.43923092360721566
+      },
+      "retries" : 0,
+      "share" : 0.03220697523765781,
+      "slug" : "2026-09-17-jev-architecture-unmasked-archer-hume::choice3",
+      "truth" : [
+        "typed-decision-models"
+      ]
+    },
+    {
+      "answer" : "typed-decision-models",
+      "index" : 148,
+      "kind" : "choice5",
+      "latency_ms" : 2777,
+      "ok" : true,
+      "probabilities" : {
+        "computing-foundations" : 0.278789768593102,
+        "consumer-gpu-inference" : 0.20984970458120691,
+        "frontier-ai-labs" : 0.1781421466806967,
+        "speech-audio-models" : 0.05006383023125847,
+        "typed-decision-models" : 0.28315454991373584
+      },
+      "retries" : 0,
+      "share" : 0.06907687880737923,
+      "slug" : "2026-09-17-jev-architecture-unmasked-archer-hume::choice5",
+      "truth" : [
+        "typed-decision-models"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 149,
+      "kind" : "noul",
+      "latency_ms" : 1735,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.5320675503702975,
+        "true" : 0.4679324496297025
+      },
+      "retries" : 0,
+      "share" : 0.00296916427017746,
+      "slug" : "2026-03-10-rys-github-repo::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 150,
+      "kind" : "noul",
+      "latency_ms" : 1346,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.7574679284130591,
+        "true" : 0.2425320715869409
+      },
+      "retries" : 0,
+      "share" : 0.20077426898289374,
+      "slug" : "2026-03-10-rys-github-repo::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "cs-best-papers-concepts",
+      "index" : 151,
+      "kind" : "choice3",
+      "latency_ms" : 1984,
+      "ok" : false,
+      "probabilities" : {
+        "consumer-gpu-inference" : 0.3136117430621942,
+        "cs-best-papers-concepts" : 0.46418017197065736,
+        "robotics-manipulation" : 0.22220808496714853
+      },
+      "retries" : 0,
+      "share" : 0.040474515587852644,
+      "slug" : "2026-03-10-rys-github-repo::choice3",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "cs-best-papers-concepts",
+      "index" : 152,
+      "kind" : "choice5",
+      "latency_ms" : 1765,
+      "ok" : false,
+      "probabilities" : {
+        "consumer-gpu-inference" : 0.1750139454329727,
+        "cs-best-papers-concepts" : 0.27614480505783157,
+        "frontier-ai-labs" : 0.20708181774269027,
+        "human-impact-of-ai" : 0.14402488873465233,
+        "rl-post-training" : 0.19773454303185328
+      },
+      "retries" : 0,
+      "share" : 0.014536698585270735,
+      "slug" : "2026-03-10-rys-github-repo::choice5",
+      "truth" : [
+        "consumer-gpu-inference"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 153,
+      "kind" : "noul",
+      "latency_ms" : 2222,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.2808397810838419,
+        "true" : 0.7191602189161581
+      },
+      "retries" : 0,
+      "share" : 0.1434074507235339,
+      "slug" : "2026-08-14-ai-research-preference-models::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "false",
+      "index" : 154,
+      "kind" : "noul",
+      "latency_ms" : 4181,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.6250627571571775,
+        "true" : 0.3749372428428224
+      },
+      "retries" : 0,
+      "share" : 0.045612259062528415,
+      "slug" : "2026-08-14-ai-research-preference-models::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "ai-agents",
+      "index" : 155,
+      "kind" : "choice3",
+      "latency_ms" : 2991,
+      "ok" : true,
+      "probabilities" : {
+        "ai-agents" : 0.3912102563947386,
+        "human-impact-of-ai" : 0.24540779898799925,
+        "llm-evaluation" : 0.3633819446172622
+      },
+      "retries" : 0,
+      "share" : 0.017156602692572354,
+      "slug" : "2026-08-14-ai-research-preference-models::choice3",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "consumer-gpu-inference",
+      "index" : 156,
+      "kind" : "choice5",
+      "latency_ms" : 2673,
+      "ok" : false,
+      "probabilities" : {
+        "ai-agents" : 0.25538874102233444,
+        "consumer-gpu-inference" : 0.3996240884515417,
+        "frontier-ai-labs" : 0.1719288692683127,
+        "multimodal-models" : 0.12611549388414345,
+        "synthetic-populations" : 0.046942807373667676
+      },
+      "retries" : 0,
+      "share" : 0.11610439231505865,
+      "slug" : "2026-08-14-ai-research-preference-models::choice5",
+      "truth" : [
+        "ai-agents"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 157,
+      "kind" : "noul",
+      "latency_ms" : 5040,
+      "ok" : true,
+      "probabilities" : {
+        "false" : 0.30002459727201886,
+        "true" : 0.6999754027279812
+      },
+      "retries" : 0,
+      "share" : 0.11867903532863,
+      "slug" : "2026-09-10-feyospace-v1-cyber-mercury-seven::noul-pos",
+      "truth" : [
+        "true"
+      ]
+    },
+    {
+      "answer" : "true",
+      "index" : 158,
+      "kind" : "noul",
+      "latency_ms" : 2990,
+      "ok" : false,
+      "probabilities" : {
+        "false" : 0.4143200537601711,
+        "true" : 0.5856799462398289
+      },
+      "retries" : 0,
+      "share" : 0.021286703669425644,
+      "slug" : "2026-09-10-feyospace-v1-cyber-mercury-seven::noul-neg",
+      "truth" : [
+        "false"
+      ]
+    },
+    {
+      "answer" : "cybersecurity-ai",
+      "index" : 159,
+      "kind" : "choice3",
+      "latency_ms" : 2899,
+      "ok" : true,
+      "probabilities" : {
+        "cybersecurity-ai" : 0.7575303142968697,
+        "economics-of-ai" : 0.18357886455783629,
+        "india-political-economy" : 0.05889082114529413
+      },
+      "retries" : 0,
+      "share" : 0.3734556088905997,
+      "slug" : "2026-09-10-feyospace-v1-cyber-mercury-seven::choice3",
+      "truth" : [
+        "cybersecurity-ai"
+      ]
+    },
+    {
+      "answer" : "cybersecurity-ai",
+      "index" : 160,
+      "kind" : "choice5",
+      "latency_ms" : 4624,
+      "ok" : true,
+      "probabilities" : {
+        "cybersecurity-ai" : 0.5609560229698255,
+        "economics-of-ai" : 0.13457180163218582,
+        "india-political-economy" : 0.04199441480595073,
+        "multimodal-models" : 0.18197132025608745,
+        "web-scraping" : 0.08050644033595046
+      },
+      "retries" : 0,
+      "share" : 0.22940569881520811,
+      "slug" : "2026-09-10-feyospace-v1-cyber-mercury-seven::choice5",
+      "truth" : [
+        "cybersecurity-ai"
+      ]
+    }
+  ],
+  "os" : "Version 26.5.2 (Build 25F84)",
+  "question" : "Which topic does this note belong under?",
+  "run" : "2026-09-21T10:53:03Z",
+  "seed" : 1,
+  "summary" : {
+    "attempted" : 160,
+    "by_kind" : {
+      "choice3" : {
+        "completed" : 40,
+        "conf_right_mean" : 0.14434965615263032,
+        "conf_wrong_mean" : 0.08738594436576513,
+        "top1" : 32
+      },
+      "choice5" : {
+        "completed" : 40,
+        "conf_right_mean" : 0.15173434293197824,
+        "conf_wrong_mean" : 0.05463397380275412,
+        "top1" : 26
+      },
+      "noul" : {
+        "completed" : 80,
+        "conf_right_mean" : 0.14050885555022916,
+        "conf_wrong_mean" : 0.0969577160120097,
+        "top1" : 55
+      }
+    },
+    "completed" : 160,
+    "failures" : {
+
+    },
+    "gate" : 0,
+    "gate_passed" : true,
+    "indeterminate" : false,
+    "latency_mean_ms" : 2065,
+    "latency_p50_ms" : 1775,
+    "latency_p90_ms" : 3308,
+    "out_of_schema" : 0,
+    "refused" : 0,
+    "reliability" : [
+      {
+        "accuracy" : 0.7088607594936709,
+        "max" : 0.5,
+        "min" : 0,
+        "n" : 158
+      },
+      {
+        "accuracy" : 0.5,
+        "max" : 0.7,
+        "min" : 0.5,
+        "n" : 2
+      },
+      {
+        "max" : 0.9,
+        "min" : 0.7,
+        "n" : 0
+      },
+      {
+        "max" : 1,
+        "min" : 0.9,
+        "n" : 0
+      }
+    ],
+    "retries" : 0,
+    "share_right_mean" : 0.14417937140157694,
+    "share_wrong_mean" : 0.08272140613755152,
+    "top1" : 113,
+    "unanimous_right" : 0,
+    "unanimous_wrong" : 0
+  },
+  "votes" : 1
+}
