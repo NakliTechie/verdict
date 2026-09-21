@@ -2,17 +2,14 @@ import Foundation
 import Testing
 import VerdictCore
 
-/// Parity with the Python `tokenizers` library and the laya-coreml sequence builder. These tests need the
-/// Laya checkpoint's tokenizer on disk (`LayaCoreMLBackend.defaultDirectory`); they skip when it is absent.
+/// Parity with the Python `tokenizers` library and the laya-coreml sequence builder. The tokenizer files are
+/// bundled test resources (Fixtures/laya-tokenizer, Apache-2.0), so these run on every checkout; only the
+/// Core ML inference test (LayaBackendLiveTests) needs the 843 MB checkpoint.
 @Suite struct LayaTokenizerTests {
-    static let dir = LayaCoreMLBackend.defaultDirectory
-    static var present: Bool {
-        FileManager.default.fileExists(atPath: dir.appendingPathComponent("tokenizer/tokenizer.json").path)
-    }
-
     static func tokenizer() throws -> BPETokenizer {
-        try BPETokenizer(tokenizerJSON: dir.appendingPathComponent("tokenizer/tokenizer.json"),
-                         config: dir.appendingPathComponent("tokenizer/tokenizer_config.json"))
+        let dir = Bundle.module.resourceURL!.appendingPathComponent("Fixtures/laya-tokenizer")
+        return try BPETokenizer(tokenizerJSON: dir.appendingPathComponent("tokenizer.json"),
+                                config: dir.appendingPathComponent("tokenizer_config.json"))
     }
 
     static func fixture<T: Decodable>(_ name: String, as: T.Type) throws -> T {
@@ -22,7 +19,7 @@ import VerdictCore
 
     struct TokenCase: Decodable { let text: String; let ids: [Int32] }
 
-    @Test(.enabled(if: present)) func specialTokenIDs() throws {
+    @Test func specialTokenIDs() throws {
         let tok = try Self.tokenizer()
         #expect(tok.clsID == 50281)
         #expect(tok.sepID == 50282)
@@ -30,7 +27,7 @@ import VerdictCore
         #expect(tok.maskID == 50284)
     }
 
-    @Test(.enabled(if: present)) func matchesPythonTokenizersOnEveryGolden() throws {
+    @Test func matchesPythonTokenizersOnEveryGolden() throws {
         let tok = try Self.tokenizer()
         let cases = try Self.fixture("laya-tokenizer-golden", as: [TokenCase].self)
         #expect(cases.count == 96)
@@ -79,7 +76,7 @@ import VerdictCore
         }
     }
 
-    @Test(.enabled(if: present)) func sequenceBuilderMatchesPortOnFixture() throws {
+    @Test func sequenceBuilderMatchesPortOnFixture() throws {
         let tok = try Self.tokenizer()
         let cases = try Self.fixture("laya-sequence-golden", as: [SequenceCase].self)
         #expect(cases.count == 43)

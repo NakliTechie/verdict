@@ -8,10 +8,10 @@ Every NakliTechie surface that wants a small, fast, on-device *decision* (rank t
 ## What it is
 - A **Swift package** (`VerdictCore`) exposing `decide(state:, questions:) -> [Decision]` where a question is `Choice(options)`, `Score(range)`, or `Noul(yes/no)`, and a `Decision` carries `answer`, `confidence`, and `confidenceKind` (`.decoded` | `.agreement` | `.none`).
 - A **loopback HTTP face** (`verdictd`, `127.0.0.1` only, token-gated) speaking a Jev-compatible request shape so callers written against `POST /v1/systemone` work unchanged.
-- **Backends**, selected per request or by policy:
-  1. **Foundation Models** (macOS 26+): guided generation with `.anyOf` / `@Generable` → schema-valid answers, no logits. Confidence = sampling agreement (N runs, unanimity share), opt-in because it multiplies latency.
-  2. **Laya via Core ML** (`mizorewww/laya-coreml`, Apache-2.0): in-process from Swift, Neural Engine, 4.98 ms P50 short decisions on M3 Max, real distributions → `confidenceKind = .decoded`.
-  3. **Laya via MLX** (`mizorewww/laya-mlx`): Python sidecar, 7.4–13.4 ms P50; fallback when Core ML weights are unavailable.
+- **Backends**, selected per request (`model` on the wire):
+  1. **Foundation Models** (macOS 26+) — shipped: guided generation with `.anyOf` / `@Generable` → schema-valid answers, no logits. Confidence = sampling agreement (N runs, unanimity share), opt-in because it multiplies latency.
+  2. **Laya via Core ML** (`mizorewww/laya-coreml`, Apache-2.0) — shipped: in-process from Swift, real distributions → `confidenceKind = .decoded`. The port's headline 4.98 ms P50 is an M3 Max Neural Engine figure; on this Mac (M4 Pro, macOS 26.5) every op runs on the CPU and a short decision takes ~230–370 ms (see Status).
+  3. **Laya via MLX** (`mizorewww/laya-mlx`) — **not built** (M3, moot: see Milestones). Requesting it returns `model_unavailable`.
 - A **fixture replay** as the verifier: the 40-item vault-routing fixture from `~/Code/knowledge/plan/fm-bench/` plus a passage-ranking set, replayed per backend, reporting top-1 and latency.
 
 ## What it is not

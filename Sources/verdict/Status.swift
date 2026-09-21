@@ -8,6 +8,7 @@ struct Status: AsyncParsableCommand {
         abstract: "Report whether a decide can succeed: backend, availability, remedy, limits, newest gate record.")
 
     @Flag(help: "One-line JSON instead of pretty JSON.") var compact = false
+    @Flag(help: "Accepted for compatibility; status always prints JSON.") var json = false
     @Option(help: "Directory holding replay records.") var evidence = "evidence"
     @Flag(help: "SHA-256 every Laya checkpoint file against its manifest (reads 843 MB).") var verify = false
 

@@ -77,6 +77,27 @@ struct Replay: AsyncParsableCommand {
         var failure: String?
         var retries: Int
         let latency_ms: Int
+
+        init(index: Int, slug: String, kind: String, truth: [String], retries: Int, latency_ms: Int) {
+            self.index = index; self.slug = slug; self.kind = kind; self.truth = truth
+            self.retries = retries; self.latency_ms = latency_ms
+        }
+
+        /// Records written before `kind` existed (the first four in `evidence/`) decode as the fm-bench 26-way choice.
+        init(from decoder: Decoder) throws {
+            let c = try decoder.container(keyedBy: CodingKeys.self)
+            index = try c.decode(Int.self, forKey: .index)
+            slug = try c.decode(String.self, forKey: .slug)
+            kind = try c.decodeIfPresent(String.self, forKey: .kind) ?? "choice26"
+            truth = try c.decode([String].self, forKey: .truth)
+            answer = try c.decodeIfPresent(String.self, forKey: .answer)
+            ok = try c.decodeIfPresent(Bool.self, forKey: .ok)
+            share = try c.decodeIfPresent(Double.self, forKey: .share)
+            probabilities = try c.decodeIfPresent([String: Double].self, forKey: .probabilities)
+            failure = try c.decodeIfPresent(String.self, forKey: .failure)
+            retries = try c.decodeIfPresent(Int.self, forKey: .retries) ?? 0
+            latency_ms = try c.decode(Int.self, forKey: .latency_ms)
+        }
     }
 
     struct Summary: Codable {
@@ -101,6 +122,41 @@ struct Replay: AsyncParsableCommand {
         let by_kind: [String: KindSummary]
         /// Accuracy inside confidence bands, for confidence-bearing runs. Empty when confidence is absent.
         let reliability: [Band]
+
+        init(attempted: Int, completed: Int, top1: Int, out_of_schema: Int, refused: Int, failures: [String: Int], retries: Int,
+             latency_p50_ms: Int, latency_p90_ms: Int, latency_mean_ms: Int, share_right_mean: Double?, share_wrong_mean: Double?,
+             unanimous_right: Int?, unanimous_wrong: Int?, gate: Int, gate_passed: Bool, indeterminate: Bool,
+             by_kind: [String: KindSummary], reliability: [Band]) {
+            self.attempted = attempted; self.completed = completed; self.top1 = top1; self.out_of_schema = out_of_schema
+            self.refused = refused; self.failures = failures; self.retries = retries; self.latency_p50_ms = latency_p50_ms
+            self.latency_p90_ms = latency_p90_ms; self.latency_mean_ms = latency_mean_ms; self.share_right_mean = share_right_mean
+            self.share_wrong_mean = share_wrong_mean; self.unanimous_right = unanimous_right; self.unanimous_wrong = unanimous_wrong
+            self.gate = gate; self.gate_passed = gate_passed; self.indeterminate = indeterminate; self.by_kind = by_kind; self.reliability = reliability
+        }
+
+        /// Legacy records lack `by_kind` and `reliability`.
+        init(from decoder: Decoder) throws {
+            let c = try decoder.container(keyedBy: CodingKeys.self)
+            attempted = try c.decode(Int.self, forKey: .attempted)
+            completed = try c.decode(Int.self, forKey: .completed)
+            top1 = try c.decode(Int.self, forKey: .top1)
+            out_of_schema = try c.decode(Int.self, forKey: .out_of_schema)
+            refused = try c.decodeIfPresent(Int.self, forKey: .refused) ?? 0
+            failures = try c.decodeIfPresent([String: Int].self, forKey: .failures) ?? [:]
+            retries = try c.decodeIfPresent(Int.self, forKey: .retries) ?? 0
+            latency_p50_ms = try c.decode(Int.self, forKey: .latency_p50_ms)
+            latency_p90_ms = try c.decodeIfPresent(Int.self, forKey: .latency_p90_ms) ?? 0
+            latency_mean_ms = try c.decodeIfPresent(Int.self, forKey: .latency_mean_ms) ?? 0
+            share_right_mean = try c.decodeIfPresent(Double.self, forKey: .share_right_mean)
+            share_wrong_mean = try c.decodeIfPresent(Double.self, forKey: .share_wrong_mean)
+            unanimous_right = try c.decodeIfPresent(Int.self, forKey: .unanimous_right)
+            unanimous_wrong = try c.decodeIfPresent(Int.self, forKey: .unanimous_wrong)
+            gate = try c.decode(Int.self, forKey: .gate)
+            gate_passed = try c.decode(Bool.self, forKey: .gate_passed)
+            indeterminate = try c.decodeIfPresent(Bool.self, forKey: .indeterminate) ?? false
+            by_kind = try c.decodeIfPresent([String: KindSummary].self, forKey: .by_kind) ?? [:]
+            reliability = try c.decodeIfPresent([Band].self, forKey: .reliability) ?? []
+        }
     }
     struct KindSummary: Codable { let top1: Int; let completed: Int; let conf_right_mean: Double?; let conf_wrong_mean: Double? }
     struct Band: Codable { let min: Double; let max: Double; let n: Int; let accuracy: Double? }
@@ -118,6 +174,11 @@ struct Replay: AsyncParsableCommand {
     }
 
     static let question = "Which topic does this note belong under?"
+
+    /// Decodes any committed record, legacy or current. Used by `--baseline` and by the compatibility test.
+    static func loadRecord(_ path: String) throws -> Record {
+        try JSONDecoder().decode(Record.self, from: Data(contentsOf: URL(fileURLWithPath: path)))
+    }
 
     func run() async throws {
         let data = try Data(contentsOf: URL(fileURLWithPath: fixture))
@@ -259,7 +320,7 @@ struct Replay: AsyncParsableCommand {
     }
 
     static func diff(_ record: Record, against path: String) throws {
-        let prior = try JSONDecoder().decode(Record.self, from: Data(contentsOf: URL(fileURLWithPath: path)))
+        let prior = try loadRecord(path)
         let before = Dictionary(uniqueKeysWithValues: prior.items.map { ($0.slug, $0) })
         var flips = 0
         print("\n=== BASELINE \(path): top-1 \(prior.summary.top1)/\(prior.summary.completed) → \(record.summary.top1)/\(record.summary.completed) ===")

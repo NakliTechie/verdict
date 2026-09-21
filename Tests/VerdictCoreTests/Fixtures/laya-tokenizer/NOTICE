@@ -1,0 +1,7 @@
+tokenizer.json and tokenizer_config.json are copied unmodified from the Hugging Face checkpoint
+aac6fef/laya-typed-decisions-coreml (Apache-2.0), itself converted from convaiinnovations/laya-typed-decisions
+(Apache-2.0, Convai Innovations and contributors). The tokenizer originates from answerdotai/ModernBERT-large
+(Apache-2.0). They are test fixtures only: the parity tests in LayaTokenizerTests run without the model
+installed. sha256 as recorded in the checkpoint manifest:
+  tokenizer/tokenizer.json           6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30
+  tokenizer/tokenizer_config.json    08d4cf3ac4dca381759441b85b91a6d40e688471dcd33d15d6649eb0a9a854d1
