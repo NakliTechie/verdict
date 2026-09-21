@@ -1,0 +1,36 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+  :root { --bg:#0b0e14; --fg:#e6edf3; --dim:#8b949e; --acc:#4ec9b0; --key:#79c0ff; --str:#a5d6ff; --gutter:#2d333b; }
+  * { margin:0; box-sizing:border-box; }
+  html,body { width:100%; height:100%; }
+  body { background:radial-gradient(1200px 600px at 30% -10%, #12212b 0%, var(--bg) 60%); color:var(--fg);
+         font-family:-apple-system,"SF Pro Display",Helvetica,Arial,sans-serif;
+         display:flex; flex-direction:column; justify-content:center; align-items:center; padding:6% 7%; gap:3.2vmin; }
+  .wordmark { font-size:4.6vmin; font-weight:600; letter-spacing:-0.01em; color:var(--fg); }
+  .wordmark .dot { color:var(--acc); }
+  .tagline { font-size:6.4vmin; font-weight:700; line-height:1.05; letter-spacing:-0.02em; text-align:center; max-width:20em; }
+  .tagline .z { color:var(--acc); }
+  .term { width:100%; max-width:64em; background:#0d1117; border:1px solid var(--gutter); border-radius:2.2vmin;
+          box-shadow:0 2vmin 6vmin rgba(0,0,0,.45); overflow:hidden; }
+  .bar { height:3.4vmin; background:#161b22; display:flex; align-items:center; gap:1vmin; padding:0 2vmin; }
+  .bar i { width:1.5vmin; height:1.5vmin; border-radius:50%; display:inline-block; }
+  .bar .r{background:#ff5f56}.bar .y{background:#ffbd2e}.bar .g{background:#27c93f}
+  .code { font-family:"SF Mono",ui-monospace,Menlo,monospace; font-size:2.5vmin; line-height:1.6; padding:2.6vmin 3vmin; white-space:pre; }
+  .p { color:var(--acc); } .fl{color:var(--key)} .st{color:var(--str)} .dim{color:var(--dim)} .k{color:var(--key)}
+  .chips { display:flex; gap:1.6vmin; flex-wrap:wrap; justify-content:center; }
+  .chip { font-size:2.5vmin; font-weight:600; color:var(--fg); background:#161b22; border:1px solid var(--gutter);
+          border-radius:100px; padding:1.1vmin 2.4vmin; }
+  .chip b { color:var(--acc); }
+</style></head><body>
+  <div class="wordmark">verdict<span class="dot">.</span></div>
+  <div class="tagline">Sovereign typed decisions on your Mac — <span class="z">zero install</span>.</div>
+  <div class="term">
+    <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+    <div class="code"><span class="p">$</span> verdict decide --state ticket.txt <span class="fl">--choice</span> <span class="st">"billing|technical|sales"</span>
+<span class="dim">{</span>
+  <span class="k">"choice"</span>: <span class="st">"billing"</span>,
+  <span class="k">"confidence_kind"</span>: <span class="st">"none"</span>,   <span class="dim">// honest: no fake probability</span>
+  <span class="k">"latency_ms"</span>: <span class="fl">312</span>
+<span class="dim">}</span></div>
+  </div>
+  <div class="chips"><div class="chip"><b>on-device</b> · no key</div><div class="chip">Jev-compatible</div><div class="chip"><b>honest</b> confidence</div></div>
+</body></html>
