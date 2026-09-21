@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+ :root{--bg:#0b0e14;--gut:#2d333b;--fg:#e6edf3;--dim:#8b949e;--acc:#4ec9b0;--key:#79c0ff;--str:#a5d6ff;--warn:#ffbd2e}
+ *{margin:0;box-sizing:border-box}html,body{width:100%;height:100%}
+ body{background:radial-gradient(1200px 700px at 25% -15%,#12212b,var(--bg) 60%);display:flex;align-items:center;justify-content:center;padding:4%}
+ .win{width:100%;max-width:70em;background:#0d1117;border:1px solid var(--gut);border-radius:2vmin;overflow:hidden;box-shadow:0 2vmin 6vmin rgba(0,0,0,.5)}
+ .bar{height:3.6vmin;background:#161b22;display:flex;align-items:center;gap:1vmin;padding:0 2vmin}
+ .bar i{width:1.5vmin;height:1.5vmin;border-radius:50%}.r{background:#ff5f56}.y{background:#ffbd2e}.g{background:#27c93f}
+ .bar span{margin-left:2vmin;color:var(--dim);font:600 1.9vmin -apple-system,sans-serif}
+ .c{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:2.35vmin;line-height:1.65;padding:2.8vmin 3.2vmin;white-space:pre-wrap}
+ .p{color:var(--acc)}.fl{color:var(--key)}.st{color:var(--str)}.d{color:var(--dim)}.k{color:var(--key)}.n{color:var(--warn)}
+</style></head><body><div class="win">
+ <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>ticket routing · on-device · macOS 26</span></div>
+ <div class="c"><span class="p">$</span> cat ticket.txt
+<span class="d">Subject: Refund for duplicate charge</span>
+<span class="d">Hi — I was charged twice for my August invoice and need the</span>
+<span class="d">duplicate refunded. This is the second time. Getting frustrated.</span>
+
+<span class="p">$</span> verdict decide <span class="fl">--request</span> ticket.json   <span class="d"># 3 typed questions, no key, no cloud</span>
+<span class="d">{</span>
+  <span class="k">"department"</span>: <span class="d">{</span> <span class="k">"choice"</span>: <span class="st">"billing"</span>,          <span class="k">"confidence_kind"</span>: <span class="st">"none"</span> <span class="d">}</span>,
+  <span class="k">"is_refund"</span>:  <span class="d">{</span> <span class="k">"noul"</span>: <span class="n">1.0</span>,                 <span class="k">"confidence_kind"</span>: <span class="st">"none"</span> <span class="d">}</span>,
+  <span class="k">"urgency"</span>:    <span class="d">{</span> <span class="k">"score"</span>: <span class="n">2</span>, <span class="k">"legend"</span>: <span class="st">"Urgent"</span>,  <span class="k">"confidence_kind"</span>: <span class="st">"none"</span> <span class="d">}</span>,
+  <span class="k">"usage"</span>: <span class="d">{</span> <span class="k">"backend"</span>: <span class="st">"foundation-models"</span>, <span class="k">"latency_ms"</span>: <span class="n">1788</span> <span class="d">}</span>
+<span class="d">}</span>
+<span class="d"># honest: single greedy run → no probability claimed (confidence_kind: none)</span></div>
+</div></body></html>
