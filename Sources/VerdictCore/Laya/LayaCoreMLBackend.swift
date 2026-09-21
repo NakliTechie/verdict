@@ -91,16 +91,7 @@ public final class LayaCoreMLBackend: DecisionBackend, @unchecked Sendable {
             return .unavailable(reason: "No Laya checkpoint at \(directory.path).", remedy: downloadRemedy(for: directory))
         }
         do {
-            let backend = try LayaCoreMLBackend(directory: directory)
-            for (rel, meta) in backend.manifest.files {
-                let attrs = try? FileManager.default.attributesOfItem(atPath: directory.appendingPathComponent(rel).path)
-                let size = (attrs?[.size] as? NSNumber)?.intValue ?? -1
-                if size != meta.bytes {
-                    return .unavailable(reason: "\(rel) is \(size) bytes; the manifest says \(meta.bytes).",
-                                        remedy: "Re-download: " + downloadRemedy(for: directory))
-                }
-            }
-            return .available
+            return try LayaCoreMLBackend(directory: directory).availability()
         } catch let e as BackendError {
             return .unavailable(reason: e.message, remedy: downloadRemedy(for: directory))
         } catch {
@@ -108,7 +99,18 @@ public final class LayaCoreMLBackend: DecisionBackend, @unchecked Sendable {
         }
     }
 
-    public func availability() -> BackendAvailability { Self.availability(directory: directory) }
+    /// Instance check: manifest file sizes only, no parsing, no model load. Cheap enough for `/health`.
+    public func availability() -> BackendAvailability {
+        for (rel, meta) in manifest.files {
+            let attrs = try? FileManager.default.attributesOfItem(atPath: directory.appendingPathComponent(rel).path)
+            let size = (attrs?[.size] as? NSNumber)?.intValue ?? -1
+            if size != meta.bytes {
+                return .unavailable(reason: "\(rel) is \(size) bytes; the manifest says \(meta.bytes).",
+                                    remedy: "Re-download: " + Self.downloadRemedy(for: directory))
+            }
+        }
+        return .available
+    }
 
     /// SHA-256 every manifest file. Returns the paths that do not match.
     public func verifyChecksums() throws -> [String] {
@@ -122,23 +124,39 @@ public final class LayaCoreMLBackend: DecisionBackend, @unchecked Sendable {
 
     // MARK: Model
 
-    /// Compiled model cached beside the package as `model.mlmodelc`; falls back to the user cache dir.
+    /// The compiled model is keyed by the weights' manifest SHA-256, so replacing the checkpoint in place
+    /// never pairs stale compiled weights with a new tokenizer or calibration file.
+    public var compiledName: String {
+        let sha = manifest.files["model.mlpackage/Data/com.apple.CoreML/weights/weight.bin"]?.sha256 ?? "unkeyed"
+        return "model-\(sha.prefix(16)).mlmodelc"
+    }
+
+    private func compiledModelURL() -> URL {
+        let local = directory.appendingPathComponent(compiledName)
+        if FileManager.default.fileExists(atPath: local.path) { return local }
+        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("verdict/laya/\(compiledName)")
+    }
+
+    /// Compiled model cached beside the package (or in the user cache dir when the package dir is read-only).
     /// Callers hold `queue` (via `onQueue`) or are the queue itself.
     private func model() throws -> MLModel {
         dispatchPrecondition(condition: .onQueue(queue))
         if let m = loadedModel { return m }
         let package = directory.appendingPathComponent("model.mlpackage")
-        let compiled = directory.appendingPathComponent("model.mlmodelc")
+        let compiled = directory.appendingPathComponent(compiledName)
         let fm = FileManager.default
         var compiledURL = compiled
         if !fm.fileExists(atPath: compiled.path) {
-            let tmp = try MLModel.compileModel(at: package)
-            if (try? fm.moveItem(at: tmp, to: compiled)) == nil {
-                let cache = fm.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("verdict/laya/model.mlmodelc")
-                try fm.createDirectory(at: cache.deletingLastPathComponent(), withIntermediateDirectories: true)
-                try? fm.removeItem(at: cache)
-                try fm.moveItem(at: tmp, to: cache)
+            let cache = fm.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("verdict/laya/\(compiledName)")
+            if fm.fileExists(atPath: cache.path) {
                 compiledURL = cache
+            } else {
+                let tmp = try MLModel.compileModel(at: package)
+                if (try? fm.moveItem(at: tmp, to: compiled)) == nil {
+                    try fm.createDirectory(at: cache.deletingLastPathComponent(), withIntermediateDirectories: true)
+                    try fm.moveItem(at: tmp, to: cache)
+                    compiledURL = cache
+                }
             }
         }
         let config = MLModelConfiguration()
@@ -190,12 +208,6 @@ public final class LayaCoreMLBackend: DecisionBackend, @unchecked Sendable {
         }
         walk(main.block)
         return counts
-    }
-
-    private func compiledModelURL() -> URL {
-        let local = directory.appendingPathComponent("model.mlmodelc")
-        if FileManager.default.fileExists(atPath: local.path) { return local }
-        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("verdict/laya/model.mlmodelc")
     }
 
     // MARK: Sampling

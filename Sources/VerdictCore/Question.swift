@@ -4,6 +4,8 @@ public enum Limits {
     public static let maxQuestions = 64
     public static let maxOptions = 64
     public static let minOptions = 2
+    /// Sampled runs per question. 25 caps a request at 64 × 25 model calls.
+    public static let maxVotes = 25
 }
 
 public struct ChoiceOption: Sendable, Equatable {

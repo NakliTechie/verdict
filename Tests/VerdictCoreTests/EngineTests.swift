@@ -88,3 +88,39 @@ import VerdictCore
         #expect(code(Fixtures.request(Fixtures.choice)) == nil)
     }
 }
+
+/// Regression tests for the 2026-09-21 Codex review findings (plan/history.md).
+@Suite struct EngineReviewTests {
+    @Test func votesAboveLimitAreValidationFailures() {   // finding 5
+        func code(_ votes: Int) -> FailureCode? {
+            do { try Verdict.validate(Fixtures.request(Fixtures.choice, votes: votes)); return nil } catch { return error.code }
+        }
+        #expect(code(Limits.maxVotes) == nil)
+        #expect(code(Limits.maxVotes + 1) == .validation)
+        #expect(code(1_000_000) == .validation)
+    }
+
+    @Test func malformedDistributionsAreRejectedNotNormalised() async throws {   // finding 2
+        let cases: [(String, [String: Double])] = [
+            ("zero mass", ["billing": 0, "technical": 0, "sales": 0]),
+            ("infinite", ["billing": .infinity, "technical": 1]),
+            ("nan", ["billing": .nan]),
+            ("negative", ["billing": -1, "technical": 2]),
+            ("stray key", ["billing": 0.5, "invented": 0.5]),
+        ]
+        for (name, d) in cases {
+            let backend = FakeBackend([.success(Sample(raw: .key("billing"), distribution: d))])
+            let r = try await Verdict(backend: backend).decide(Fixtures.request(Fixtures.choice))
+            let f = r.outcomes[0].outcome.failure
+            #expect(f?.code == .backendError, Comment(rawValue: name))
+            #expect(f?.message.contains("malformed distribution") == true, Comment(rawValue: name))
+        }
+        // A valid but unnormalised distribution still works and sums to 1.
+        let ok = FakeBackend([.success(Sample(raw: .key("billing"), distribution: ["billing": 3, "technical": 1]))])
+        let r = try await Verdict(backend: ok).decide(Fixtures.request(Fixtures.choice))
+        let d = r.outcomes[0].outcome.decision
+        #expect(d?.confidenceKind == .decoded)
+        #expect(abs((d?.distribution?["billing"] ?? 0) - 0.75) < 1e-12)
+        #expect(d?.distribution?["sales"] == 0)
+    }
+}

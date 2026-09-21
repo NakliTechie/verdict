@@ -54,10 +54,11 @@ public enum Aggregation {
         }
     }
 
+    /// Caller (the engine) has already rejected non-finite, negative, stray-key and zero-mass inputs.
     static func normalised(_ d: [String: Double], labels: [String]) -> [String: Double] {
-        let total = labels.reduce(0.0) { $0 + max(0, d[$1] ?? 0) }
-        guard total > 0 else { return Dictionary(uniqueKeysWithValues: labels.map { ($0, 1.0 / Double(labels.count)) }) }
-        return Dictionary(uniqueKeysWithValues: labels.map { ($0, max(0, d[$0] ?? 0) / total) })
+        let total = labels.reduce(0.0) { $0 + (d[$1] ?? 0) }
+        precondition(total > 0 && total.isFinite, "normalised() needs a validated distribution")
+        return Dictionary(uniqueKeysWithValues: labels.map { ($0, (d[$0] ?? 0) / total) })
     }
 
     /// openjev's confidence: 1 − H(p)/log n, clamped to [0, 1].

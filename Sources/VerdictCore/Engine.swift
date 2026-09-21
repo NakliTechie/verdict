@@ -36,6 +36,7 @@ public struct Verdict: Sendable {
             throw fail("`questions` has \(request.questions.count) entries; the limit is \(Limits.maxQuestions).")
         }
         if request.policy.votes < 1 { throw fail("`policy.votes` must be >= 1 (1 = greedy).") }
+        if request.policy.votes > Limits.maxVotes { throw fail("`policy.votes` is \(request.policy.votes); the limit is \(Limits.maxVotes).") }
         var seen = Set<String>()
         for entry in request.questions {
             if entry.id.isEmpty { throw fail("A question id is empty.") }
@@ -89,7 +90,15 @@ public struct Verdict: Sendable {
                                         retries: retries, latency: clock.now - start))
             }
             labels.append(label)
-            if runs == 1 { greedyDistribution = sample.distribution }
+            if runs == 1 {
+                if let d = sample.distribution, let problem = Self.distributionProblem(d, labels: question.labels) {
+                    return .failure(Failure(id: entry.id, code: .backendError,
+                                            message: "Backend returned a malformed distribution: \(problem).",
+                                            remedy: "Report as a bug in the backend; no confidence can be derived from it.",
+                                            retries: retries, latency: clock.now - start))
+                }
+                greedyDistribution = sample.distribution
+            }
         }
         let agg = runs == 1
             ? Aggregation.greedy(question: question, label: labels[0], distribution: greedyDistribution)
@@ -97,6 +106,15 @@ public struct Verdict: Sendable {
         return .decision(Decision(id: entry.id, answer: agg.answer, confidence: agg.confidence,
                                   confidenceKind: agg.confidenceKind, distribution: agg.distribution,
                                   samples: runs, retries: retries, latency: clock.now - start))
+    }
+
+    /// nil when `d` is a usable distribution: keys ⊆ labels, every value finite and >= 0, total > 0.
+    static func distributionProblem(_ d: [String: Double], labels: [String]) -> String? {
+        let known = Set(labels)
+        if let stray = d.keys.first(where: { !known.contains($0) }) { return "unknown label `\(stray)`" }
+        if let bad = d.first(where: { !$0.value.isFinite || $0.value < 0 }) { return "value \(bad.value) for `\(bad.key)`" }
+        if d.values.reduce(0, +) <= 0 { return "zero total mass" }
+        return nil
     }
 
     private enum SampleResult {
