@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "types": {
+    "clipboard": {
+      "model": "verdict-laya",
+      "questions": {
+        "is_url":     {"type": "noul",  "instructions": "Is the text a single URL?"},
+        "is_contact": {"type": "noul",  "instructions": "Is the text a person's contact details?"},
+        "sensitivity":{"type": "score", "instructions": "How sensitive is this text?", "criteria": ["public", "personal", "secret"]}
+      }
+    }
+  }
+}

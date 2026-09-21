@@ -15,7 +15,7 @@ struct VerdictD: AsyncParsableCommand {
             Routes: GET /health (no token) · GET /v1/models · GET /v1/limits · POST /v1/systemone.
             """,
         version: VerdictServer.version,
-        subcommands: [Serve.self, TokenCmd.self, Install.self, Uninstall.self, AgentStatus.self],
+        subcommands: [Serve.self, TokenCmd.self, Watch.self, Install.self, Uninstall.self, AgentStatus.self],
         defaultSubcommand: Serve.self)
 }
 
@@ -86,6 +86,35 @@ struct Serve: AsyncParsableCommand {
         logger.info("verdictd \(VerdictServer.version) listening on http://127.0.0.1:\(port)  models=\(registry.models)  token=\(tokenFile)")
         let app = VerdictServer.application(.init(port: port, token: token, registry: registry), logger: logger)
         try await app.runService()
+    }
+}
+
+struct Watch: AsyncParsableCommand {
+    static let configuration = CommandConfiguration(
+        abstract: "Dataflow mode (SPEC §12): answer an SQLite events table's pending rows into a decisions table.",
+        discussion: "Creates the tables if absent. --once drains the backlog and exits; otherwise polls. The join and any fallback live in the consumer's SQL, not here.")
+    @Option(help: "SQLite database file (events in, decisions out).") var db: String
+    @Option(help: "topology.json: event type -> model + questions.") var topology: String
+    @Flag(help: "Drain the current backlog and exit, instead of polling.") var once = false
+    @Option(help: "Poll interval in seconds when not --once.") var interval = 1.0
+    @Option(help: "Events per batch.") var batch = 50
+    @Option(help: "Log level.") var logLevel = "info"
+
+    func run() async throws {
+        var logger = Logger(label: "verdictd-watch")
+        logger.logLevel = Logger.Level(rawValue: logLevel) ?? .info
+        let topo: Topology
+        do { topo = try Topology(url: URL(fileURLWithPath: topology)) }
+        catch { throw ValidationError("topology: \(error)") }
+        let watcher = try Watcher(dbPath: db, topology: topo, registry: Registry(), batch: batch)
+        if once {
+            let r = try await watcher.drain()
+            let obj: [String: Any] = ["processed": r.processed, "skipped": r.skipped, "decisions": r.decisions, "failures": r.failures]
+            print(String(decoding: try! JSONSerialization.data(withJSONObject: obj, options: [.prettyPrinted, .sortedKeys]), as: UTF8.self))
+            return
+        }
+        logger.info("watching \(db) every \(interval)s; types=\(Array(topo.types.keys).sorted())")
+        try await watcher.run(interval: .milliseconds(Int(interval * 1000)))
     }
 }
 

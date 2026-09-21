@@ -134,3 +134,29 @@ Request-level errors return `{"error": {"code", "message", "remedy", "retryable"
   returned.
 
 Both are the exact shapes their consumers will send; start from them.
+
+## 8. Dataflow mode (second door)
+
+For a consumer that already has a stream of small events (Summon's clipboard history, a page reader),
+`verdictd watch` is an alternative to calling `/v1/systemone` per event. You give it an SQLite file and
+a topology; it answers each pending event's questions into a `decisions` table you join in your own SQL.
+
+```bash
+verdictd watch --db events.sqlite --topology topology.json --once   # drain the backlog and exit
+verdictd watch --db events.sqlite --topology topology.json          # poll and keep answering
+```
+
+- **You insert events**: `INSERT INTO events(type, state) VALUES('clipboard', '<text>')` — `status`
+  defaults to `pending`. verdict creates the two tables if absent (`SPEC §12.1`) and never alters them.
+- **topology.json** maps each event `type` to a model and a set of questions in the exact §3 shape; see
+  `scripts/example-topology.json`. An event whose type is not in the topology is `skipped`, never guessed.
+- **You read decisions** once the event is `done`: one row per question with `answer`, `confidence`,
+  `confidence_kind`, `probabilities`, and `failed`/`code` for a per-question failure. Join them back to
+  your events and apply your threshold in SQL.
+- **The join and the fallback are yours.** verdict writes honest rows and stops; the threshold that
+  decides "confident enough to act" and the route for low-confidence or `failed` decisions (a bigger
+  model, a human) live in your SQL, measured on your own data — verdict has no larger on-device model to
+  fall back to, and a confidence threshold only means something on your inputs.
+
+Each event is answered in one transaction, so a crash leaves it `pending` with no partial rows and a
+re-run reprocesses it cleanly. Contract: `SPEC §12`.
