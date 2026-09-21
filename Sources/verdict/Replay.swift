@@ -17,6 +17,7 @@ struct Replay: AsyncParsableCommand {
     @Option(help: "Write the full run record here (atomic).") var out: String?
     @Option(help: "Prior record; prints the items whose correctness flipped.") var baseline: String?
     @Option(help: "The question's instructions (caller-side text; default is the fm-bench question).") var instructions = Replay.question
+    @Option(help: "Backend: verdict-fm (default) or verdict-laya.") var model = "verdict-fm"
 
     struct Topic: Codable { let slug: String; let title: String; let blurb: String }
     struct Item: Codable { let slug: String; let title: String; let tldr: String; let truth: [String] }
@@ -71,10 +72,20 @@ struct Replay: AsyncParsableCommand {
 
     func run() async throws {
         let fx = try JSONDecoder().decode(Fixture.self, from: Data(contentsOf: URL(fileURLWithPath: fixture)))
-        let backend = FoundationModelsBackend()
+        let backend: any DecisionBackend
+        do {
+            backend = try Backends.make(model: model)
+        } catch {
+            IO.stderr("INDETERMINATE: \(error.message) — \(error.remedy)")
+            throw Exit.unavailable
+        }
         if case .unavailable(let reason, let remedy) = backend.availability() {
             IO.stderr("INDETERMINATE: \(reason) — \(remedy)")
             throw Exit.unavailable
+        }
+        if let laya = backend as? LayaCoreMLBackend {
+            let t = try laya.warmUp()
+            print("laya: model loaded in \(t.wholeMilliseconds) ms (excluded from per-item latency)")
         }
         let engine = Verdict(backend: backend)
         let options = fx.topics.map { ChoiceOption(key: $0.slug, description: $0.title) }

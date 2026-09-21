@@ -18,7 +18,7 @@ struct VerdictCLI: AsyncParsableCommand {
             2 usage or validation · 3 model unavailable (indeterminate, never a fallback).
             """,
         version: "0.1.0",
-        subcommands: [Status.self, Decide.self, Replay.self]
+        subcommands: [Status.self, Decide.self, Replay.self, Bench.self]
     )
 }
 

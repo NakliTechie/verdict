@@ -19,6 +19,7 @@ struct Decide: AsyncParsableCommand {
     @Flag(help: "Ask a yes/no question (with --ask).") var noul = false
     @Option(help: "The question's instructions.") var ask: String?
     @Option(help: "Question id in the output.") var id = "q"
+    @Option(help: "Backend: verdict-fm (Foundation Models, default) or verdict-laya (Laya Core ML). Overrides the request's `model`.") var model: String?
     @Option(help: "1 = greedy (no confidence); N >= 2 = N sampled runs, agreement confidence.") var votes = 1
     @Option(help: "Base seed for sampled runs.") var seed: UInt64 = 1
     @Flag(help: "One-line JSON.") var compact = false
@@ -36,7 +37,14 @@ struct Decide: AsyncParsableCommand {
             throw Exit.usage
         }
         let core = wire.toCore()
-        let engine = Verdict(backend: FoundationModelsBackend())
+        let backend: any DecisionBackend
+        do {
+            backend = try Backends.make(model: model ?? wire.model)
+        } catch {
+            IO.print(Wire.ErrorBody(error), compact: compact)
+            throw error.code == .modelUnavailable ? Exit.unavailable : Exit.usage
+        }
+        let engine = Verdict(backend: backend)
         let response: Response
         do {
             response = try await engine.decide(core)
@@ -44,7 +52,7 @@ struct Decide: AsyncParsableCommand {
             IO.print(Wire.ErrorBody(error), compact: compact)
             throw error.code == .modelUnavailable ? Exit.unavailable : Exit.usage
         }
-        IO.print(Wire.Response(response, request: core, model: wire.model ?? Wire.defaultModel), compact: compact)
+        IO.print(Wire.Response(response, request: core, model: Backends.canonicalModel(model ?? wire.model)), compact: compact)
         if response.failed { throw Exit.failed }
     }
 
