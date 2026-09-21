@@ -98,7 +98,7 @@ public enum VerdictServer {
         "max_questions": Limits.maxQuestions, "max_options": Limits.maxOptions, "min_options": Limits.minOptions,
         "max_body_bytes": maxBodyBytes, "max_votes": Limits.maxVotes,
     ]
-    public static let version = "0.2.0"
+    public static let version = "0.1.0"
 
     struct HealthBody: Encodable {
         struct Backend: Encodable { let backend: String; let available: Bool; let reason: String?; let confidence: String }
