@@ -47,6 +47,8 @@ A stock Jev client works unchanged: send `"model": "jev-latest"` and the default
 
 Calling verdictd from another program (token handshake, the three question types, error handling per HTTP status, picking a backend): **[docs/INTEGRATION.md](docs/INTEGRATION.md)**.
 
+How verdict's backends compare to a local Jev-mechanism engine (Qwen3.5-2B, real logprobs) on the same tasks, and the honest boundary on any "better than Jev" claim: **[docs/COMPARISON.md](docs/COMPARISON.md)**. Headline: on the clipboard routing join, verdict-fm, Laya, and llamacpp-jev all reach ~1.0 join precision with zero secret leaks; verdict-fm has the best per-question answers; llamacpp-jev is 3× faster but its raw probabilities are overconfident (a single temperature removes 76% of the calibration error, reproducing the field's own Jev critique locally).
+
  `swift test`: 29 tests in 6 suites (offline contract tests over a fake backend; tokenizer and sequence parity against the laya-coreml Python port; a live Laya fidelity test when the checkpoint is present). `verdict replay` over the 40-item fm-bench fixture on macOS 26.5.2, M4 Pro:
 
 | backend · run | top-1 | out-of-schema | refusals | P50 / item | confidence | record |

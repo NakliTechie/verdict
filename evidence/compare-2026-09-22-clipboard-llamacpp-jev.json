@@ -1,0 +1,747 @@
+{
+ "summary": {
+  "label": "llamacpp-jev (Qwen3.5-2B)",
+  "url": "http://127.0.0.1:8000",
+  "model": "jev-latest",
+  "items": 71,
+  "per_question_accuracy": {
+   "is_url": 0.887,
+   "is_contact": 0.887,
+   "is_code": 0.634,
+   "is_secret": 0.958
+  },
+  "surface_precision": 1.0,
+  "surface_recall": 0.781,
+  "confusion": {
+   "tp": 25,
+   "fp": 0,
+   "fn": 7,
+   "tn": 39
+  },
+  "secret_leaks": 0,
+  "question_failures": 0,
+  "has_probabilities": true,
+  "latency_p50_ms": 302.31404304504395,
+  "latency_p90_ms": 313.97104263305664,
+  "calibration": {
+   "n": 284,
+   "ece_raw": 0.1883,
+   "fitted_temperature": 0.25,
+   "ece_test_before": 0.2057,
+   "ece_test_after": 0.049,
+   "recalibration_gain": 0.1567
+  }
+ },
+ "items": [
+  {
+   "id": "api_key-1",
+   "class": "api_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "code-6",
+   "class": "code",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "email-4",
+   "class": "email",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "private_key-2",
+   "class": "private_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "email-2",
+   "class": "email",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": true,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "api_key-10",
+   "class": "api_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "api_key-5",
+   "class": "api_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "prose-2",
+   "class": "prose",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "phone-2",
+   "class": "phone",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "prose-5",
+   "class": "prose",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "pure_url-2",
+   "class": "pure_url",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "password-3",
+   "class": "password",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": true,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "url_secret-2",
+   "class": "url_secret",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "private_key-1",
+   "class": "private_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "phone-1",
+   "class": "phone",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": true,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "contact_card-10",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "code-2",
+   "class": "code",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "contact_card-4",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "email-5",
+   "class": "email",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": true,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "private_key-3",
+   "class": "private_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "email-1",
+   "class": "email",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": true,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "pure_url-3",
+   "class": "pure_url",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "api_key-6",
+   "class": "api_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "email-7",
+   "class": "email",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "api_key-8",
+   "class": "api_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "password-6",
+   "class": "password",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "contact_card-6",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "address-4",
+   "class": "address",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "contact_card-1",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "prose-4",
+   "class": "prose",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "private_key-4",
+   "class": "private_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "api_key-3",
+   "class": "api_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "prose-3",
+   "class": "prose",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "email-3",
+   "class": "email",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "url_secret-6",
+   "class": "url_secret",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "contact_card-3",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "api_key-9",
+   "class": "api_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "url_secret-1",
+   "class": "url_secret",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "contact_card-5",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "contact_card-7",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "pure_url-5",
+   "class": "pure_url",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "contact_card-2",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "code-7",
+   "class": "code",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "password-5",
+   "class": "password",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": true,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "pure_url-1",
+   "class": "pure_url",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "phone-4",
+   "class": "phone",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "code-3",
+   "class": "code",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "address-1",
+   "class": "address",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "email-8",
+   "class": "email",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "url_secret-3",
+   "class": "url_secret",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "prose-6",
+   "class": "prose",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "contact_card-9",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "phone-3",
+   "class": "phone",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "api_key-2",
+   "class": "api_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "pure_url-6",
+   "class": "pure_url",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "pure_url-4",
+   "class": "pure_url",
+   "answers": {
+    "is_url": true,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "address-3",
+   "class": "address",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "password-4",
+   "class": "password",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "contact_card-8",
+   "class": "contact_card",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "url_secret-4",
+   "class": "url_secret",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "address-2",
+   "class": "address",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "api_key-7",
+   "class": "api_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "code-5",
+   "class": "code",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "url_secret-5",
+   "class": "url_secret",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "api_key-4",
+   "class": "api_key",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "password-2",
+   "class": "password",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "password-1",
+   "class": "password",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": true,
+    "is_secret": true
+   }
+  },
+  {
+   "id": "code-4",
+   "class": "code",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "code-1",
+   "class": "code",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": true,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "email-6",
+   "class": "email",
+   "answers": {
+    "is_url": false,
+    "is_contact": true,
+    "is_code": false,
+    "is_secret": false
+   }
+  },
+  {
+   "id": "prose-1",
+   "class": "prose",
+   "answers": {
+    "is_url": false,
+    "is_contact": false,
+    "is_code": false,
+    "is_secret": false
+   }
+  }
+ ]
+}
