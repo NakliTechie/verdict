@@ -51,6 +51,13 @@ public enum BackendAvailability: Sendable, Equatable {
 
 public protocol DecisionBackend: Sendable {
     var name: String { get }
+    /// True when one call returns a real distribution (Laya). The engine then runs exactly one sample
+    /// per question and reports `confidenceKind = .decoded`; `Policy.votes` is ignored.
+    var producesDistribution: Bool { get }
     func availability() -> BackendAvailability
     func sample(state: String, question: Question, sampling: Sampling) async throws -> Sample
+}
+
+public extension DecisionBackend {
+    var producesDistribution: Bool { false }
 }

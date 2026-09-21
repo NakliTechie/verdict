@@ -14,6 +14,8 @@ import VerdictCore
         let s = PromptCompiler.compile(state: "x", question: Fixtures.score)
         #expect(s.instructions.contains("- 0: Routine\n- 1: Urgent\n- 2: Emergency"))
         let n = PromptCompiler.compile(state: "x", question: Fixtures.noul)
-        #expect(n.instructions.contains("Answer true if: Yes. Answer false if: No."))
+        #expect(n.instructions.contains("Answer true if the statement holds"))
+        let n2 = PromptCompiler.compile(state: "x", question: .noul(NoulQuestion(instructions: "i", yes: "Yes", no: "No")))
+        #expect(n2.instructions.contains("Answer true if: Yes. Answer false if: No."))
     }
 }

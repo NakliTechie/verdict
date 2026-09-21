@@ -69,7 +69,7 @@ public struct Verdict: Sendable {
         let question = entry.question
         var labels: [String] = []
         var greedyDistribution: [String: Double]? = nil
-        let runs = max(1, policy.votes)
+        let runs = backend.producesDistribution ? 1 : max(1, policy.votes)
         for v in 0..<runs {
             let sampling: Sampling = runs == 1 ? .greedy : .random(seed: policy.seed(forVote: v))
             let sample: Sample

@@ -31,7 +31,10 @@ public enum PromptCompiler {
             let lines = q.levels.enumerated().map { "- \($0.offset): \($0.element)" }
             return "Levels (index: description), lowest to highest:\n" + lines.joined(separator: "\n")
         case .noul(let q):
-            return "Answer true if: \(q.yes). Answer false if: \(q.no)."
+            switch (q.yes, q.no) {
+            case (nil, nil): return "Answer true if the statement holds for the material, false if it does not."
+            default: return "Answer true if: \(q.yes ?? "yes, the statement holds"). Answer false if: \(q.no ?? "no, the statement does not hold")."
+            }
         }
     }
 

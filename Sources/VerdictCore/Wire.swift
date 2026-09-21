@@ -221,7 +221,11 @@ extension Wire {
             switch q {
             case .choice(let c): choiceCriteria = Dictionary(uniqueKeysWithValues: c.options.map { ($0.key, $0.description) })
             case .score(let s): scoreCriteria = s.levels
-            case .noul(let n): noulCriteria = ["true": n.yes, "false": n.no]
+            case .noul(let n):
+                var c: [String: String] = [:]
+                if let y = n.yes { c["true"] = y }
+                if let f = n.no { c["false"] = f }
+                noulCriteria = c.isEmpty ? nil : c
             }
         }
 
@@ -258,8 +262,7 @@ extension Wire {
             case "score":
                 return .score(ScoreQuestion(instructions: instructions, levels: scoreCriteria ?? []))
             case "noul":
-                return .noul(NoulQuestion(instructions: instructions,
-                                          yes: noulCriteria?["true"] ?? "Yes", no: noulCriteria?["false"] ?? "No"))
+                return .noul(NoulQuestion(instructions: instructions, yes: noulCriteria?["true"], no: noulCriteria?["false"]))
             default:
                 throw Failure(id: nil, code: .validation, message: "Unknown question type `\(type)`.")
             }

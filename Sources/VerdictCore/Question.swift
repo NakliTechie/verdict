@@ -36,9 +36,10 @@ public struct ScoreQuestion: Sendable, Equatable {
 
 public struct NoulQuestion: Sendable, Equatable {
     public var instructions: String
-    public var yes: String
-    public var no: String
-    public init(instructions: String, yes: String = "Yes", no: String = "No") {
+    /// Meaning of true / false. nil = the caller gave none; each backend renders its own trained default.
+    public var yes: String?
+    public var no: String?
+    public init(instructions: String, yes: String? = nil, no: String? = nil) {
         self.instructions = instructions
         self.yes = yes
         self.no = no
