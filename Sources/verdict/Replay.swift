@@ -16,6 +16,7 @@ struct Replay: AsyncParsableCommand {
     @Option(help: "Minimum top-1 hits to pass. Never lower this; raise it in plan/history.md.") var gate = 26
     @Option(help: "Write the full run record here (atomic).") var out: String?
     @Option(help: "Prior record; prints the items whose correctness flipped.") var baseline: String?
+    @Option(help: "The question's instructions (caller-side text; default is the fm-bench question).") var instructions = Replay.question
 
     struct Topic: Codable { let slug: String; let title: String; let blurb: String }
     struct Item: Codable { let slug: String; let title: String; let tldr: String; let truth: [String] }
@@ -84,7 +85,7 @@ struct Replay: AsyncParsableCommand {
         for (i, it) in items.enumerated() {
             let request = Request(
                 state: "Title: \(it.title)\nSummary: \(it.tldr)",
-                questions: [QuestionEntry(id: "topic", question: .choice(ChoiceQuestion(instructions: Self.question, options: options)))],
+                questions: [QuestionEntry(id: "topic", question: .choice(ChoiceQuestion(instructions: instructions, options: options)))],
                 policy: policy)
             guard let response = await Self.decideOrNil(engine, request, item: i + 1) else { throw Exit.unavailable }
             let outcome = response.outcomes[0].outcome
@@ -121,7 +122,7 @@ struct Replay: AsyncParsableCommand {
         }
 
         let record = Record(run: ISO8601DateFormatter().string(from: Date()), os: IO.osVersion, backend: backend.name,
-                            fixture: fixture, votes: votes, seed: seed, question: Self.question, items: records, summary: summary)
+                            fixture: fixture, votes: votes, seed: seed, question: instructions, items: records, summary: summary)
         if let out {
             try IO.writeAtomically(try Wire.encoder().encode(record), to: out)
             print("record:           \(out)")
