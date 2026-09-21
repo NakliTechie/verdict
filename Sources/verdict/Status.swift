@@ -18,15 +18,18 @@ struct Status: AsyncParsableCommand {
         let os: String
         let supported_languages: Int
         let limits: [String: Int]
-        let newest_gate_record: GateRecord?
+        let gate_records: [GateRecord]
     }
 
     struct GateRecord: Encodable {
         let path: String
-        let gate_passed: Bool?
+        let run: String?
+        let votes: Int?
         let top1: Int?
         let completed: Int?
-        let votes: Int?
+        let out_of_schema: Int?
+        let latency_p50_ms: Int?
+        let gate_passed: Bool?
     }
 
     func run() async throws {
@@ -41,22 +44,29 @@ struct Status: AsyncParsableCommand {
             os: IO.osVersion,
             supported_languages: backend.supportedLanguageCount,
             limits: ["max_questions": Limits.maxQuestions, "max_options": Limits.maxOptions, "min_options": Limits.minOptions],
-            newest_gate_record: Self.newestRecord(in: evidence))
+            gate_records: Self.records(in: evidence))
         IO.print(body, compact: compact)
         if !body.available { throw Exit.unavailable }
     }
 
-    static func newestRecord(in dir: String) -> GateRecord? {
-        guard let names = try? FileManager.default.contentsOfDirectory(atPath: dir) else { return nil }
-        guard let newest = names.filter({ $0.hasPrefix("replay-") && $0.hasSuffix(".json") }).sorted().last else { return nil }
-        let path = dir + "/" + newest
-        guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
-              let obj = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-              let summary = obj["summary"] as? [String: Any] else {
-            return GateRecord(path: path, gate_passed: nil, top1: nil, completed: nil, votes: nil)
+    /// Every committed gate record, oldest first by its `run` timestamp. One line each; bounded by
+    /// the number of gate runs, never by fixture or model size.
+    static func records(in dir: String) -> [GateRecord] {
+        guard let names = try? FileManager.default.contentsOfDirectory(atPath: dir) else { return [] }
+        let records = names.filter { $0.hasPrefix("replay-") && $0.hasSuffix(".json") }.map { name -> GateRecord in
+            let path = dir + "/" + name
+            guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
+                  let obj = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  let summary = obj["summary"] as? [String: Any] else {
+                return GateRecord(path: path, run: nil, votes: nil, top1: nil, completed: nil,
+                                  out_of_schema: nil, latency_p50_ms: nil, gate_passed: nil)
+            }
+            return GateRecord(path: path, run: obj["run"] as? String, votes: obj["votes"] as? Int,
+                              top1: summary["top1"] as? Int, completed: summary["completed"] as? Int,
+                              out_of_schema: summary["out_of_schema"] as? Int,
+                              latency_p50_ms: summary["latency_p50_ms"] as? Int,
+                              gate_passed: summary["gate_passed"] as? Bool)
         }
-        return GateRecord(path: path, gate_passed: summary["gate_passed"] as? Bool,
-                          top1: summary["top1"] as? Int, completed: summary["completed"] as? Int,
-                          votes: obj["votes"] as? Int)
+        return records.sorted { ($0.run ?? "") < ($1.run ?? "") }
     }
 }

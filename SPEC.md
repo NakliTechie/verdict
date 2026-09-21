@@ -12,7 +12,7 @@ contract makes every call self-describing and every outcome branchable.
 
 | Principle | How verdict answers it |
 |---|---|
-| One perception act | `verdict status --json`: backend, availability with reason and remedy, OS build, model use case, limits, supported-language count, and the newest `evidence/replay-*.json` gate result. Fixed size. Exit 0 or 3 says whether a `decide` can succeed before one is attempted. |
+| One perception act | `verdict status --json`: backend, availability with reason and remedy, OS build, model use case, limits, supported-language count, and one line per `evidence/replay-*.json` gate record. Grows only with the number of gate runs. Exit 0 or 3 says whether a `decide` can succeed before one is attempted. |
 | Machine-decidable | `decide` prints exactly one JSON document, always. `code`, `confidence_kind`, `type`, and exit codes are closed vocabularies (§3, §6, §7). Every failure carries `retryable: true|false`. Nothing is inferred from prose. |
 | One verdict per next action | Exit `0` consume `answers` · `1` read `failures[id].remedy` (or the replay summary) · `2` fix the invocation, the message names the flag · `3` fix the environment, the remedy names the setting. No exit code covers two actions. |
 | Bounded output | A `decide` response grows with `questions × options` only (the `probabilities` maps). `replay` prints one line per fixture item plus one summary. Nothing grows with model size, OS, history, or vault size. |
@@ -249,8 +249,8 @@ verdict replay <fixture.json> [--limit N] [--votes N] [--gate 26] [--out <record
 - `decide --example` prints the §3 example request and exits 0.
 - `replay --baseline` prints one line per item whose correctness flipped against the prior record.
 - `status` is the one perception act: backend name, availability + reason + remedy, OS version,
-  limits (`max_options: 64`, `max_questions: 64`), supported languages count, newest gate record
-  (`evidence/`). Exit 0 / 3.
+  limits (`max_options: 64`, `max_questions: 64`), supported languages count, and one line per gate
+  record in `evidence/` (run, votes, top-1, out-of-schema, P50, pass). Exit 0 / 3.
 
 ## §8 Verifier — fixture replay (the gate)
 
