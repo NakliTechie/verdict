@@ -14,7 +14,7 @@ let package = Package(
     targets: [
         .target(
             name: "VerdictCore",
-            linkerSettings: [.linkedFramework("FoundationModels")]
+            linkerSettings: [.linkedFramework("FoundationModels"), .linkedFramework("CoreML")]
         ),
         .executableTarget(
             name: "verdict",
@@ -25,7 +25,8 @@ let package = Package(
         ),
         .testTarget(
             name: "VerdictCoreTests",
-            dependencies: ["VerdictCore"]
+            dependencies: ["VerdictCore"],
+            resources: [.copy("Fixtures")]
         ),
     ]
 )
