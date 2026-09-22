@@ -71,7 +71,7 @@ Benchmarks and the honest "not better than the rest" boundary: [docs/COMPARISON.
 
 ## Pointers
 
-[SPEC.md](SPEC.md) (contract) · [docs/INTEGRATION.md](docs/INTEGRATION.md) (call it) · [docs/COMPARISON.md](docs/COMPARISON.md) (numbers) · [llms.txt](llms.txt) (agent face)
+[SPEC.md](SPEC.md) (contract) · [docs/INTEGRATION.md](docs/INTEGRATION.md) (call it) · [docs/ROUTING.md](docs/ROUTING.md) (which backend) · [docs/COMPARISON.md](docs/COMPARISON.md) (numbers) · [llms.txt](llms.txt) (agent face)
 
 ## License
 

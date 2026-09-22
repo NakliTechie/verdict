@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "types": {
+    "clipboard": {
+      "_why": "content-sensing / extraction — verdict-fm leads (0.988 precision) and is zero-install",
+      "model": "verdict-fm",
+      "questions": {
+        "is_url":     {"type": "noul", "instructions": "Is the text a single web URL?"},
+        "is_secret":  {"type": "noul", "instructions": "Does the text contain a credential (API key, token, password, private key)?"},
+        "is_contact": {"type": "noul", "instructions": "Is the text a person's contact details?"}
+      }
+    },
+    "workflow_decision": {
+      "_why": "typed workflow / policy-gating / agent-control — verdict-laya is the in-distribution specialist (0.73-0.80)",
+      "model": "verdict-laya",
+      "questions": {
+        "action":   {"type": "choice", "instructions": "What should the agent do?", "criteria": ["continue", "human_review", "escalate", "close"]},
+        "urgency":  {"type": "score",  "instructions": "How urgent is this?", "criteria": ["low", "normal", "high", "critical"]},
+        "safe":     {"type": "noul",   "instructions": "Is it safe to proceed without human sign-off?"}
+      }
+    },
+    "customer_service": {
+      "_why": "customer-service triage — Qwen3.5-4B via llamacpp-jev wins this domain (0.90); needs the optional 4B backend running",
+      "model": "jev-latest",
+      "questions": {
+        "intent": {"type": "choice", "instructions": "What does the customer want?", "criteria": ["billing", "technical", "account", "delivery", "other"]}
+      }
+    }
+  }
+}
