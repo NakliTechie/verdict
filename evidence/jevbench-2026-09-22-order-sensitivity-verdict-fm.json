@@ -1,0 +1,1403 @@
+{
+ "summary": {
+  "model": "verdict-fm",
+  "choice_tasks": 139,
+  "accuracy_default": 0.619,
+  "accuracy_reversed": 0.612,
+  "flips": 23,
+  "flip_rate": 0.165,
+  "agree": 0.835
+ },
+ "items": [
+  {
+   "id": "easy-intent-00",
+   "tier": "public",
+   "expected": "track_order",
+   "default": "track_order",
+   "reversed": "track_order",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-intent-01",
+   "tier": "public",
+   "expected": "cancel_order",
+   "default": "cancel_order",
+   "reversed": "cancel_order",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-intent-02",
+   "tier": "public",
+   "expected": "change_address",
+   "default": "change_address",
+   "reversed": "change_address",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-intent-03",
+   "tier": "public",
+   "expected": "report_damage",
+   "default": "report_damage",
+   "reversed": "report_damage",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-intent-04",
+   "tier": "public",
+   "expected": "billing_question",
+   "default": "billing_question",
+   "reversed": "billing_question",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-intent-05",
+   "tier": "public",
+   "expected": "track_order",
+   "default": "track_order",
+   "reversed": "track_order",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-intent-06",
+   "tier": "public",
+   "expected": "set_alarm",
+   "default": "set_alarm",
+   "reversed": "set_alarm",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-intent-07",
+   "tier": "public",
+   "expected": "play_music",
+   "default": "play_music",
+   "reversed": "play_music",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-intent-08",
+   "tier": "public",
+   "expected": "weather",
+   "default": "weather",
+   "reversed": "weather",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-intent-09",
+   "tier": "public",
+   "expected": "send_message",
+   "default": "send_message",
+   "reversed": "send_message",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-intent-10",
+   "tier": "public",
+   "expected": "turn_off_lights",
+   "default": "turn_off_lights",
+   "reversed": "turn_off_lights",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-intent-11",
+   "tier": "public",
+   "expected": "set_alarm",
+   "default": "set_alarm",
+   "reversed": "set_alarm",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-extraction-00",
+   "tier": "public",
+   "expected": "paypal",
+   "default": "paypal",
+   "reversed": "paypal",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-extraction-01",
+   "tier": "public",
+   "expected": "cash",
+   "default": "cash",
+   "reversed": "cash",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-extraction-02",
+   "tier": "public",
+   "expected": "bank_transfer",
+   "default": "bank_transfer",
+   "reversed": "bank_transfer",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-extraction-03",
+   "tier": "public",
+   "expected": "high",
+   "default": "high",
+   "reversed": "high",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-extraction-04",
+   "tier": "public",
+   "expected": "low",
+   "default": "low",
+   "reversed": "low",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-extraction-05",
+   "tier": "public",
+   "expected": "urgent",
+   "default": "urgent",
+   "reversed": "urgent",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-extraction-06",
+   "tier": "public",
+   "expected": "M",
+   "default": "M",
+   "reversed": "M",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-extraction-07",
+   "tier": "public",
+   "expected": "XL",
+   "default": "XL",
+   "reversed": "XL",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-extraction-08",
+   "tier": "public",
+   "expected": "thursday",
+   "default": "thursday",
+   "reversed": "thursday",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-extraction-09",
+   "tier": "public",
+   "expected": "monday",
+   "default": "monday",
+   "reversed": "monday",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-extraction-10",
+   "tier": "public",
+   "expected": "friday",
+   "default": "friday",
+   "reversed": "friday",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-extraction-11",
+   "tier": "public",
+   "expected": "credit_card",
+   "default": "credit_card",
+   "reversed": "credit_card",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-tool_selection-00",
+   "tier": "public",
+   "expected": "get_weather",
+   "default": "get_weather",
+   "reversed": "get_weather",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-tool_selection-01",
+   "tier": "public",
+   "expected": "send_email",
+   "default": "send_email",
+   "reversed": "send_email",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-tool_selection-02",
+   "tier": "public",
+   "expected": "create_calendar_event",
+   "default": "create_calendar_event",
+   "reversed": "create_calendar_event",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-tool_selection-03",
+   "tier": "public",
+   "expected": "convert_currency",
+   "default": "convert_currency",
+   "reversed": "convert_currency",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-tool_selection-04",
+   "tier": "public",
+   "expected": "translate_text",
+   "default": "translate_text",
+   "reversed": "translate_text",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-tool_selection-05",
+   "tier": "public",
+   "expected": "create_calendar_event",
+   "default": "create_calendar_event",
+   "reversed": "create_calendar_event",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-tool_selection-06",
+   "tier": "public",
+   "expected": "search_flights",
+   "default": "search_flights",
+   "reversed": "search_flights",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-tool_selection-07",
+   "tier": "public",
+   "expected": "book_restaurant",
+   "default": "book_restaurant",
+   "reversed": "book_restaurant",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-tool_selection-08",
+   "tier": "public",
+   "expected": "set_reminder",
+   "default": "set_reminder",
+   "reversed": "set_reminder",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-tool_selection-09",
+   "tier": "public",
+   "expected": "get_stock_price",
+   "default": "get_stock_price",
+   "reversed": "get_stock_price",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-tool_selection-10",
+   "tier": "public",
+   "expected": "call_taxi",
+   "default": "call_taxi",
+   "reversed": "call_taxi",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "easy-tool_selection-11",
+   "tier": "public",
+   "expected": "set_reminder",
+   "default": "set_reminder",
+   "reversed": "set_reminder",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-a-long_policy-01",
+   "tier": "public",
+   "expected": "pay_subject_to_15000_sublimit",
+   "default": null,
+   "reversed": null,
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-a-long_policy-04",
+   "tier": "public",
+   "expected": "cfo",
+   "default": "budget_holder",
+   "reversed": "cfo",
+   "default_ok": false,
+   "reversed_ok": true,
+   "flipped": true
+  },
+  {
+   "id": "hard-opus-a-long_policy-08",
+   "tier": "public",
+   "expected": "parts_covered_labour_charged",
+   "default": "parts_covered_labour_charged",
+   "reversed": "pro_rata_replacement_credit",
+   "default_ok": true,
+   "reversed_ok": false,
+   "flipped": true
+  },
+  {
+   "id": "hard-opus-a-long_policy-09",
+   "tier": "public",
+   "expected": "license_required",
+   "default": "license_exception_lvs",
+   "reversed": "no_license_required",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-a-long_policy-17",
+   "tier": "public",
+   "expected": "database_oncall",
+   "default": "security_incident_response",
+   "reversed": "platform_oncall",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-a-probability-04",
+   "tier": "public",
+   "expected": "on_time",
+   "default": "late",
+   "reversed": "late",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-a-probability-07",
+   "tier": "public",
+   "expected": "escalated",
+   "default": "resolved_first_contact",
+   "reversed": "resolved_first_contact",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-a-temporal_numeric-07",
+   "tier": "public",
+   "expected": "sep_26",
+   "default": "sep_24",
+   "reversed": "sep_28",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-b-ambiguous-02",
+   "tier": "public",
+   "expected": "real_incident",
+   "default": "false_positive",
+   "reversed": "false_positive",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-b-ambiguous-03",
+   "tier": "public",
+   "expected": "time_barred",
+   "default": "insufficient_information",
+   "reversed": "insufficient_information",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-b-ambiguous-07",
+   "tier": "public",
+   "expected": "within_policy",
+   "default": "over_limit",
+   "reversed": "over_limit",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-b-ambiguous-09",
+   "tier": "public",
+   "expected": "legitimate",
+   "default": "compromised",
+   "reversed": "compromised",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-b-ambiguous-10",
+   "tier": "public",
+   "expected": "ask_user_which_alex",
+   "default": "ask_user_which_alex",
+   "reversed": "ask_user_which_alex",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-b-ambiguous-11",
+   "tier": "public",
+   "expected": "cannot_determine",
+   "default": "cannot_determine",
+   "reversed": "cannot_determine",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-b-ambiguous-13",
+   "tier": "public",
+   "expected": "cannot_determine",
+   "default": "split_50_50",
+   "reversed": "cannot_determine",
+   "default_ok": false,
+   "reversed_ok": true,
+   "flipped": true
+  },
+  {
+   "id": "hard-opus-b-multi_hop-03",
+   "tier": "public",
+   "expected": "tier3_cfo",
+   "default": "tier2_department_head",
+   "reversed": "tier2_department_head",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-b-multi_hop-04",
+   "tier": "public",
+   "expected": "bjorn",
+   "default": "dmitri",
+   "reversed": "dmitri",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-b-multi_hop-07",
+   "tier": "public",
+   "expected": "credit_20_percent",
+   "default": "credit_25_percent",
+   "reversed": "credit_50_percent",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-b-probability-01",
+   "tier": "public",
+   "expected": "merchant_wins",
+   "default": "customer_wins",
+   "reversed": "customer_wins",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-b-probability-02",
+   "tier": "public",
+   "expected": "upstream_provider",
+   "default": "bad_push",
+   "reversed": "bad_push",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-b-probability-04",
+   "tier": "public",
+   "expected": "attended",
+   "default": "attended",
+   "reversed": "attended",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-b-probability-06",
+   "tier": "public",
+   "expected": "upheld",
+   "default": "modified",
+   "reversed": "overturned",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-b-tradeoff-01",
+   "tier": "public",
+   "expected": "escalate_to_engineering",
+   "default": "escalate_to_security",
+   "reversed": "escalate_to_engineering",
+   "default_ok": false,
+   "reversed_ok": true,
+   "flipped": true
+  },
+  {
+   "id": "hard-opus-b-tradeoff-03",
+   "tier": "public",
+   "expected": "order_b",
+   "default": "order_c",
+   "reversed": "order_c",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-b-tradeoff-07",
+   "tier": "public",
+   "expected": "p0_fix_24h",
+   "default": "p2_fix_30d",
+   "reversed": "p1_fix_7d",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-b-tradeoff-12",
+   "tier": "public",
+   "expected": "refund_now",
+   "default": "wait_for_inspection",
+   "reversed": "wait_for_inspection",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-c-long_policy-02",
+   "tier": "public",
+   "expected": "erase_but_retain_transaction_records",
+   "default": "erase_but_retain_transaction_records",
+   "reversed": "restrict_all_pending_legal_hold",
+   "default_ok": true,
+   "reversed_ok": false,
+   "flipped": true
+  },
+  {
+   "id": "hard-opus-c-long_policy-03",
+   "tier": "public",
+   "expected": "eur_400",
+   "default": "eur_200",
+   "reversed": "eur_600",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-c-long_policy-10",
+   "tier": "public",
+   "expected": "credit_minus_restocking_fee",
+   "default": "credit_minus_restocking_fee",
+   "reversed": "full_credit",
+   "default_ok": true,
+   "reversed_ok": false,
+   "flipped": true
+  },
+  {
+   "id": "hard-opus-c-probability-03",
+   "tier": "public",
+   "expected": "kuznets_technik",
+   "default": "ortega_seal_works",
+   "reversed": "halvorsen_polymer",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-c-temporal_numeric-03",
+   "tier": "public",
+   "expected": "eur_692_00",
+   "default": "eur_692_00",
+   "reversed": "eur_812_00",
+   "default_ok": true,
+   "reversed_ok": false,
+   "flipped": true
+  },
+  {
+   "id": "hard-opus-c-temporal_numeric-04",
+   "tier": "public",
+   "expected": "usd_2335_00",
+   "default": "usd_2303_01",
+   "reversed": "usd_2340_00",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-c-temporal_numeric-06",
+   "tier": "public",
+   "expected": "sep_18_book_set",
+   "default": "sep_15_office_chair",
+   "reversed": "sep_21_client_dinner",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-c-temporal_numeric-08",
+   "tier": "public",
+   "expected": "eur_498_81",
+   "default": "eur_506_06",
+   "reversed": "eur_513_69",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-opus-c-temporal_numeric-12",
+   "tier": "public",
+   "expected": "expired_30_month_cap",
+   "default": "expired_24_month_term",
+   "reversed": "expired_30_month_cap",
+   "default_ok": false,
+   "reversed_ok": true,
+   "flipped": true
+  },
+  {
+   "id": "hard-sol-a-adversarial-01",
+   "tier": "public",
+   "expected": "deny_missing_approval",
+   "default": "grant_access",
+   "reversed": "grant_access",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-a-adversarial-07",
+   "tier": "public",
+   "expected": "retain_until_2031",
+   "default": "retain_until_2031",
+   "reversed": "retain_until_2031",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-a-adversarial-11",
+   "tier": "public",
+   "expected": "standard_research",
+   "default": "ethics_review",
+   "reversed": "standard_research",
+   "default_ok": false,
+   "reversed_ok": true,
+   "flipped": true
+  },
+  {
+   "id": "hard-sol-a-multi_hop-01",
+   "tier": "public",
+   "expected": "accept_s2_dusk",
+   "default": "accept_s2_dusk",
+   "reversed": "accept_s2_dusk",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-a-multi_hop-02",
+   "tier": "public",
+   "expected": "security_primary",
+   "default": "executive_bridge",
+   "reversed": "security_primary",
+   "default_ok": false,
+   "reversed_ok": true,
+   "flipped": true
+  },
+  {
+   "id": "hard-sol-a-multi_hop-05",
+   "tier": "public",
+   "expected": "require_director",
+   "default": "pay_manager_approved",
+   "reversed": "pay_manager_approved",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-a-multi_hop-07",
+   "tier": "public",
+   "expected": "admit",
+   "default": "manual_equivalency",
+   "reversed": "admit",
+   "default_ok": false,
+   "reversed_ok": true,
+   "flipped": true
+  },
+  {
+   "id": "hard-sol-a-multi_hop-08",
+   "tier": "public",
+   "expected": "central_engineering",
+   "default": "local_maintenance",
+   "reversed": "local_maintenance",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-a-multi_hop-09",
+   "tier": "public",
+   "expected": "require_steward",
+   "default": "require_steward",
+   "reversed": "confirm_l3",
+   "default_ok": true,
+   "reversed_ok": false,
+   "flipped": true
+  },
+  {
+   "id": "hard-sol-a-multi_hop-10",
+   "tier": "public",
+   "expected": "approve_45_days",
+   "default": "approve_45_days",
+   "reversed": "approve_45_days",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-a-multi_hop-12",
+   "tier": "public",
+   "expected": "needs_authentication",
+   "default": "covered_recurrence",
+   "reversed": "covered_recurrence",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-a-trap-06",
+   "tier": "public",
+   "expected": "keep_open_unresolved",
+   "default": "close_confirmed",
+   "reversed": "keep_open_unresolved",
+   "default_ok": false,
+   "reversed_ok": true,
+   "flipped": true
+  },
+  {
+   "id": "hard-sol-a-trap-08",
+   "tier": "public",
+   "expected": "late",
+   "default": "on_time",
+   "reversed": "on_time",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-a-trap-10",
+   "tier": "public",
+   "expected": "blocked_second_review",
+   "default": "blocked_second_review",
+   "reversed": "blocked_second_review",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-b-long_policy-01",
+   "tier": "public",
+   "expected": "reject_entire_claim",
+   "default": "approve_lodging_only",
+   "reversed": "approve_lodging_only",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-b-long_policy-02",
+   "tier": "public",
+   "expected": "deny_current_export",
+   "default": "analytics_owner_only",
+   "reversed": "privacy_and_security",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-b-long_policy-05",
+   "tier": "public",
+   "expected": "delete_profile_omar_april_and_table",
+   "default": "delete_profile_omar_april_and_table",
+   "reversed": "delete_only_profile",
+   "default_ok": true,
+   "reversed_ok": false,
+   "flipped": true
+  },
+  {
+   "id": "hard-sol-b-long_policy-06",
+   "tier": "public",
+   "expected": "east_ward",
+   "default": "river_arts",
+   "reversed": "river_arts",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-b-routing_hard-01",
+   "tier": "public",
+   "expected": "office_file_repair",
+   "default": "office_file_repair",
+   "reversed": "office_file_repair",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-b-routing_hard-02",
+   "tier": "public",
+   "expected": "ledger_reconciliation",
+   "default": "ledger_reconciliation",
+   "reversed": "ledger_reconciliation",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-b-routing_hard-03",
+   "tier": "public",
+   "expected": "network_dns",
+   "default": "api_platform",
+   "reversed": "network_dns",
+   "default_ok": false,
+   "reversed_ok": true,
+   "flipped": true
+  },
+  {
+   "id": "hard-sol-b-routing_hard-07",
+   "tier": "public",
+   "expected": "release_notarization",
+   "default": "release_notarization",
+   "reversed": "release_notarization",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-b-routing_hard-09",
+   "tier": "public",
+   "expected": "source_access",
+   "default": "source_access",
+   "reversed": "source_access",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-b-temporal_numeric-01",
+   "tier": "public",
+   "expected": "late_by_under_2h",
+   "default": "within_window",
+   "reversed": "within_window",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-b-temporal_numeric-02",
+   "tier": "public",
+   "expected": "over_limit",
+   "default": "over_limit",
+   "reversed": "over_limit",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-b-temporal_numeric-03",
+   "tier": "public",
+   "expected": "9_credits",
+   "default": "12_credits",
+   "reversed": "9_credits",
+   "default_ok": false,
+   "reversed_ok": true,
+   "flipped": true
+  },
+  {
+   "id": "hard-sol-b-temporal_numeric-04",
+   "tier": "public",
+   "expected": "pass",
+   "default": "pass",
+   "reversed": "narrow_fail",
+   "default_ok": true,
+   "reversed_ok": false,
+   "flipped": true
+  },
+  {
+   "id": "hard-sol-c-multi_hop-07",
+   "tier": "public",
+   "expected": "programme_review",
+   "default": "programme_review",
+   "reversed": "release_draw",
+   "default_ok": true,
+   "reversed_ok": false,
+   "flipped": true
+  },
+  {
+   "id": "hard-sol-c-multi_hop-09",
+   "tier": "public",
+   "expected": "bus_substitution",
+   "default": "terminate_oakmere",
+   "reversed": "pass_fen_cross",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-c-multi_hop-11",
+   "tier": "public",
+   "expected": "coverage_excluded",
+   "default": "documentation_needed",
+   "reversed": "coverage_excluded",
+   "default_ok": false,
+   "reversed_ok": true,
+   "flipped": true
+  },
+  {
+   "id": "hard-sol-c-multi_hop-12",
+   "tier": "public",
+   "expected": "conservation_hold",
+   "default": "supervised_delivery",
+   "reversed": "supervised_delivery",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "hard-sol-c-multi_hop-13",
+   "tier": "public",
+   "expected": "normal_release",
+   "default": "normal_release",
+   "reversed": "normal_release",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-intent-01-0",
+   "tier": "public",
+   "expected": "refund",
+   "default": "refund",
+   "reversed": "refund",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-intent-01-1",
+   "tier": "public",
+   "expected": "refund",
+   "default": "refund",
+   "reversed": "refund",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-intent-02-0",
+   "tier": "public",
+   "expected": "status",
+   "default": "status",
+   "reversed": "status",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-intent-02-1",
+   "tier": "public",
+   "expected": "status",
+   "default": "status",
+   "reversed": "status",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-intent-03-0",
+   "tier": "public",
+   "expected": "change_address",
+   "default": "change_address",
+   "reversed": "change_address",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-intent-03-1",
+   "tier": "public",
+   "expected": "change_address",
+   "default": "change_address",
+   "reversed": "change_address",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-intent-04-0",
+   "tier": "public",
+   "expected": "cancel",
+   "default": "cancel",
+   "reversed": "cancel",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-intent-04-1",
+   "tier": "public",
+   "expected": "cancel",
+   "default": "cancel",
+   "reversed": "cancel",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-intent-05-0",
+   "tier": "public",
+   "expected": "other",
+   "default": "refund",
+   "reversed": "refund",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "original-intent-05-1",
+   "tier": "public",
+   "expected": "other",
+   "default": "status",
+   "reversed": "refund",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "original-intent-06-0",
+   "tier": "public",
+   "expected": "status",
+   "default": "status",
+   "reversed": "cancel",
+   "default_ok": true,
+   "reversed_ok": false,
+   "flipped": true
+  },
+  {
+   "id": "original-intent-06-1",
+   "tier": "public",
+   "expected": "status",
+   "default": "status",
+   "reversed": "status",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-extraction-01-0",
+   "tier": "public",
+   "expected": "pickup",
+   "default": "pickup",
+   "reversed": "pickup",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-extraction-01-1",
+   "tier": "public",
+   "expected": "pickup",
+   "default": "pickup",
+   "reversed": "pickup",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-extraction-02-0",
+   "tier": "public",
+   "expected": "unknown",
+   "default": "post",
+   "reversed": "post",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "original-extraction-02-1",
+   "tier": "public",
+   "expected": "unknown",
+   "default": "unknown",
+   "reversed": "unknown",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-extraction-03-0",
+   "tier": "public",
+   "expected": "courier",
+   "default": "courier",
+   "reversed": "courier",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-extraction-03-1",
+   "tier": "public",
+   "expected": "courier",
+   "default": "courier",
+   "reversed": "courier",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-extraction-04-0",
+   "tier": "public",
+   "expected": "post",
+   "default": "post",
+   "reversed": "post",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-extraction-04-1",
+   "tier": "public",
+   "expected": "post",
+   "default": "post",
+   "reversed": "post",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-extraction-05-0",
+   "tier": "public",
+   "expected": "unknown",
+   "default": "unknown",
+   "reversed": "unknown",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-extraction-05-1",
+   "tier": "public",
+   "expected": "unknown",
+   "default": "unknown",
+   "reversed": "courier",
+   "default_ok": true,
+   "reversed_ok": false,
+   "flipped": true
+  },
+  {
+   "id": "original-extraction-06-0",
+   "tier": "public",
+   "expected": "courier",
+   "default": "courier",
+   "reversed": "courier",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-extraction-06-1",
+   "tier": "public",
+   "expected": "courier",
+   "default": "courier",
+   "reversed": "courier",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-routing-01-0",
+   "tier": "public",
+   "expected": "math",
+   "default": "math",
+   "reversed": "math",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-routing-01-1",
+   "tier": "public",
+   "expected": "math",
+   "default": "math",
+   "reversed": "math",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-routing-02-0",
+   "tier": "public",
+   "expected": "coding",
+   "default": "coding",
+   "reversed": "coding",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-routing-02-1",
+   "tier": "public",
+   "expected": "coding",
+   "default": "coding",
+   "reversed": "coding",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-routing-03-0",
+   "tier": "public",
+   "expected": "coding_agent",
+   "default": "coding_agent",
+   "reversed": "coding_agent",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-routing-03-1",
+   "tier": "public",
+   "expected": "coding_agent",
+   "default": "coding_agent",
+   "reversed": "coding_agent",
+   "default_ok": true,
+   "reversed_ok": true,
+   "flipped": false
+  },
+  {
+   "id": "original-routing-04-0",
+   "tier": "public",
+   "expected": "document",
+   "default": "coding_agent",
+   "reversed": "coding_agent",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "original-routing-04-1",
+   "tier": "public",
+   "expected": "document",
+   "default": "coding_agent",
+   "reversed": "coding",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "original-routing-05-0",
+   "tier": "public",
+   "expected": "tools",
+   "default": "tools",
+   "reversed": "coding_agent",
+   "default_ok": true,
+   "reversed_ok": false,
+   "flipped": true
+  },
+  {
+   "id": "original-routing-05-1",
+   "tier": "public",
+   "expected": "tools",
+   "default": "tools",
+   "reversed": "coding_agent",
+   "default_ok": true,
+   "reversed_ok": false,
+   "flipped": true
+  },
+  {
+   "id": "original-routing-06-0",
+   "tier": "public",
+   "expected": "general",
+   "default": "coding_agent",
+   "reversed": "coding_agent",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  },
+  {
+   "id": "original-routing-06-1",
+   "tier": "public",
+   "expected": "general",
+   "default": "coding_agent",
+   "reversed": "coding_agent",
+   "default_ok": false,
+   "reversed_ok": false,
+   "flipped": false
+  }
+ ]
+}
