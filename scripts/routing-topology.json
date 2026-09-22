@@ -14,16 +14,19 @@
       "_why": "typed workflow / policy-gating / agent-control — verdict-laya is the in-distribution specialist (0.73-0.80)",
       "model": "verdict-laya",
       "questions": {
-        "action":   {"type": "choice", "instructions": "What should the agent do?", "criteria": ["continue", "human_review", "escalate", "close"]},
-        "urgency":  {"type": "score",  "instructions": "How urgent is this?", "criteria": ["low", "normal", "high", "critical"]},
-        "safe":     {"type": "noul",   "instructions": "Is it safe to proceed without human sign-off?"}
+        "action":  {"type": "choice", "instructions": "What should the agent do?",
+                     "criteria": {"continue": "proceed automatically", "human_review": "queue for a person", "escalate": "raise to a senior", "close": "no action needed"}},
+        "urgency": {"type": "score",  "instructions": "How urgent is this?",
+                     "criteria": ["low", "normal", "high", "critical"]},
+        "safe":    {"type": "noul",   "instructions": "Is it safe to proceed without human sign-off?"}
       }
     },
     "customer_service": {
-      "_why": "customer-service triage — Qwen3.5-4B via llamacpp-jev wins this domain (0.90); needs the optional 4B backend running",
-      "model": "jev-latest",
+      "_why": "customer-service triage — verdict-laya handles typed intent well; for the Qwen-4B win on this domain, point the client at a SEPARATE llamacpp-jev endpoint (see docs/ROUTING.md), not this field",
+      "model": "verdict-laya",
       "questions": {
-        "intent": {"type": "choice", "instructions": "What does the customer want?", "criteria": ["billing", "technical", "account", "delivery", "other"]}
+        "intent": {"type": "choice", "instructions": "What does the customer want?",
+                    "criteria": {"billing": "payments, refunds, invoices", "technical": "bugs, errors, outages", "account": "login, settings, profile", "delivery": "shipping, tracking", "other": "anything else"}}
       }
     }
   }
