@@ -1,0 +1,27 @@
+{
+ "n": 2000,
+ "n_test": 1000,
+ "has_qwen": true,
+ "test": {
+  "fm": 0.507,
+  "laya": 0.757,
+  "qwen": 0.375,
+  "majority_vote": 0.714,
+  "router_per_source": 0.757,
+  "router_laya_conf_gate": 0.741,
+  "oracle_fm_laya": 0.864,
+  "router_qwen_conf_gate": 0.507,
+  "oracle_all3": 0.887
+ },
+ "fitted": {
+  "laya_conf_threshold": 0.02,
+  "global_best": "laya",
+  "source_picks": {
+   "agent_trace_observability": "laya",
+   "customer_service": "laya",
+   "security_incidents": "laya",
+   "invoice_processing": "laya"
+  },
+  "qwen_conf_threshold": 1.0
+ }
+}

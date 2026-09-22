@@ -1,0 +1,35 @@
+{
+ "n": 10356,
+ "n_test": 5178,
+ "has_qwen": true,
+ "test": {
+  "fm": 0.439,
+  "laya": 0.574,
+  "qwen": 0.481,
+  "majority_vote": 0.592,
+  "router_per_source": 0.601,
+  "router_laya_conf_gate": 0.488,
+  "oracle_fm_laya": 0.755,
+  "router_qwen_conf_gate": 0.514,
+  "oracle_all3": 0.837
+ },
+ "fitted": {
+  "laya_conf_threshold": 0.02,
+  "global_best": "laya",
+  "source_picks": {
+   "workflow-controls-v1/invoice_processing": "laya",
+   "tic_tac_toe-v1": "fm",
+   "vizdoom-basic-v1": "laya",
+   "reasoning-control-v1": "laya",
+   "customer-control-v1": "laya",
+   "painting-geometry-v1": "laya",
+   "snake-v1": "laya",
+   "workflow-controls-v1/customer_service": "qwen",
+   "workflow-controls-v1/security_incidents": "laya",
+   "tile_platformer-v1": "fm",
+   "workflow-controls-v1/agent_trace_observability": "laya",
+   "trex_runner-v1": "laya"
+  },
+  "qwen_conf_threshold": 0.46
+ }
+}

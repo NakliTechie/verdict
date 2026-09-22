@@ -107,42 +107,66 @@ What this shows, honestly:
 - Reproduce or upstream: `scripts/jevbench/` (adapter + guide). Independent cross-check: JevBench's #2
   system is SemIf = Qwen3.5-4B, the same class our own head-to-head found competitive with the Jev mechanism.
 
-## External benchmark: Open-Jev — and the routing lever
+## External benchmark: Open-Jev + typed-decisions — the full 3-backend run
 
 [ZefanCai/Open-Jev](https://huggingface.co/datasets/ZefanCai/Open-Jev) is a large typed-decision set
-(state + choice/score/noul + a gold `target` distribution) spanning business workflows and games. Run
-2026-09-22 on a 224-item stratified sample (20/source, `scripts/run-openjev.py`):
+(state + choice/score/noul + a gold `target`), spanning business workflows and games. Run 2026-09-22 on
+the **entire set** (10,356 decisions) plus the **LocalLLaMA/typed-decisions** test split (2,000
+decisions) — every item through **all three backends**: verdict-fm, verdict-laya, and llamacpp-jev
+Qwen3.5-4B. Routers are fit on a 50/50 train split and scored on the held-out test half
+(`scripts/hybrid-experiment.py` + `scripts/analyze-hybrid.py`; records
+`evidence/hybrid-3way-2026-09-22-{openjev,typed_decisions}.json`).
 
-| backend | accuracy | ECE | Brier vs gold | P50 |
-|---|---|---|---|---|
-| verdict-fm | 0.54 | — (label-only) | — | 544 ms |
-| verdict-laya | 0.54 | 0.137 | 0.494 | 1284 ms |
+**Correction to an earlier sample.** A 224-item stratified sample (20/source) previously reported a
+per-source router lifting accuracy +12 points (0.54 → 0.66, "the real score lever"). The full
+10,356-item run with a proper held-out split **does not reproduce that**: the real per-domain gain is
+**+2.7 points on Open-Jev and ~0 on typed-decisions**. The +12 was a small-sample, no-held-out
+artifact. The full run below is the trustworthy read. (Also fixed in this run: the typed-decisions set
+codes noul gold as true/false while the wire predicts yes/no — scoring it raw deflated every backend;
+`scripts/rescore-typed.py` normalizes it.)
 
-Same aggregate, but **the two backends are complementary** — they win different domains:
+Held-out accuracy — Open-Jev (n_test = 5,178) and typed-decisions (n_test = 1,000):
 
-| domain | verdict-fm | verdict-laya |
+| strategy | Open-Jev | typed-dec | realizable? |
+|---|---|---|---|
+| verdict-fm | 0.439 | 0.507 | single · zero-install |
+| **verdict-laya** | **0.574** | **0.757** | single · 843 MB |
+| Qwen3.5-4B | 0.481 | 0.375 | single · 4B download |
+| majority vote (3) | 0.592 | 0.714 | automatic |
+| **per-domain router** | **0.601** | **0.757** | needs domain label |
+| laya-conf gate | 0.488 | 0.741 | automatic |
+| qwen-conf gate | 0.514 | 0.507 | automatic |
+| oracle (best of 3) | 0.837 | 0.887 | ceiling |
+
+**What it says, honestly:**
+
+1. **Laya is the strongest single backend on both** (0.574 / 0.757). It is the typed-decision-trained
+   specialist and these sets are its home distribution; verdict-fm answers them zero-shot. Read this as
+   in-distribution advantage, not verdict-fm being weak — on the clipboard content-sensing join above,
+   fm leads (0.988).
+2. **No automatic router robustly beats Laya.** Majority vote *wins* on Open-Jev (+1.8) but *loses* on
+   typed-decisions (−4.3), dragged down by Qwen's 0.375 there — a vote inherits its weakest competitive
+   member. Both confidence gates lose on both sets. Confidence is not the routing signal; agreement only
+   helps when every arm is competitive.
+3. **Only per-domain routing is robust** — never worse than the best single backend (it can fall back to
+   Laya per domain), +2.7 on Open-Jev, tie on typed. It needs the caller's domain label, which verdict
+   already carries: the request `model` field and the dataflow `topology.json` (model per event type).
+4. **The complementarity is real but concentrated** — each backend owns a distinct pocket, and Laya owns
+   most of the volume:
+
+| backend | owns (domain) | example margin |
 |---|---|---|
-| tile_platformer | **0.95** | 0.05 |
-| security_incidents (policy gating) | 0.00 | **0.75** |
-| customer-control | 0.35 | **0.70** |
-| invoice_processing | **0.80** | 0.65 |
-| agent_trace / customer_service | **0.80–0.85** | 0.75 |
+| verdict-fm | spatial game states + content-sensing¹ | tile_platformer 0.89 vs laya 0.20 |
+| verdict-laya | 12 of 16 domains — workflows, policy-gating, painting, agent traces | security_incidents 0.73 vs fm 0.08 |
+| Qwen3.5-4B | customer_service workflow | 0.90 vs laya 0.71 |
 
-verdict-fm has a permissive "yes" bias on adversarial policy-gating (security_incidents 0/20); verdict-laya,
-trained on typed decisions, does not — but Laya collapses on some game/spatial tasks that fm handles. Neither
-dominates, so **backend routing is a real score lever**:
+¹ content-sensing (is_url / is_secret) is verdict-fm's turf from the clipboard join (precision 0.988);
+it is **not** in Open-Jev, so a router fit on this set alone under-uses fm — combine both task families.
 
-| strategy | accuracy |
-|---|---|
-| verdict-fm alone | 0.54 |
-| verdict-laya alone | 0.54 |
-| **per-source router** (pick the better backend per task type) | **0.66** (+12 pts) |
-| oracle (per-task best) | 0.79 |
-
-A router that picks the backend by domain lifts accuracy 12 points over either alone — and verdict's
-multi-backend design already enables it: the request `model` field and the dataflow `topology.json`
-(model per event type) let a domain-aware consumer route for free. Records:
-`evidence/openjev-2026-09-22-verdict-{fm,laya}.json`.
+**The lever, restated:** the payoff is a **deterministic per-domain routing table the caller opts
+into**, not an automatic hybrid backend. An automatic 3-way vote would regress on typed-decisions and
+cost 3× compute plus two model downloads for a data-dependent, sometimes-negative delta. verdict's
+multi-backend design already delivers the robust lever for free — pick the backend by task family.
 
 **Option order is not a lever** (`scripts/jevbench-order-test.py`): verdict sorts option keys, so it is
 input-order invariant, and reversing the *presented* order left verdict-fm's accuracy unchanged (0.619 →
