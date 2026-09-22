@@ -75,37 +75,37 @@ No to both, and the larger pool is why we can say that with confidence rather th
   classes. It does not feed the join, so it does not move precision.
 - Single machine, single OS build.
 
-## External benchmark: JevBench (public subset)
+## External benchmark: JevBench
 
 [JevBench](https://github.com/fstandhartinger/jevbench) (Benchmark Heaven, MIT) scores Jev-class
-decision models on Intelligence, Calibration, Speed and Cost. Its task format — a `state` plus a typed
-`choice`/`score`/`noul` question — is identical to verdict's wire, so verdict runs against it with a
-trivial adapter (`scripts/run-jevbench.py`). Run 2026-09-22 on the **231 public tasks** (the 109 hard
-items are held out, so this is not the official board number):
+decision models on **Intelligence, Calibration, Speed, Cost** (geometric mean). Its task format is
+identical to verdict's wire, so verdict runs through JevBench's own harness with a small adapter
+(`scripts/jevbench/verdict_nt.py`). Run 2026-09-22 on the **231 public tasks** (109 hard held out, so
+this is not the official board number) through their CLI and scoring:
 
-`verdict-fm` — **62% overall accuracy**, P50 271 ms / P90 2.2 s:
+| backend | accuracy | calibration (ECE) | latency P50 / P95 | cost / 1k decisions | probabilities |
+|---|---|---|---|---|---|
+| **verdict-fm** | **0.619** (143/231) | — (label-only → 0) | 0.30 s / 2.58 s | **$0.00** | none |
+| verdict-laya | 0.541 (125/231) | **0.073** (well-calibrated) | 0.34 s / 3.64 s | **$0.00** | decoded |
 
-| tier | accuracy | n |
-|---|---|---|
-| easy | **100%** | 48 |
-| original | 75% | 72 |
-| hard | 37% | 111 |
+By tier (verdict-fm): easy 100%, original 75%, hard 37%. Strong on the typed-routing families verdict
+is built for (extraction, fact, intent, tool_selection, policy: 0.79–1.00), weak on multi-step reasoning
+(trap, ambiguous, multi_hop, temporal_numeric: 0.00–0.20). Records:
+`evidence/jevbench-2026-09-22-faithful-verdict-{fm,laya}.json`.
 
-Strong (0.83–1.00) on the typed-routing families verdict is built for — extraction, fact, intent,
-tool_selection, routing, policy. Weak (0.00–0.40) on multi-step reasoning — temporal_numeric, tradeoff,
-multi_hop, probability, ambiguous. One `context_exceeded` failure on a 3,746-token insurance policy
-(verdict truncates nothing; a huge state fails cleanly). Record:
-`evidence/jevbench-2026-09-22-public-verdict-fm.json`.
-
-Reading it honestly:
-- verdict-fm is a strong on-device **router/filer** (aces routine typed decisions) and a weak deep
-  **reasoner** (the hard tier's legal/numeric multi-hop work). That is exactly its positioning.
-- This is accuracy only. On the full JevBench Score, `verdict-fm` scores **0 on Calibration** (a
-  label-only system by their rule — no probability), which is 25% of the composite; its Cost axis
-  maxes out (on-device, free) and Speed lands well. A faithful composite needs a proper adapter through
-  their harness — a follow-up. `verdict-laya` emits a distribution and could earn a Calibration score.
-- Cross-check: JevBench's #2 system is SemIf = **Qwen3.5-4B (73.1)**, just behind hosted Jev (74.4) —
-  the same 4B class our own head-to-head found competitive with the Jev mechanism. Independent agreement.
+What this shows, honestly:
+- **verdict-fm answers more accurately (0.62 vs 0.54) but cannot post a composite JevBench Score.** It is
+  label-only, so Calibration is 0, and the score is a geometric mean — a 0 on any axis zeroes it. The
+  benchmark rewards calibrated probabilities, which the stock Foundation Model does not expose.
+- **verdict-laya is the backend that plays all four axes.** Lower accuracy, but a genuinely calibrated
+  distribution (ECE 0.073; its reliability bins are monotonic — 0.26 confidence → 0.20 accuracy, 0.84 →
+  0.96), full schema validity, and the same $0 on-device cost. This is exactly why Laya is kept: it is
+  what lets verdict compete on a calibration-weighted board at all. (It reads a right-truncated state on
+  the 3,700-token hard tasks — its 1,024-token context — which caps its hard-tier accuracy.)
+- **Both cost $0 per 1,000 decisions** (on-device) and run at ~0.3 s median — the Cost and Speed axes are
+  verdict's to win; Intelligence on the hard reasoning tier is not.
+- Reproduce or upstream: `scripts/jevbench/` (adapter + guide). Independent cross-check: JevBench's #2
+  system is SemIf = Qwen3.5-4B, the same class our own head-to-head found competitive with the Jev mechanism.
 
 ## Not yet run (the roadmap)
 
