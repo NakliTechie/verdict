@@ -107,6 +107,48 @@ What this shows, honestly:
 - Reproduce or upstream: `scripts/jevbench/` (adapter + guide). Independent cross-check: JevBench's #2
   system is SemIf = Qwen3.5-4B, the same class our own head-to-head found competitive with the Jev mechanism.
 
+## External benchmark: Open-Jev — and the routing lever
+
+[ZefanCai/Open-Jev](https://huggingface.co/datasets/ZefanCai/Open-Jev) is a large typed-decision set
+(state + choice/score/noul + a gold `target` distribution) spanning business workflows and games. Run
+2026-09-22 on a 224-item stratified sample (20/source, `scripts/run-openjev.py`):
+
+| backend | accuracy | ECE | Brier vs gold | P50 |
+|---|---|---|---|---|
+| verdict-fm | 0.54 | — (label-only) | — | 544 ms |
+| verdict-laya | 0.54 | 0.137 | 0.494 | 1284 ms |
+
+Same aggregate, but **the two backends are complementary** — they win different domains:
+
+| domain | verdict-fm | verdict-laya |
+|---|---|---|
+| tile_platformer | **0.95** | 0.05 |
+| security_incidents (policy gating) | 0.00 | **0.75** |
+| customer-control | 0.35 | **0.70** |
+| invoice_processing | **0.80** | 0.65 |
+| agent_trace / customer_service | **0.80–0.85** | 0.75 |
+
+verdict-fm has a permissive "yes" bias on adversarial policy-gating (security_incidents 0/20); verdict-laya,
+trained on typed decisions, does not — but Laya collapses on some game/spatial tasks that fm handles. Neither
+dominates, so **backend routing is a real score lever**:
+
+| strategy | accuracy |
+|---|---|
+| verdict-fm alone | 0.54 |
+| verdict-laya alone | 0.54 |
+| **per-source router** (pick the better backend per task type) | **0.66** (+12 pts) |
+| oracle (per-task best) | 0.79 |
+
+A router that picks the backend by domain lifts accuracy 12 points over either alone — and verdict's
+multi-backend design already enables it: the request `model` field and the dataflow `topology.json`
+(model per event type) let a domain-aware consumer route for free. Records:
+`evidence/openjev-2026-09-22-verdict-{fm,laya}.json`.
+
+**Option order is not a lever** (`scripts/jevbench-order-test.py`): verdict sorts option keys, so it is
+input-order invariant, and reversing the *presented* order left verdict-fm's accuracy unchanged (0.619 →
+0.612 over 139 JevBench choice tasks; 16.5% of tasks flip individually but cancel). Unlike the small
+models JevBench flagged (72% → 21% on reversal), verdict has no systematic order bias to exploit or fix.
+
 ## Not yet run (the roadmap)
 
 - **Hosted Jev** — needs a TypeSafe API key (a human step; the harness already speaks its wire).

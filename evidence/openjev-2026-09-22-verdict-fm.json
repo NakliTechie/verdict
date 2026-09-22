@@ -1,0 +1,1826 @@
+{
+ "summary": {
+  "model": "verdict-fm",
+  "n": 224,
+  "accuracy": 0.54,
+  "failed": 15,
+  "latency_p50_ms": 544.0099239349365,
+  "calibration_n": 0,
+  "ece": null,
+  "brier_vs_gold": null,
+  "by_source": {
+   "customer-control-v1": {
+    "acc": 0.35,
+    "n": 20
+   },
+   "painting-geometry-v1": {
+    "acc": 0.55,
+    "n": 20
+   },
+   "reasoning-control-v1": {
+    "acc": 0.4,
+    "n": 20
+   },
+   "snake-v1": {
+    "acc": 0.7,
+    "n": 20
+   },
+   "tic_tac_toe-v1": {
+    "acc": 0.1,
+    "n": 20
+   },
+   "tile_platformer-v1": {
+    "acc": 0.95,
+    "n": 20
+   },
+   "trex_runner-v1": {
+    "acc": 0.25,
+    "n": 4
+   },
+   "vizdoom-basic-v1": {
+    "acc": 0.5,
+    "n": 20
+   },
+   "workflow-controls-v1/agent_trace_observability": {
+    "acc": 0.85,
+    "n": 20
+   },
+   "workflow-controls-v1/customer_service": {
+    "acc": 0.8,
+    "n": 20
+   },
+   "workflow-controls-v1/invoice_processing": {
+    "acc": 0.8,
+    "n": 20
+   },
+   "workflow-controls-v1/security_incidents": {
+    "acc": 0.0,
+    "n": 20
+   }
+  }
+ },
+ "items": [
+  {
+   "id": "reasoning-control-v1:76109:2251:verification",
+   "src": "reasoning-control-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "customer-control-v1:42:116:category",
+   "src": "customer-control-v1",
+   "kind": "choice",
+   "pred": "feature_request",
+   "exp": "feature_request",
+   "ok": true
+  },
+  {
+   "id": "snake-v1:636a589c5a77516bbc55e653:collision_right",
+   "src": "snake-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:27:v0:SAY",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:193:v2:CANCEL",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "tile_platformer-v1:984ae29afd20293f996bc58d:604e73e42fb0bc2b5b935c65",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:9:v1:BLOCK SENDER",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "fail": "no_answer"
+  },
+  {
+   "id": "snake-v1:e4336a246406051d43055647:collision_down",
+   "src": "snake-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:71:v1:FLAG FOR REVIEW",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "tile_platformer-v1:a472a1bd9ce4033157557d81:8dff72901b6c18bac0bf4dbd",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:125:2:choice",
+   "src": "vizdoom-basic-v1",
+   "kind": "choice",
+   "pred": "Strafe left",
+   "exp": "Hold lateral movement",
+   "ok": false
+  },
+  {
+   "id": "trex_runner-v1:c8cacd5e1c60fcc4d00ab054:c5ad1272bf9285c97b76fb3d",
+   "src": "trex_runner-v1",
+   "kind": "choice",
+   "pred": "jump_full",
+   "exp": "jump_short",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:116:v1:REFUND",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "painting-geometry-v1:f53d053754fd363524f68104:silhouette:x0_y1",
+   "src": "painting-geometry-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "customer-control-v1:42:352:has_reproducible_steps",
+   "src": "customer-control-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "customer-control-v1:42:178:has_reproducible_steps",
+   "src": "customer-control-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "tile_platformer-v1:d5a8c55cf605a879aca703c9:a7fcd28a979dbdbc5affa410",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "reasoning-control-v1:76109:923:ordinal",
+   "src": "reasoning-control-v1",
+   "kind": "score",
+   "pred": "1",
+   "exp": "1",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:245:v2:COUNT ONLY",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "painting-geometry-v1:f53d053754fd363524f68104:palette:x0_y3",
+   "src": "painting-geometry-v1",
+   "kind": "choice",
+   "pred": "cyan",
+   "exp": "cyan",
+   "ok": true
+  },
+  {
+   "id": "customer-control-v1:42:382:churn_likelihood_level",
+   "src": "customer-control-v1",
+   "kind": "score",
+   "pred": "1",
+   "exp": "1",
+   "ok": true
+  },
+  {
+   "id": "reasoning-control-v1:76109:1134:decision",
+   "src": "reasoning-control-v1",
+   "kind": "choice",
+   "pred": "false",
+   "exp": "false",
+   "ok": true
+  },
+  {
+   "id": "painting-geometry-v1:f53d053754fd363524f68104:hsl:x3_y7_saturation",
+   "src": "painting-geometry-v1",
+   "kind": "score",
+   "pred": "2",
+   "exp": "2",
+   "ok": true
+  },
+  {
+   "id": "reasoning-control-v1:76109:622:ordinal",
+   "src": "reasoning-control-v1",
+   "kind": "score",
+   "pred": "1",
+   "exp": "1",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:86:v0:NOT A BUG",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "tile_platformer-v1:a59cb34cb85a12253407de3f:9636ca93be96eec6d1d5e67d",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "reasoning-control-v1:76109:1858:decision",
+   "src": "reasoning-control-v1",
+   "kind": "choice",
+   "fail": "no_answer"
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:12:v1:ROUTE FOR APPROVAL",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:192:2:choice",
+   "src": "vizdoom-basic-v1",
+   "kind": "choice",
+   "pred": "Strafe left",
+   "exp": "Strafe left",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:11:v0:FILE ISSUE \u00b7 ROUTE",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "painting-geometry-v1:2eb89df9237d5b64f4c49323:rgb:x3_y0_green",
+   "src": "painting-geometry-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:161:v1:NOT A BUG",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:51:v0:BLOCK SENDER",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "snake-v1:41837a014908404e7199eb76:collision_right",
+   "src": "snake-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "yes",
+   "ok": false
+  },
+  {
+   "id": "snake-v1:a3ced9e0a8f4ad40e41585f5:collision_right",
+   "src": "snake-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:195:v2:NOTIFY USER",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "tic_tac_toe-v1:....X...O:....X...O",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "2",
+   "exp": "0",
+   "ok": false
+  },
+  {
+   "id": "tic_tac_toe-v1:.OOOX.X.X:OO..XOX.X",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "7",
+   "exp": "2",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:125:v0:FILE ISSUE \u00b7 ROUTE",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:9:v1:NOTIFY USER",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "fail": "no_answer"
+  },
+  {
+   "id": "tic_tac_toe-v1:..XOXXO.O:X..XXOO.O",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "2",
+   "exp": "1",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:201:v0:DUPLICATE",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "tic_tac_toe-v1:..O.OXXX.:.XOXO.X..",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "5",
+   "exp": "0",
+   "ok": false
+  },
+  {
+   "id": "painting-geometry-v1:2eb89df9237d5b64f4c49323:rgb:x3_y0_blue",
+   "src": "painting-geometry-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "reasoning-control-v1:76109:309:ordinal",
+   "src": "reasoning-control-v1",
+   "kind": "score",
+   "pred": "2",
+   "exp": "0",
+   "ok": false
+  },
+  {
+   "id": "reasoning-control-v1:76109:1802:ordinal",
+   "src": "reasoning-control-v1",
+   "kind": "score",
+   "fail": "no_answer"
+  },
+  {
+   "id": "tile_platformer-v1:a472a1bd9ce4033157557d81:70e141669ff37cb90ac4651e",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "tile_platformer-v1:2f3351ec9a89e19e77109c84:e633a8cfd207f918156fd851",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:145:v0:HOLD",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "snake-v1:0b1c01d9dc574e3b09675016:collision_up",
+   "src": "snake-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:72:v1:ROUTE FOR APPROVAL",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:60:5:score",
+   "src": "vizdoom-basic-v1",
+   "kind": "score",
+   "pred": "3",
+   "exp": "4",
+   "ok": false
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:107:2:choice",
+   "src": "vizdoom-basic-v1",
+   "kind": "choice",
+   "pred": "Strafe left",
+   "exp": "Strafe left",
+   "ok": true
+  },
+  {
+   "id": "snake-v1:43f41af1b40a2e54762ab8b7:collision_left",
+   "src": "snake-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:186:4:score",
+   "src": "vizdoom-basic-v1",
+   "kind": "score",
+   "pred": "3",
+   "exp": "1",
+   "ok": false
+  },
+  {
+   "id": "painting-geometry-v1:a1117f0a709d2110ad6caca7:rgb:x5_y1_blue",
+   "src": "painting-geometry-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "snake-v1:47f23883e907d7684865b8ea:collision_right",
+   "src": "snake-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:183:v2:DISPUTE LINES",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "painting-geometry-v1:abcacd3450f612a236591aa9:palette:x5_y5",
+   "src": "painting-geometry-v1",
+   "kind": "choice",
+   "pred": "magenta",
+   "exp": "magenta",
+   "ok": true
+  },
+  {
+   "id": "painting-geometry-v1:2eb89df9237d5b64f4c49323:hsl:x6_y7_saturation",
+   "src": "painting-geometry-v1",
+   "kind": "score",
+   "pred": "0",
+   "exp": "2",
+   "ok": false
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:15:8:score",
+   "src": "vizdoom-basic-v1",
+   "kind": "score",
+   "pred": "3",
+   "exp": "4",
+   "ok": false
+  },
+  {
+   "id": "reasoning-control-v1:76109:665:decision",
+   "src": "reasoning-control-v1",
+   "kind": "choice",
+   "pred": "true",
+   "exp": "false",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:148:v1:ESCALATE TIER2",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "fail": "no_answer"
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:104:v1:FILE ISSUE \u00b7 ROUTE",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:116:v0:FLAG FOR REVIEW",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:197:v1:FLAG FOR REVIEW",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:173:v2:DISPUTE LINES",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "tic_tac_toe-v1:.OOX..XXO:.XXO.XO.O",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "4",
+   "exp": "0",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:227:v2:KILL PROCESS",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "fail": "no_answer"
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:211:2:score",
+   "src": "vizdoom-basic-v1",
+   "kind": "score",
+   "pred": "3",
+   "exp": "1",
+   "ok": false
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:3:2:noul",
+   "src": "vizdoom-basic-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:148:v0:BLOCK EGRESS ASSET",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "fail": "no_answer"
+  },
+  {
+   "id": "tic_tac_toe-v1:.OOOX.X.X:X.XOX..OO",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "1",
+   "exp": "1",
+   "ok": true
+  },
+  {
+   "id": "customer-control-v1:42:268:bug_severity",
+   "src": "customer-control-v1",
+   "kind": "score",
+   "pred": "1",
+   "exp": "0",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:116:v1:FREEZE CARD",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "painting-geometry-v1:f53d053754fd363524f68104:hsl:x0_y3_lightness",
+   "src": "painting-geometry-v1",
+   "kind": "score",
+   "pred": "2",
+   "exp": "2",
+   "ok": true
+  },
+  {
+   "id": "tic_tac_toe-v1:.OOX.OX.X:.OOX.OX.X",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "4",
+   "exp": "0",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:215:v1:DISPUTE LINES",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:13:v1:HOLD FOR DOCUMENTS",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "tic_tac_toe-v1:..XO.XXO.:.XXO..XO.",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "4",
+   "exp": "0",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:27:v2:HAND OFF",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "tile_platformer-v1:c0f2dd750b73bb8756722743:50dedb1a882e84109d4de5f6",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "snake-v1:d12fc1324c0aef9aff7d126b:action",
+   "src": "snake-v1",
+   "kind": "choice",
+   "pred": "right",
+   "exp": "right",
+   "ok": true
+  },
+  {
+   "id": "tic_tac_toe-v1:.XXXO.XOO:OOX.OXXX.",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "3",
+   "exp": "8",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:209:v2:PAY",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:125:v0:AUTO-CLOSE",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "trex_runner-v1:9d0a92c041e0101c7ef112e6:9d81d6999de692efac12a02d",
+   "src": "trex_runner-v1",
+   "kind": "choice",
+   "pred": "jump_full",
+   "exp": "duck",
+   "ok": false
+  },
+  {
+   "id": "reasoning-control-v1:76109:1593:verification",
+   "src": "reasoning-control-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:239:v0:SET INTENT",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "snake-v1:45dea87cef00a23a018669ec:collision_left",
+   "src": "snake-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:202:v2:CLOSE",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "snake-v1:11e86b6a8a640e83490c763b:collision_left",
+   "src": "snake-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "reasoning-control-v1:76109:831:decision",
+   "src": "reasoning-control-v1",
+   "kind": "choice",
+   "pred": "-24",
+   "exp": "-24",
+   "ok": true
+  },
+  {
+   "id": "tile_platformer-v1:5c698c2d702444b053dff8b7:aa23696f3efc80af21019061",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "reasoning-control-v1:76109:2161:decision",
+   "src": "reasoning-control-v1",
+   "kind": "choice",
+   "pred": "-20",
+   "exp": "not_present",
+   "ok": false
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:373:5:choice",
+   "src": "vizdoom-basic-v1",
+   "kind": "choice",
+   "pred": "Strafe left",
+   "exp": "Hold lateral movement",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:159:v0:PAY",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:155:v2:DISPUTE LINES",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "painting-geometry-v1:a1117f0a709d2110ad6caca7:rgb:x6_y2_green",
+   "src": "painting-geometry-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "snake-v1:d0f18eadc0123abb71355b1d:action",
+   "src": "snake-v1",
+   "kind": "choice",
+   "pred": "right",
+   "exp": "down",
+   "ok": false
+  },
+  {
+   "id": "tile_platformer-v1:9bb3bed07731a3bc921fb504:902410674f507248466abc01",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "tile_platformer-v1:a59cb34cb85a12253407de3f:3e0df7e921f251767181ac17",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "customer-control-v1:42:964:churn_likelihood_level",
+   "src": "customer-control-v1",
+   "kind": "score",
+   "pred": "1",
+   "exp": "1",
+   "ok": true
+  },
+  {
+   "id": "reasoning-control-v1:76109:2275:verification",
+   "src": "reasoning-control-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "yes",
+   "ok": false
+  },
+  {
+   "id": "tic_tac_toe-v1:.XOXX.OOX:XOO.XXOX.",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "8",
+   "exp": "3",
+   "ok": false
+  },
+  {
+   "id": "painting-geometry-v1:6fe0516ce23f50937d8a1520:palette:x3_y4",
+   "src": "painting-geometry-v1",
+   "kind": "choice",
+   "pred": "magenta",
+   "exp": "black",
+   "ok": false
+  },
+  {
+   "id": "customer-control-v1:42:915:frustration",
+   "src": "customer-control-v1",
+   "kind": "score",
+   "pred": "1",
+   "exp": "0",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:15:v1:CANCEL",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "snake-v1:b8bce281be9f8519c13dd2fc:action",
+   "src": "snake-v1",
+   "kind": "choice",
+   "pred": "down",
+   "exp": "down",
+   "ok": true
+  },
+  {
+   "id": "tile_platformer-v1:9bb3bed07731a3bc921fb504:14225930dd4cf492c4e04bf6",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:143:v0:SET INTENT",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "customer-control-v1:42:192:churn_likelihood_level",
+   "src": "customer-control-v1",
+   "kind": "score",
+   "pred": "1",
+   "exp": "0",
+   "ok": false
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:220:4:choice",
+   "src": "vizdoom-basic-v1",
+   "kind": "choice",
+   "pred": "Strafe left",
+   "exp": "Strafe left",
+   "ok": true
+  },
+  {
+   "id": "reasoning-control-v1:76109:529:ordinal",
+   "src": "reasoning-control-v1",
+   "kind": "score",
+   "pred": "2",
+   "exp": "2",
+   "ok": true
+  },
+  {
+   "id": "tile_platformer-v1:a472a1bd9ce4033157557d81:e2e710bae16bd2357b48aa79",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "customer-control-v1:42:93:refund_requested",
+   "src": "customer-control-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:93:v2:QUARANTINE MESSAGE",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "fail": "no_answer"
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:239:v0:SAY",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "painting-geometry-v1:abcacd3450f612a236591aa9:palette:x1_y4",
+   "src": "painting-geometry-v1",
+   "kind": "choice",
+   "pred": "magenta",
+   "exp": "magenta",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:104:v2:COUNT ONLY",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:93:v2:REVOKE SESSIONS",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "fail": "no_answer"
+  },
+  {
+   "id": "painting-geometry-v1:f53d053754fd363524f68104:rgb:x3_y7_green",
+   "src": "painting-geometry-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "reasoning-control-v1:76109:1764:ordinal",
+   "src": "reasoning-control-v1",
+   "kind": "score",
+   "fail": "no_answer"
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:51:v2:AUTO CLOSE",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "snake-v1:410309477fc52df74d513193:collision_down",
+   "src": "snake-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "trex_runner-v1:41a55bc1ce4dd405a9592b41:50c0724eb53ca15f5e7e8029",
+   "src": "trex_runner-v1",
+   "kind": "choice",
+   "pred": "jump_full",
+   "exp": "jump_short",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:188:v2:PAGE ON-CALL",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "yes",
+   "ok": false
+  },
+  {
+   "id": "tic_tac_toe-v1:.O.XOX.XO:.X.XOOOX.",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "2",
+   "exp": "2",
+   "ok": true
+  },
+  {
+   "id": "tile_platformer-v1:d5a8c55cf605a879aca703c9:c796f2465d7f69802d434f02",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "tile_platformer-v1:9bb3bed07731a3bc921fb504:2f7504cd91639d4b17c170e9",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:15:v2:FLAG FOR REVIEW",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "snake-v1:6c5221126c7b8ea8068095b8:collision_right",
+   "src": "snake-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:47:0:noul",
+   "src": "vizdoom-basic-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:147:v2:DUPLICATE",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:278:1:noul",
+   "src": "vizdoom-basic-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:77:v2:REFUND",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:104:v0:HUMAN REVIEW",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "reasoning-control-v1:76109:1637:verification",
+   "src": "reasoning-control-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:14:v1:REFUND",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "tic_tac_toe-v1:..XOXX.O.:.O.OXX..X",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "7",
+   "exp": "0",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:21:v0:PURGE MAILBOXES",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "fail": "no_answer"
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:166:v1:HOLD FOR DOCUMENTS",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:245:v0:PAGE ON-CALL",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:3:v0:AUTO CLOSE",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "fail": "no_answer"
+  },
+  {
+   "id": "tic_tac_toe-v1:.OOXX..OX:.X.OXOO.X",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "7",
+   "exp": "0",
+   "ok": false
+  },
+  {
+   "id": "customer-control-v1:42:47:bug_severity",
+   "src": "customer-control-v1",
+   "kind": "score",
+   "pred": "1",
+   "exp": "0",
+   "ok": false
+  },
+  {
+   "id": "customer-control-v1:42:695:has_reproducible_steps",
+   "src": "customer-control-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:9:v0:ISOLATE HOST",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "fail": "no_answer"
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:104:v0:PURGE MAILBOXES",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:103:v2:PAGE ON-CALL",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "yes",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:209:v2:REMOVE FORWARDING RULES",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:180:9:noul",
+   "src": "vizdoom-basic-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "reasoning-control-v1:76109:2256:ordinal",
+   "src": "reasoning-control-v1",
+   "kind": "score",
+   "pred": "0",
+   "exp": "2",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:104:v1:PRIORITY REVIEW",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "tile_platformer-v1:d5a8c55cf605a879aca703c9:0e4137eaeca05c1c079a422f",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "reasoning-control-v1:76109:2346:ordinal",
+   "src": "reasoning-control-v1",
+   "kind": "score",
+   "pred": "2",
+   "exp": "1",
+   "ok": false
+  },
+  {
+   "id": "snake-v1:3b83ce5fe9e61ef32bdab872:collision_left",
+   "src": "snake-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "yes",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:26:v1:PRIORITY REVIEW",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:77:v0:REFUND",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "snake-v1:94e58131ca7cc40a58971795:collision_left",
+   "src": "snake-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "customer-control-v1:42:223:frustration",
+   "src": "customer-control-v1",
+   "kind": "score",
+   "pred": "1",
+   "exp": "2",
+   "ok": false
+  },
+  {
+   "id": "painting-geometry-v1:2eb89df9237d5b64f4c49323:palette:x2_y6",
+   "src": "painting-geometry-v1",
+   "kind": "choice",
+   "pred": "yellow",
+   "exp": "yellow",
+   "ok": true
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:7:8:score",
+   "src": "vizdoom-basic-v1",
+   "kind": "score",
+   "pred": "3",
+   "exp": "4",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:42:v1:PURGE MAILBOXES",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "reasoning-control-v1:76109:309:verification",
+   "src": "reasoning-control-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "reasoning-control-v1:76109:2275:ordinal",
+   "src": "reasoning-control-v1",
+   "kind": "score",
+   "pred": "1",
+   "exp": "2",
+   "ok": false
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:384:1:choice",
+   "src": "vizdoom-basic-v1",
+   "kind": "choice",
+   "pred": "Strafe left",
+   "exp": "Strafe left",
+   "ok": true
+  },
+  {
+   "id": "snake-v1:b12b7b0cdcd9c45cd7854445:collision_left",
+   "src": "snake-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:215:v1:ROUTE FOR APPROVAL",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "painting-geometry-v1:abcacd3450f612a236591aa9:hsl:x4_y2_saturation",
+   "src": "painting-geometry-v1",
+   "kind": "score",
+   "pred": "1",
+   "exp": "2",
+   "ok": false
+  },
+  {
+   "id": "tic_tac_toe-v1:.O.OXXO.X:.OOOX..XX",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "5",
+   "exp": "0",
+   "ok": false
+  },
+  {
+   "id": "painting-geometry-v1:2eb89df9237d5b64f4c49323:rgb:x4_y5_blue",
+   "src": "painting-geometry-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:235:v0:HUMAN REVIEW",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:21:v0:AUTO CLOSE",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "fail": "no_answer"
+  },
+  {
+   "id": "reasoning-control-v1:76109:1699:decision",
+   "src": "reasoning-control-v1",
+   "kind": "choice",
+   "pred": "-26",
+   "exp": "not_present",
+   "ok": false
+  },
+  {
+   "id": "customer-control-v1:42:729:refund_requested",
+   "src": "customer-control-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:278:3:choice",
+   "src": "vizdoom-basic-v1",
+   "kind": "choice",
+   "pred": "Strafe left",
+   "exp": "Strafe left",
+   "ok": true
+  },
+  {
+   "id": "customer-control-v1:42:243:frustration",
+   "src": "customer-control-v1",
+   "kind": "score",
+   "pred": "1",
+   "exp": "0",
+   "ok": false
+  },
+  {
+   "id": "tile_platformer-v1:7e0c2f9ad3c86754dd7517ac:a7f87b97281d302e83134640",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "trex_runner-v1:ad8321dcce9fb837b59c4fab:fb0f0fed6de2a42329534319",
+   "src": "trex_runner-v1",
+   "kind": "choice",
+   "pred": "jump_full",
+   "exp": "jump_full",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:108:v0:HUMAN REVIEW",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "tic_tac_toe-v1:..XOXXO.O:O.OOXX..X",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "6",
+   "exp": "1",
+   "ok": false
+  },
+  {
+   "id": "customer-control-v1:42:361:has_reproducible_steps",
+   "src": "customer-control-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:202:v2:FREEZE CARD",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:165:v0:DUPLICATE",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "snake-v1:70e32f1041b718f5ccb6f8fd:collision_right",
+   "src": "snake-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "tic_tac_toe-v1:..XOOXXXO:OXXXO.XO.",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "5",
+   "exp": "8",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:235:v1:HUMAN REVIEW",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "tic_tac_toe-v1:.....X.XO:.....X.XO",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "2",
+   "exp": "1",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:145:v0:PAY",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:13:v0:HOLD FOR DOCUMENTS",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "snake-v1:4aee18d6463870256bcd4dc3:collision_down",
+   "src": "snake-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:108:v0:PRIORITY REVIEW",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "customer-control-v1:42:499:category",
+   "src": "customer-control-v1",
+   "kind": "choice",
+   "pred": "billing",
+   "exp": "billing",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:1:v0:DUPLICATE",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "tic_tac_toe-v1:.OOXOX.X.:.X.OOXOX.",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "2",
+   "exp": "0",
+   "ok": false
+  },
+  {
+   "id": "customer-control-v1:42:268:has_reproducible_steps",
+   "src": "customer-control-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:143:v0:ESCALATE URGENT",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "fail": "no_answer"
+  },
+  {
+   "id": "tic_tac_toe-v1:.OOX.O.XX:.OOX.O.XX",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "4",
+   "exp": "0",
+   "ok": false
+  },
+  {
+   "id": "customer-control-v1:42:548:churn_likelihood_level",
+   "src": "customer-control-v1",
+   "kind": "score",
+   "pred": "1",
+   "exp": "1",
+   "ok": true
+  },
+  {
+   "id": "painting-geometry-v1:2eb89df9237d5b64f4c49323:rgb:x6_y2_blue",
+   "src": "painting-geometry-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:108:v0:AUTO-CLOSE",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:49:v0:SHORT PAY",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "painting-geometry-v1:2eb89df9237d5b64f4c49323:palette:x1_y6",
+   "src": "painting-geometry-v1",
+   "kind": "choice",
+   "pred": "yellow",
+   "exp": "yellow",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:agent_trace_observability:42:224:v1:NOT A BUG",
+   "src": "workflow-controls-v1/agent_trace_observability",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "tile_platformer-v1:7e0c2f9ad3c86754dd7517ac:6cb456cf9a4c1fa83d7bb7a6",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "tile_platformer-v1:a59cb34cb85a12253407de3f:c1358e76d7cd05738f14f60d",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:209:v1:PURGE MAILBOXES",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "workflow-controls-v1:security_incidents:42:104:v2:PURGE MAILBOXES",
+   "src": "workflow-controls-v1/security_incidents",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:208:1:noul",
+   "src": "vizdoom-basic-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "tile_platformer-v1:2f3351ec9a89e19e77109c84:6a3c981babf119f4c6761f7d",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:373:3:choice",
+   "src": "vizdoom-basic-v1",
+   "kind": "choice",
+   "pred": "Strafe left",
+   "exp": "Strafe left",
+   "ok": true
+  },
+  {
+   "id": "customer-control-v1:42:479:refund_requested",
+   "src": "customer-control-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "snake-v1:d106ba3cf2c1370ab478406a:collision_left",
+   "src": "snake-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "no",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:83:v2:SAY",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:customer_service:42:63:v0:FLAG FOR REVIEW",
+   "src": "workflow-controls-v1/customer_service",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:220:6:noul",
+   "src": "vizdoom-basic-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "yes",
+   "ok": true
+  },
+  {
+   "id": "vizdoom-basic-v1:190919:id:102:3:noul",
+   "src": "vizdoom-basic-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "customer-control-v1:42:992:has_reproducible_steps",
+   "src": "customer-control-v1",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "painting-geometry-v1:94f504a4c1a4c42a02375cee:palette:x5_y3",
+   "src": "painting-geometry-v1",
+   "kind": "choice",
+   "pred": "blue",
+   "exp": "blue",
+   "ok": true
+  },
+  {
+   "id": "painting-geometry-v1:abcacd3450f612a236591aa9:rgb:x7_y7_green",
+   "src": "painting-geometry-v1",
+   "kind": "noul",
+   "pred": "no",
+   "exp": "yes",
+   "ok": false
+  },
+  {
+   "id": "tile_platformer-v1:c0f2dd750b73bb8756722743:2988ec5501ab0e87c7f71385",
+   "src": "tile_platformer-v1",
+   "kind": "choice",
+   "pred": "right_run_jump",
+   "exp": "right_run_jump",
+   "ok": true
+  },
+  {
+   "id": "workflow-controls-v1:invoice_processing:42:155:v0:SCHEDULE",
+   "src": "workflow-controls-v1/invoice_processing",
+   "kind": "noul",
+   "pred": "yes",
+   "exp": "no",
+   "ok": false
+  },
+  {
+   "id": "tic_tac_toe-v1:.OOOX.X.X:.OOOX.X.X",
+   "src": "tic_tac_toe-v1",
+   "kind": "choice",
+   "pred": "5",
+   "exp": "0",
+   "ok": false
+  }
+ ]
+}
