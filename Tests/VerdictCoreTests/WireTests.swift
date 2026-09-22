@@ -101,3 +101,19 @@ extension FakeBackend {
          .success(.level(2)), .success(.level(1)), .success(.level(2))]
     }
 }
+
+extension WireTests {
+    @Test func numericCoercionErrorNamesTheField() {   // H1
+        // votes 2.5 is valid JSON but not an Int; the message must name the field, not say "not valid JSON".
+        for (json, field) in [(#"{"state":"s","questions":{"q":{"type":"noul","instructions":"i"}},"policy":{"votes":2.5}}"#, "votes"),
+                              (#"{"state":"s","questions":{"q":{"type":"noul","instructions":"i"}},"policy":{"seed":-1}}"#, "seed")] {
+            do {
+                _ = try Wire.decodeRequest(Data(json.utf8))
+                Issue.record("decoded an out-of-range number")
+            } catch {
+                #expect(error.code == .validation)
+                #expect(error.message.contains(field), Comment(rawValue: "message should name `\(field)`: \(error.message)"))
+            }
+        }
+    }
+}

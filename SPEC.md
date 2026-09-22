@@ -164,6 +164,7 @@ Response:
   distribution, `confidence_kind` is `decoded`, `confidence = 1 − H(p)/log n` (openjev's definition; the
   laya-coreml port reports max(p, 1−p) for noul, verdict does not special-case it), `samples` is 1 and
   `policy.votes` is ignored.
+- Each answer also carries `retries` (engine retries for that question, usually 0).
 - `failures[id] = {"code", "message", "remedy", "retryable"}` with `code` from §6.
 - Superset of Jev: the extra fields are `backend`, `confidence_kind`, `level`, `samples`,
   `latency_ms`, `failures`, `usage.samples`, `usage.retries`, `usage.seed`, `usage.latency_ms`, and
@@ -363,6 +364,13 @@ Laya loads once at start (~2–3 s) and serves every caller; Foundation Models s
   `x-verdict-latency-ms`, `x-verdict-failures` (count of per-question failures in the body).
 - **`model` on the wire.** `verdict-fm`, `verdict-laya`, or the aliases `fm`, `laya`, and `jev-latest`
   (→ `verdict-fm`, so a stock Jev client works). Unknown → `422`.
+- **Status vs code, three honesty notes** (found by the 2026-09-22 harden pass): the body-too-large `413`
+  carries `code: validation` (the closed §6 set has no `body_too_large`; the `413` status is the
+  authoritative signal). An **auth** failure carries `code: validation` with `401` + `WWW-Authenticate`
+  (there is no auth-specific code in §6). And `context_exceeded` is reported as a **per-question failure
+  inside a `200` body**, not as a `413` — except that a state over `Limits.maxStateBytes` (128 KiB) is
+  fast-rejected as `context_exceeded` before any model call, so a caller never pays full model latency to
+  learn a pathologically large state overflowed.
 - **Status per failure class** (one status per distinct next action, §0): `422` fix the request
   (`validation`, `out_of_schema`, `decoding_failure`) · `413` shrink it (`context_exceeded`, body >
   1 MiB) · `503` fix the environment (`model_unavailable`) · `429` slow down (`rate_limited`,

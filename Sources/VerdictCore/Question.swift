@@ -6,6 +6,9 @@ public enum Limits {
     public static let minOptions = 2
     /// Sampled runs per question. 25 caps a request at 64 × 25 model calls.
     public static let maxVotes = 25
+    /// Cheap upper bound on the state, well above any state a backend can actually fit. A larger state
+    /// fails fast with `context_exceeded` instead of paying a full model round-trip to learn it overflowed.
+    public static let maxStateBytes = 128 * 1024
 }
 
 public struct ChoiceOption: Sendable, Equatable {

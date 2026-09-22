@@ -164,7 +164,12 @@ public enum Wire {
             case .keyNotFound(let k, let c): return "missing key `\(k.stringValue)` at \(path(c))"
             case .typeMismatch(_, let c): return "wrong type at \(path(c)): \(c.debugDescription)"
             case .valueNotFound(_, let c): return "null at \(path(c))"
-            case .dataCorrupted(let c): return c.debugDescription
+            case .dataCorrupted(let c):
+                if !c.codingPath.isEmpty { return "\(c.debugDescription) at \(path(c))" }
+                // macOS 26 Foundation collapses a valid-JSON number that is non-integer or out of range
+                // (e.g. policy.votes 2.5, policy.seed -1) to a root dataCorrupted with an empty path and a
+                // "not valid JSON" message. The JSON did parse, so name the numeric fields rather than deny it.
+                return "malformed JSON, or a numeric field out of range: policy.votes must be a whole number 1...\(Limits.maxVotes), policy.seed a non-negative integer."
             @unknown default: return String(describing: d)
             }
         }

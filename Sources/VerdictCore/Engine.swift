@@ -68,6 +68,11 @@ public struct Verdict: Sendable {
         let start = clock.now
         var retries = 0
         let question = entry.question
+        if state.utf8.count > Limits.maxStateBytes {
+            return .failure(Failure(id: entry.id, code: .contextExceeded,
+                                    message: "State is \(state.utf8.count) bytes; the fast-reject limit is \(Limits.maxStateBytes).",
+                                    latency: clock.now - start))
+        }
         var labels: [String] = []
         var greedyDistribution: [String: Double]? = nil
         let runs = backend.producesDistribution ? 1 : max(1, policy.votes)

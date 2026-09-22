@@ -124,3 +124,20 @@ import VerdictCore
         #expect(d?.distribution?["sales"] == 0)
     }
 }
+
+/// Harden round 2026-09-22 (plan/harden-*): findings from the cold adversarial API pass.
+@Suite struct EngineHardenTests {
+    @Test func overLongStateFailsFastWithoutAModelCall() async throws {   // F1
+        let backend = FakeBackend([])   // empty script: if the engine called the model it would throw "script exhausted"
+        let huge = String(repeating: "x", count: Limits.maxStateBytes + 1)
+        let r = try await Verdict(backend: backend).decide(Request(state: huge, questions: [QuestionEntry(id: "q", question: Fixtures.noul)]))
+        let f = r.outcomes[0].outcome.failure
+        #expect(f?.code == .contextExceeded)
+        #expect(backend.callCount() == 0)   // proves it never reached the backend
+        // A state at the limit is not pre-rejected (goes to the backend).
+        let ok = FakeBackend([.success(.bool(true))])
+        let atLimit = String(repeating: "x", count: Limits.maxStateBytes)
+        let r2 = try await Verdict(backend: ok).decide(Request(state: atLimit, questions: [QuestionEntry(id: "q", question: Fixtures.noul)]))
+        #expect(r2.outcomes[0].outcome.decision != nil)
+    }
+}
