@@ -75,6 +75,38 @@ No to both, and the larger pool is why we can say that with confidence rather th
   classes. It does not feed the join, so it does not move precision.
 - Single machine, single OS build.
 
+## External benchmark: JevBench (public subset)
+
+[JevBench](https://github.com/fstandhartinger/jevbench) (Benchmark Heaven, MIT) scores Jev-class
+decision models on Intelligence, Calibration, Speed and Cost. Its task format — a `state` plus a typed
+`choice`/`score`/`noul` question — is identical to verdict's wire, so verdict runs against it with a
+trivial adapter (`scripts/run-jevbench.py`). Run 2026-09-22 on the **231 public tasks** (the 109 hard
+items are held out, so this is not the official board number):
+
+`verdict-fm` — **62% overall accuracy**, P50 271 ms / P90 2.2 s:
+
+| tier | accuracy | n |
+|---|---|---|
+| easy | **100%** | 48 |
+| original | 75% | 72 |
+| hard | 37% | 111 |
+
+Strong (0.83–1.00) on the typed-routing families verdict is built for — extraction, fact, intent,
+tool_selection, routing, policy. Weak (0.00–0.40) on multi-step reasoning — temporal_numeric, tradeoff,
+multi_hop, probability, ambiguous. One `context_exceeded` failure on a 3,746-token insurance policy
+(verdict truncates nothing; a huge state fails cleanly). Record:
+`evidence/jevbench-2026-09-22-public-verdict-fm.json`.
+
+Reading it honestly:
+- verdict-fm is a strong on-device **router/filer** (aces routine typed decisions) and a weak deep
+  **reasoner** (the hard tier's legal/numeric multi-hop work). That is exactly its positioning.
+- This is accuracy only. On the full JevBench Score, `verdict-fm` scores **0 on Calibration** (a
+  label-only system by their rule — no probability), which is 25% of the composite; its Cost axis
+  maxes out (on-device, free) and Speed lands well. A faithful composite needs a proper adapter through
+  their harness — a follow-up. `verdict-laya` emits a distribution and could earn a Calibration score.
+- Cross-check: JevBench's #2 system is SemIf = **Qwen3.5-4B (73.1)**, just behind hosted Jev (74.4) —
+  the same 4B class our own head-to-head found competitive with the Jev mechanism. Independent agreement.
+
 ## Not yet run (the roadmap)
 
 - **Hosted Jev** — needs a TypeSafe API key (a human step; the harness already speaks its wire).
@@ -83,3 +115,4 @@ No to both, and the larger pool is why we can say that with confidence rather th
 - **Other fully-local Jev alternatives** — Decider-2b, Reflex-4b (downloadable GGUF), the tier verdict
   actually competes in.
 - **Energy per decision** — the axis laya-coreml's own benchmarks emphasise.
+- **Faithful JevBench composite** — a proper adapter through their MIT harness so verdict-fm and verdict-laya get real Intelligence/Calibration/Speed/Cost rows, plus a verdict-laya accuracy run.
