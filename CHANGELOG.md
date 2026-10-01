@@ -2,6 +2,11 @@
 
 All notable changes to verdict are recorded here. Format follows [Keep a Changelog](https://keepachangelog.com); this project uses [Semantic Versioning](https://semver.org).
 
+## [Unreleased]
+
+### Changed
+- **`state` accepts any JSON value** on `POST /v1/systemone` and `verdict decide --request`. A string passes through unchanged; an object, array or scalar reaches both backends as the exact text of Python `json.dumps(state, ensure_ascii=False, sort_keys=True)`. Empty state (`""`, whitespace, `null`, `{}`, `[]`) stays a `validation` error. Before this, an object state returned `422` with "Expected to decode String but found a dictionary instead". `verdict decide --state <file>` still reads the file as plain text.
+
 ## [0.1.0] — 2026-09-22
 
 First public release. Sovereign typed decisions on your Mac — on-device Apple Foundation Models, Jev-compatible, honest about confidence.

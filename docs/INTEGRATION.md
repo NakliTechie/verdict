@@ -53,7 +53,9 @@ Every route except `/health` requires `Authorization: Bearer <token>`.
 - **`model`** — `verdict-fm` (Foundation Models, the default and the recommendation) or `verdict-laya`
   (Laya Core ML). Aliases: `fm`, `foundation-models`, `laya`, `laya-coreml`, `jev-latest`. `GET
   /v1/models` lists what this install serves. Unknown model → `422`.
-- **`state`** — a string. Objects and chat transcripts are not accepted yet (M2 scope). Truncate long
+- **`state`** — a string, or any other JSON value. An object or array reaches the model as
+  `json.dumps(state, ensure_ascii=False, sort_keys=True)` text (SPEC §3); a chat transcript is
+  rendered the same way, not split into turns. Empty (`""`, `{}`, `[]`, `null`) → `422`. Truncate long
   input yourself; verdict does not, and an over-long state returns `413 context_exceeded` with the
   measured safe length.
 - **`questions`** — 1 to 64, keyed by your own ids; the response echoes those ids. Types:

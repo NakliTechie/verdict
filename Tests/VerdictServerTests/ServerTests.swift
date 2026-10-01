@@ -131,6 +131,29 @@ final class ScriptedBackend: DecisionBackend, Sendable {
         }
     }
 
+    @Test func objectAndArrayStateAreAcceptedEmptyIs422() async throws {
+        let backend = ScriptedBackend([.success(Sample(raw: .bool(true))), .success(Sample(raw: .bool(false)))])
+        try await Self.app(backend).test(.router) { client in
+            for state in [#"{"evidence": "The sky is blue.", "claim": "Sky color is blue"}"#, #"["a", 1]"#] {
+                let body = ByteBuffer(string: #"{"state":\#(state),"questions":{"q":{"type":"noul","instructions":"i"}}}"#)
+                try await client.execute(uri: "/v1/systemone", method: .post, headers: Self.auth, body: body) { r in
+                    #expect(r.status == .ok, Comment(rawValue: state))
+                    let answers = try Self.json(r)["answers"] as? [String: Any]
+                    #expect(answers?["q"] != nil)
+                }
+            }
+            for state in ["{}", "[]"] {
+                let body = ByteBuffer(string: #"{"state":\#(state),"questions":{"q":{"type":"noul","instructions":"i"}}}"#)
+                try await client.execute(uri: "/v1/systemone", method: .post, headers: Self.auth, body: body) { r in
+                    #expect(r.status == .unprocessableContent, Comment(rawValue: state))
+                    let e = try Self.json(r)["error"] as! [String: Any]
+                    #expect(e["code"] as? String == "validation")
+                    #expect((e["message"] as? String)?.contains("`state` is empty") == true)
+                }
+            }
+        }
+    }
+
     @Test func malformedAndUnknownModelAre422() async throws {
         try await Self.app(ScriptedBackend([])).test(.router) { client in
             try await client.execute(uri: "/v1/systemone", method: .post, headers: Self.auth, body: ByteBuffer(string: "{not json")) { r in

@@ -34,7 +34,9 @@ class VerdictNTAdapter:
     def run(self, task) -> DecisionResult:
         res = DecisionResult(adapter=self.name, ok=False, model=self.model)
         q = task.question
-        state = task.state if isinstance(task.state, str) else json.dumps(task.state, ensure_ascii=False)
+        # sort_keys matches verdictd's own rendering of an object state (SPEC §3), so stringifying here
+        # and sending the object give the backend the same prompt text.
+        state = task.state if isinstance(task.state, str) else json.dumps(task.state, ensure_ascii=False, sort_keys=True)
         wq = {"type": q["type"], "instructions": q["instructions"]}
         if q.get("criteria") is not None:
             wq["criteria"] = q["criteria"]
