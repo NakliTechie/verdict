@@ -20,6 +20,7 @@ download and no model server to run.
 - `GET /v1/models` · `GET /v1/limits`.
 - `POST /v1/systemone` — bearer token required. Body:
   `{"model": "verdict-fm", "state": "<text>", "questions": {"<id>": {"type": "noul|choice|score", "instructions": "...", "criteria": ...}}, "policy": {"votes": 1}}`
+  - state: a string, or any JSON value; a non-string reaches the model as `json.dumps(state, ensure_ascii=False, sort_keys=True)` text. Empty (`""`, `{}`, `[]`, `null`) → 422.
   - choice.criteria: `{key: description|null}` (2–64). score.criteria: `[level0, level1, ...]` (2–64, lowest first). noul.criteria: optional `{"true": "...", "false": "..."}`.
   - models: `verdict-fm` (Apple Foundation Models; default; no probability) · `verdict-laya` (Laya Core ML; decoded probability). Aliases: `fm`, `laya`, `jev-latest` (→ verdict-fm).
 - Response: `answers[id]` = `{type, choice|score|level|noul, probabilities?, confidence, confidence_kind, samples, latency_ms}`; `failures[id]` = `{code, message, remedy, retryable}`; `usage`.

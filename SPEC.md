@@ -38,13 +38,14 @@ driver never retries blindly.
 - Verifier: `verdict replay` over `~/Code/knowledge/plan/fm-bench/fixture.json` per backend (§8), plus
   Laya fidelity tests against the Python port (§4.2).
 
-Out of scope: the MLX sidecar (M3), images, chat-transcript states, tools, any non-loopback bind.
+Out of scope: the MLX sidecar (M3), images, chat-transcript semantics (a transcript is accepted as a JSON
+state and rendered as text, never split into chat turns), tools, any non-loopback bind.
 
 ## §2 Types (`VerdictCore`)
 
 ```swift
 public struct Request: Sendable {
-    public var state: String                 // the shared material every question is asked about
+    public var state: String                 // the shared material every question is asked about (§3: the wire accepts any JSON value)
     public var questions: [QuestionEntry]    // ordered; ids unique; 1...64
     public var policy: Policy
 }
@@ -131,7 +132,15 @@ Request:
 
 - `model`: `verdict-fm` (Foundation Models) or `verdict-laya` (Laya Core ML). The CLI flag `--model`
   overrides the request field. Unknown → `validation`.
-- `state`: a string in M0. Objects/arrays/chat transcripts are M2.
+- `state`: any JSON value. A string passes through unchanged. Any other value becomes the exact text of
+  Python `json.dumps(state, ensure_ascii=False, sort_keys=True)`: keys sorted by code point, `", "` and
+  `": "` separators, non-ASCII raw, `1` and `1.0` kept apart. Both backends see that text, so sending
+  the object equals stringifying it client-side with those arguments. The rendering applies before
+  prompt compilation (§9) and before the `Limits.maxStateBytes` check. `""`, whitespace, `null`, `{}`
+  and `[]` are `validation` errors, as is an integer outside 64-bit range (send it as a string). Only
+  `Wire.decodeRequest` accepts a non-string state; a bare `JSONDecoder` cannot tell `1` from `1.0`.
+  llamacpp-jev renders object state with `orjson.dumps` (compact, insertion order), so its prompt text
+  differs from verdict's for the same object.
 - `questions`: 1–64 entries. `choice.criteria` maps key → description or `null` (key shown as its own
   description). `score.criteria` is the ordered rubric, lowest first. `noul.criteria` is optional; when
   absent each backend renders its own trained default wording (Laya: "yes, the statement holds" /
@@ -262,7 +271,7 @@ public protocol DecisionBackend: Sendable {
 | `rate_limited` | `rateLimited` | no | true | "Wait and retry; the system model is throttling." |
 | `concurrent_requests` | `concurrentRequests` | no | true | "Serialise calls; one request at a time per process." |
 | `out_of_schema` | engine check (§2 invariants) failed | no | false | "Report as a bug; constrained decoding returned a value outside the schema." |
-| `validation` | request malformed (ids, counts, empty state) | no | false | field-specific |
+| `validation` | request malformed (ids, counts, empty state: `""`, whitespace, `null`, `{}`, `[]`) | no | false | field-specific |
 | `backend_error` | anything else | no | false | includes the underlying description |
 
 A failed question never gets a fallback answer. The other questions in the request still run.

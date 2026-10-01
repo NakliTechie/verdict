@@ -149,7 +149,9 @@ public enum Wire {
 
     public static func decodeRequest(_ data: Data) throws(Failure) -> Request {
         do {
-            return try JSONDecoder().decode(Request.self, from: data)
+            let decoder = JSONDecoder()
+            decoder.userInfo[StateText.bodyKey] = data
+            return try decoder.decode(Request.self, from: data)
         } catch let f as Failure {
             throw f
         } catch {
@@ -192,10 +194,19 @@ public extension Duration {
 
 extension Wire.Request: Codable {
     enum CodingKeys: String, CodingKey { case model, state, questions, policy }
+    /// `state` may be any JSON value; a non-string is rendered to text (`Wire.StateText`). That needs the
+    /// raw body, which `Wire.decodeRequest` supplies; a bare `JSONDecoder` accepts only a string state.
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         model = try c.decodeIfPresent(String.self, forKey: .model)
-        state = try c.decode(String.self, forKey: .state)
+        if let text = try? c.decode(String.self, forKey: .state) {
+            state = text
+        } else if c.contains(.state), try !c.decodeNil(forKey: .state),
+                  let body = decoder.userInfo[Wire.StateText.bodyKey] as? Data {
+            state = try Wire.StateText.render(requestBody: body)
+        } else {
+            state = try c.decode(String.self, forKey: .state)   // missing or null: the decoder's own error
+        }
         let raw = try c.decode([String: Wire.QuestionBody].self, forKey: .questions)
         questions = try raw.mapValues { try $0.toCore() }
         policy = try c.decodeIfPresent(Wire.Policy.self, forKey: .policy)

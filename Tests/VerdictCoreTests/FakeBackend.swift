@@ -6,6 +6,7 @@ final class FakeBackend: DecisionBackend, Sendable {
     let name = "fake"
     private let script: Mutex<[Result<Sample, BackendError>]>
     let calls = Mutex<[(question: Question, sampling: Sampling)]>([])
+    let states = Mutex<[String]>([])
     let available: BackendAvailability
 
     init(_ script: [Result<Sample, BackendError>], available: BackendAvailability = .available) {
@@ -17,6 +18,7 @@ final class FakeBackend: DecisionBackend, Sendable {
 
     func sample(state: String, question: Question, sampling: Sampling) async throws -> Sample {
         calls.withLock { $0.append((question, sampling)) }
+        states.withLock { $0.append(state) }
         let next = script.withLock { s -> Result<Sample, BackendError>? in
             s.isEmpty ? nil : s.removeFirst()
         }
