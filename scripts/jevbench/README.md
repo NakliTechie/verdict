@@ -31,6 +31,13 @@ python -m jevbench.cli summarize --tasks "$TASKS" --results /tmp/verdict-fm.json
 
 Swap `--model verdict-laya` for the decoded-probability backend (gets a Calibration/ECE score).
 
+## Ollama 0.35+ on the same harness
+
+`ollama_nt.py` is JevBench's native Jev adapter (`typesafe`) pointed at a local Ollama, with one change:
+Ollama's context-limit HTTP 400 is reported as 422, which JevBench scores as a wrong answer rather than an
+outage. Register it like `verdict_nt`, then `--adapter ollama_nt --endpoint http://localhost:11434
+--model nimble --key-env ""`. `scripts/compare-engine.py` runs both adapters, one engine at a time.
+
 ## Quick run (accuracy per tier, no harness install)
 
 `<verdict>/scripts/run-jevbench.py <jevbench-repo> --model verdict-fm --token-file <token>` posts each

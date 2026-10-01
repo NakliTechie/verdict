@@ -1,0 +1,42 @@
+{
+ "label": "ollama-tev1",
+ "engine": "ollama",
+ "model": "tev1",
+ "url": "http://localhost:11434",
+ "date": "2026-10-01",
+ "machine": "Apple M4 Pro",
+ "macos": "26.5.2",
+ "cold_first_decision_ms": 3574,
+ "warm_median_ms": 43,
+ "cold_note": "Ollama with no model loaded; first request loads the weights",
+ "disk": {
+  "model_bytes": 4482415847,
+  "quantization": "Q8_0",
+  "parameter_size": "4.2B",
+  "runtime_kb": 43900,
+  "runtime": "Homebrew ollama 0.35.0"
+ },
+ "benchmarks_wall_s": 3147,
+ "memory": null,
+ "ollama_ps": [
+  {
+   "name": "tev1:latest",
+   "model": "tev1:latest",
+   "size": 4650182901,
+   "digest": "cef45ef93cf6df8bf32bdd689b0a8fd01f88ae9034d33ce890c54f77e4cd981e",
+   "details": {
+    "parent_model": "",
+    "format": "gguf",
+    "family": "qwen35",
+    "families": [
+     "qwen35"
+    ],
+    "parameter_size": "4.2B",
+    "quantization_level": "Q8_0"
+   },
+   "expires_at": "2026-10-01T15:40:35.717597+05:30",
+   "size_vram": 4650182901,
+   "context_length": 2050
+  }
+ ]
+}

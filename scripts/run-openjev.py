@@ -41,6 +41,13 @@ def ask(state,kind,question,crit):
         return resp,(time.time()-t0)*1000,None
     except Exception as e: return None,(time.time()-t0)*1000,type(e).__name__
 
+def level_of(ans):
+    """verdict sends `level`; plain Jev (Ollama) sends only `score` + `probabilities`, so take the argmax level."""
+    if ans.get("level") is not None: return ans["level"]
+    pr=ans.get("probabilities")
+    if isinstance(pr,dict) and pr: return int(max(pr,key=pr.get))
+    return None if ans.get("score") is None else round(ans["score"])
+
 correct=n=failed=0; lat=[]; cal=[]; brier=[]; items=[]; by_src=defaultdict(lambda:[0,0])
 for i,r in enumerate(sample):
     kind=r["kind"]; crit,labels=parse_opts(kind,r["options"])
@@ -55,10 +62,11 @@ for i,r in enumerate(sample):
         failed+=1; n+=1; by_src[r["source"]][1]+=1; items.append({"id":r["id"],"src":r["source"],"kind":kind,"fail":err or "no_answer"}); continue
     if kind=="choice": pred=a_.get("choice")
     elif kind=="noul": pred="yes" if a_.get("noul",0)>=0.5 else "no"
-    else: pred=str(a_.get("level"))
+    else: pred=str(level_of(a_))
     ok=(pred==exp); n+=1; correct+=ok; by_src[r["source"]][0]+=ok; by_src[r["source"]][1]+=1
     # calibration if probabilities present
-    if a_.get("confidence_kind") not in (None,"none"):
+    # verdict labels degenerate answers confidence_kind "none"; plain Jev (Ollama) omits the field and always decodes.
+    if a_.get("confidence_kind")!="none" and (a_.get("noul") is not None or isinstance(a_.get("probabilities"),dict)):
         p=None
         if kind=="noul": pt=a_.get("noul"); p={"yes":pt,"no":1-pt} if pt is not None else None
         else:
@@ -81,7 +89,7 @@ def ece(pairs,bins=10):
     return round(e,4)
 lat.sort()
 summary={"model":a.model,"n":n,"accuracy":round(correct/n,3),"failed":failed,
-         "latency_p50_ms":lat[len(lat)//2] if lat else None,
+         "latency_p50_ms":lat[len(lat)//2] if lat else None,"latency_p95_ms":lat[int(len(lat)*0.95)] if lat else None,
          "calibration_n":len(cal),"ece":ece(cal),"brier_vs_gold":round(sum(brier)/len(brier),4) if brier else None,
          "by_source":{k:{"acc":round(v[0]/v[1],3),"n":v[1]} for k,v in sorted(by_src.items())}}
 print(json.dumps(summary,indent=1))

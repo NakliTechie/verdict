@@ -141,6 +141,7 @@ summary = {
     "confusion": {"tp": tp, "fp": fp, "fn": fn, "tn": tn}, "secret_leaks": secret_leaks,
     "question_failures": failures, "has_probabilities": has_probs,
     "latency_p50_ms": lat[len(lat) // 2] if lat else None, "latency_p90_ms": lat[int(len(lat) * 0.9)] if lat else None,
+    "latency_p95_ms": lat[int(len(lat) * 0.95)] if lat else None,
     "calibration": cal,
 }
 print(json.dumps(summary, indent=1))

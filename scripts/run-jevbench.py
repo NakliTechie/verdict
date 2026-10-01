@@ -47,7 +47,10 @@ def predicted_label(resp, qtype):
     if a is None: return None
     if qtype == "choice": return a.get("choice")
     if qtype == "noul":   return "yes" if (a.get("noul", 0) >= 0.5) else "no"
-    if qtype == "score":  return str(a.get("level"))
+    if qtype == "score":  # verdict sends `level`; plain Jev (Ollama) sends `probabilities` only -> argmax level
+        if a.get("level") is not None: return str(a["level"])
+        pr = a.get("probabilities")
+        return str(max(pr, key=pr.get)) if isinstance(pr, dict) and pr else None
     return None
 
 by = lambda: {"n": 0, "correct": 0, "failed": 0}
