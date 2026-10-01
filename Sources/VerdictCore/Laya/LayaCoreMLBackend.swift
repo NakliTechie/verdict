@@ -131,10 +131,15 @@ public final class LayaCoreMLBackend: DecisionBackend, @unchecked Sendable {
         return "model-\(sha.prefix(16)).mlmodelc"
     }
 
+    /// Fallback home for the compiled model when the package dir is read-only.
+    static var cacheDirectory: URL {
+        FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("verdict/laya")
+    }
+
     private func compiledModelURL() -> URL {
         let local = directory.appendingPathComponent(compiledName)
         if FileManager.default.fileExists(atPath: local.path) { return local }
-        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("verdict/laya/\(compiledName)")
+        return Self.cacheDirectory.appendingPathComponent(compiledName)
     }
 
     /// Compiled model cached beside the package (or in the user cache dir when the package dir is read-only).
@@ -147,7 +152,7 @@ public final class LayaCoreMLBackend: DecisionBackend, @unchecked Sendable {
         let fm = FileManager.default
         var compiledURL = compiled
         if !fm.fileExists(atPath: compiled.path) {
-            let cache = fm.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("verdict/laya/\(compiledName)")
+            let cache = Self.cacheDirectory.appendingPathComponent(compiledName)
             if fm.fileExists(atPath: cache.path) {
                 compiledURL = cache
             } else {
@@ -163,7 +168,28 @@ public final class LayaCoreMLBackend: DecisionBackend, @unchecked Sendable {
         config.computeUnits = computeUnits
         let m = try MLModel(contentsOf: compiledURL, configuration: config)
         loadedModel = m
+        Self.removeStaleCompiledModels(in: [directory, Self.cacheDirectory], keeping: compiledName)
         return m
+    }
+
+    /// Deletes compiled models left by older installs (unkeyed `model.mlmodelc`) or replaced weights
+    /// (`model-<sha16>.mlmodelc`): every such entry in `directories` except `keep`. Each is ~811 MiB.
+    /// Best effort: a missing or read-only dir is skipped up front, because `removeItem` empties a
+    /// directory before unlinking it and would leave a hollow `model.mlmodelc` an older build tries to load.
+    /// Returns the URLs removed.
+    @discardableResult
+    static func removeStaleCompiledModels(in directories: [URL], keeping keep: String) -> [URL] {
+        let fm = FileManager.default
+        var removed: [URL] = []
+        for dir in directories {
+            guard fm.isWritableFile(atPath: dir.path), let names = try? fm.contentsOfDirectory(atPath: dir.path) else { continue }
+            for name in names where name != keep
+                && (name == "model.mlmodelc" || (name.hasPrefix("model-") && name.hasSuffix(".mlmodelc"))) {
+                let url = dir.appendingPathComponent(name)
+                if (try? fm.removeItem(at: url)) != nil { removed.append(url) }
+            }
+        }
+        return removed
     }
 
     /// Runs `body` on the serial model queue without blocking the cooperative pool.
