@@ -3,3 +3,6 @@ plan/
 .build/
 *.xcuserstate
 .env
+# Promo output (regenerable; /windup-nt sweeps it)
+/marketing
+/brag-output*
